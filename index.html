@@ -454,6 +454,14 @@
   /* Responsive */
 
 
+
+
+  .exp-items::before {
+    left: 4px;
+    top: 12px;
+    bottom: 12px;
+  }
+
   @media (hover: none), (pointer: coarse) {
     body {
       cursor: auto;
@@ -512,9 +520,37 @@
       bottom: 5%;
     }
 
+    .hero-inner {
+      grid-template-columns: 250px minmax(0, 1fr);
+      gap: 40px;
+    }
+
+    .hero-content {
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .hero-photo-frame {
+      max-width: 220px;
+      padding: 1.5px;
+      border-radius: 22px;
+    }
+
+    .hero-photo {
+      border-radius: 20px;
+      border-width: 0.5px;
+    }
+
     .hero-desc {
       max-width: 100%;
       font-size: 0.88rem;
+      text-align: left;
+    }
+
+    .hero-tags,
+    .hero-ctas,
+    .hero-stats {
+      justify-content: flex-start;
     }
 
     .hero-ctas {
@@ -523,7 +559,8 @@
     }
 
     .btn-primary,
-    .btn-outline {
+    .btn-outline,
+    .btn-download {
       width: 100%;
       max-width: 320px;
       text-align: center;
@@ -642,6 +679,16 @@
       margin-bottom: 16px;
     }
 
+    .exp-items {
+      padding-left: 0;
+    }
+
+    .exp-items::before {
+      left: 4px;
+      top: 8px;
+      bottom: 8px;
+    }
+
     .exp-item,
     .edu-item {
       padding: 20px 0 20px 18px;
@@ -710,13 +757,23 @@
       font-size: 0.86rem;
     }
 
-    .contact-links {
+    .contact-cards {
+      grid-template-columns: 1fr;
       gap: 10px;
+      margin-top: 22px;
     }
 
-    .c-link {
-      width: 100%;
-      justify-content: center;
+    .other-profile-cards {
+      margin-top: 12px;
+    }
+
+    .contact-card {
+      padding: 16px;
+      border-radius: 10px;
+    }
+
+    .contact-card-value {
+      font-size: 0.8rem;
     }
 
     footer {
@@ -728,6 +785,32 @@
   }
 
   @media (max-width: 640px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .hero-media {
+      order: -1;
+    }
+
+    .hero-photo-frame {
+      max-width: 220px;
+      margin: 0 auto;
+      padding: 1.5px;
+      border-radius: 20px;
+    }
+
+    .hero-photo {
+      border-radius: 18px;
+      border-width: 0.5px;
+    }
+
+    .hero-content {
+      align-items: center;
+      text-align: center;
+    }
+
     nav {
       padding: 0 16px;
       height: 56px;
@@ -751,6 +834,7 @@
 
     .hero-tags {
       gap: 6px;
+      justify-content: center;
     }
 
     .hero-tag {
@@ -760,16 +844,19 @@
     .hero-ctas {
       flex-direction: column;
       align-items: center;
+      justify-content: center;
     }
 
     .btn-primary,
-    .btn-outline {
+    .btn-outline,
+    .btn-download {
       max-width: none;
       padding: 12px 18px;
     }
 
     .hero-stats {
       gap: 12px;
+      justify-content: center;
     }
 
     .hero-stats > div {
@@ -865,14 +952,128 @@
       font-size: clamp(2rem, 11vw, 2.8rem);
     }
 
-    .contact-email {
-      font-size: 1rem;
-      word-break: break-all;
+    .other-profiles-title {
+      margin-top: 18px;
+      font-size: 0.68rem;
     }
 
-    .c-link {
-      padding: 10px 14px;
+    .contact-card {
+      padding: 14px;
     }
+
+    .contact-card-label {
+      font-size: 0.64rem;
+    }
+
+    .contact-card-value {
+      font-size: 0.76rem;
+    }
+  }
+
+  /* EXPERIENCE / EDUCATION TIMELINES */
+  .exp-items {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding-left: 2px;
+  }
+  .exp-items::before {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: 12px;
+    bottom: 12px;
+    width: 1px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.08) 100%);
+  }
+  .exp-item,
+  .edu-item {
+    position: relative;
+    padding-left: 20px;
+  }
+  .exp-item:last-child,
+  .edu-item:last-child {
+    border-bottom: none;
+  }
+
+
+
+  /* HERO PROFILE */
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 340px minmax(0, 1fr);
+    gap: 72px;
+    align-items: center;
+  }
+
+  .hero-media {
+    display: flex;
+    justify-content: center;
+    padding-left: 8px;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    padding-left: 8px;
+  }
+
+  .hero-photo-frame {
+    width: 100%;
+    max-width: 280px;
+    aspect-ratio: 4 / 5.2;
+    padding: 1.5px;
+    border-radius: 24px;
+    background: linear-gradient(180deg, rgba(74,240,255,0.8) 0%, rgba(124,111,255,0.58) 100%);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.24), 0 0 0 1px rgba(255,255,255,0.04);
+  }
+
+  .hero-photo {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 22px;
+    background: var(--surface);
+    border: 0.5px solid rgba(255,255,255,0.05);
+  }
+
+  .hero-content .hero-desc,
+  .hero-content .hero-tags,
+  .hero-content .hero-ctas,
+  .hero-content .hero-stats {
+    justify-content: flex-start;
+  }
+
+  .btn-download {
+    background: transparent;
+    border: 1px solid var(--border-bright);
+    color: var(--accent);
+    padding: 11px 28px;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 6px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all .2s;
+  }
+
+  .btn-download:hover {
+    background: rgba(74,240,255,0.06);
+    border-color: var(--accent);
+    transform: translateY(-1px);
   }
 
 </style>
@@ -900,26 +1101,39 @@
   <div class="hero-grid"></div>
   <div class="hero-orb hero-orb-1"></div>
   <div class="hero-orb hero-orb-2"></div>
-  <div class="hero-badge"><div class="hero-badge-dot"></div> Available · Berlin, Germany</div>
-  <h1 class="hero-name">Jayesh<br><span class="accent">Choudhari</span></h1>
-  <p class="hero-sub">AI Researcher & Developer</p>
-  <p class="hero-desc">Building intelligent systems at the intersection of ML, NLP, Computer Vision, and Agentic AI. Pursuing M.Sc. Cognitive Systems (AI) at Universität Potsdam.</p>
-  <div class="hero-tags">
-    <span class="hero-tag">Machine Learning</span>
-    <span class="hero-tag">LLMs & RAG</span>
-    <span class="hero-tag">Agentic AI</span>
-    <span class="hero-tag">Computer Vision</span>
-    <span class="hero-tag">NLP</span>
+
+  <div class="hero-inner">
+    <div class="hero-media">
+      <div class="hero-photo-frame">
+        <img src="profile-photo.jpg" alt="Jayesh Choudhari" class="hero-photo">
+      </div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-badge"><div class="hero-badge-dot"></div> Available · Berlin, Germany</div>
+      <h1 class="hero-name">Jayesh<br><span class="accent">Choudhari</span></h1>
+      <p class="hero-sub">AI Researcher & Developer</p>
+      <p class="hero-desc">Building intelligent systems at the intersection of ML, NLP, Computer Vision, and Agentic AI. Pursuing M.Sc. Cognitive Systems (AI) at Universität Potsdam.</p>
+      <div class="hero-tags">
+        <span class="hero-tag">Machine Learning</span>
+        <span class="hero-tag">LLMs & RAG</span>
+        <span class="hero-tag">Agentic AI</span>
+        <span class="hero-tag">Computer Vision</span>
+        <span class="hero-tag">NLP</span>
+      </div>
+      <div class="hero-ctas">
+        <a href="#projects" class="btn-primary">View Projects</a>
+        <a href="Jayesh-Choudhari-CV.pdf" class="btn-download" download>Download CV</a>
+        <a href="#contact" class="btn-outline">Contact Me</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-num">2+</div><div class="stat-label">Years Experience</div></div>
+        <div><div class="stat-num">7</div><div class="stat-label">Key Projects</div></div>
+        <div><div class="stat-num">3</div><div class="stat-label">Roles Held</div></div>
+      </div>
+    </div>
   </div>
-  <div class="hero-ctas">
-    <a href="#projects" class="btn-primary">View Projects</a>
-    <a href="#contact" class="btn-outline">Contact Me</a>
-  </div>
-  <div class="hero-stats">
-    <div><div class="stat-num">2+</div><div class="stat-label">Years Experience</div></div>
-    <div><div class="stat-num">7</div><div class="stat-label">Key Projects</div></div>
-    <div><div class="stat-num">3</div><div class="stat-label">Roles Held</div></div>
-  </div>
+
   <div class="scroll-indicator"><div class="scroll-line"></div><span>Scroll to explore</span></div>
 </section>
 
