@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jayesh Choudhari - AI Researcher</title>
+<title>Jayesh Choudhari — AI Researcher</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -62,7 +61,7 @@
 
   /* HERO */
   #hero {
-    min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+    min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
     padding:120px 56px 80px;position:relative;overflow:hidden;
   }
   .hero-grid {
@@ -99,23 +98,23 @@
     animation:fadeUp .7s .16s ease both;
   }
   .hero-desc {
-    max-width:500px;font-size:0.9rem;line-height:1.75;
+    max-width:520px;font-size:0.9rem;line-height:1.75;
     color:var(--muted);font-weight:400;margin-top:20px;
-    animation:fadeUp .7s .24s ease both;
+    animation:fadeUp .7s .24s ease both;text-align:center;
   }
-  .hero-tags { display:flex;flex-wrap:wrap;gap:8px;margin-top:28px;animation:fadeUp .7s .32s ease both; }
+  .hero-tags { display:flex;flex-wrap:wrap;gap:8px;margin-top:28px;animation:fadeUp .7s .32s ease both;justify-content:center; }
   .hero-tag { padding:5px 12px;background:var(--surface);border:1px solid var(--border);border-radius:6px;font-size:0.75rem;font-weight:500;color:var(--muted); }
-  .hero-ctas { display:flex;gap:12px;margin-top:36px;flex-wrap:wrap;animation:fadeUp .7s .4s ease both; }
+  .hero-ctas { display:flex;gap:12px;margin-top:36px;flex-wrap:wrap;animation:fadeUp .7s .4s ease both;justify-content:center; }
   .btn-primary { background:var(--accent);color:#050810;padding:11px 28px;font-family:var(--font-body);font-size:0.85rem;font-weight:600;border:none;cursor:pointer;border-radius:6px;text-decoration:none;display:inline-block;transition:all .2s; }
   .btn-primary:hover { background:#6ef7ff;transform:translateY(-1px); }
   .btn-outline { background:transparent;border:1px solid var(--border);color:var(--text);padding:11px 28px;font-family:var(--font-body);font-size:0.85rem;font-weight:500;border-radius:6px;text-decoration:none;display:inline-block;transition:all .2s; }
   .btn-outline:hover { border-color:var(--border-bright);background:rgba(255,255,255,0.03); }
 
-  .hero-stats { display:flex;gap:48px;margin-top:64px;animation:fadeUp .7s .48s ease both; }
+  .hero-stats { display:flex;gap:48px;margin-top:64px;animation:fadeUp .7s .48s ease both;justify-content:center; }
   .stat-num { font-family:var(--font-head);font-size:2.2rem;font-weight:800;color:var(--text);letter-spacing:-0.02em; }
   .stat-label { font-size:0.75rem;color:var(--muted);font-weight:400;margin-top:2px; }
 
-  .scroll-indicator { position:absolute;bottom:32px;left:56px;display:flex;align-items:center;gap:12px;color:var(--muted);font-size:0.72rem;animation:fadeUp .7s .6s ease both; }
+  .scroll-indicator { position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:12px;color:var(--muted);font-size:0.72rem;animation:fadeUp .7s .6s ease both; }
   .scroll-line { width:40px;height:1px;background:linear-gradient(to right,var(--accent),transparent);animation:scrollPulse 2s ease infinite; }
   @keyframes scrollPulse { 0%,100%{opacity:.3;transform:scaleX(.5);transform-origin:left}50%{opacity:1;transform:scaleX(1);transform-origin:left} }
   @keyframes fadeUp { from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)} }
@@ -139,7 +138,7 @@
   .about-value { font-size:0.9rem;font-weight:400;color:var(--text); }
 
   /* ============================================
-     PROJECTS - sticky scroll layout like datawizz
+     PROJECTS — sticky scroll layout like datawizz
      ============================================ */
   #projects { background:var(--bg);padding:100px 0; }
   .projects-header { padding:0 56px;margin-bottom:64px; }
@@ -287,6 +286,12 @@
   .c-link { display:flex;align-items:center;gap:8px;border:1px solid var(--border);padding:10px 22px;color:var(--muted);text-decoration:none;font-size:0.8rem;font-weight:500;border-radius:8px;transition:all .2s; }
   .c-link:hover { border-color:var(--border-bright);color:var(--text); }
 
+
+  /* PROJECT GITHUB LINKS */
+  .proj-links { margin-top:18px; }
+  .proj-link { display:inline-flex;align-items:center;gap:7px;padding:8px 18px;background:transparent;border:1px solid rgba(99,179,255,0.25);color:var(--accent);font-size:0.78rem;font-weight:500;border-radius:6px;text-decoration:none;transition:all .2s; }
+  .proj-link:hover { background:rgba(74,240,255,0.07);border-color:var(--accent);transform:translateY(-1px); }
+
   /* FOOTER */
   footer { padding:28px 56px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:0.75rem;color:var(--muted); }
 
@@ -353,7 +358,7 @@
   </div>
   <div class="hero-stats">
     <div><div class="stat-num">2+</div><div class="stat-label">Years Experience</div></div>
-    <div><div class="stat-num">5</div><div class="stat-label">Key Projects</div></div>
+    <div><div class="stat-num">7</div><div class="stat-label">Key Projects</div></div>
     <div><div class="stat-num">3</div><div class="stat-label">Roles Held</div></div>
   </div>
   <div class="scroll-indicator"><div class="scroll-line"></div><span>Scroll to explore</span></div>
@@ -365,7 +370,7 @@
     <div class="reveal">
       <div class="section-eyebrow">About Me</div>
       <p class="about-quote">
-        I design AI that <em>explains itself</em> - from autonomous driving models that audit their own decisions, to medical AI that earns clinical trust through interpretability.<br><br>
+        I design AI that <em>explains itself</em> — from autonomous driving models that audit their own decisions, to medical AI that earns clinical trust through interpretability.<br><br>
         My work spans <em>agentic pipelines</em>, <em>multimodal LLMs</em>, and production-grade NLP systems.
       </p>
     </div>
@@ -394,7 +399,7 @@
   </div>
 </section>
 
-<!-- PROJECTS - sticky scroll like datawizz "how it works" -->
+<!-- PROJECTS — sticky scroll like datawizz "how it works" -->
 <section id="projects">
   <div class="projects-header reveal">
     <div class="section-eyebrow">Selected Work</div>
@@ -440,6 +445,20 @@
           <div class="step-desc">Physics-based multimodal LLM benchmark</div>
         </div>
       </div>
+      <div class="step-item" data-target="panel-5" onclick="scrollToPanel(5)">
+        <div class="step-num">06</div>
+        <div class="step-text">
+          <div class="step-title">Bio-Medical Claim Detection</div>
+          <div class="step-desc">NLP claim mining &amp; span extraction</div>
+        </div>
+      </div>
+      <div class="step-item" data-target="panel-6" onclick="scrollToPanel(6)">
+        <div class="step-num">07</div>
+        <div class="step-text">
+          <div class="step-title">ASP Cloud Resource Allocation</div>
+          <div class="step-desc">Logic-based optimal cloud scheduling</div>
+        </div>
+      </div>
     </div>
 
     <!-- RIGHT: scrollable panels -->
@@ -450,12 +469,13 @@
         <div class="project-card">
           <div class="project-card-top">
             <div>
-              <div class="project-num-label">Project 01 / 05</div>
+              <div class="project-num-label">Project 01 / 07</div>
               <h3 class="project-title">Explainable Autonomous Driving</h3>
               <p class="project-body">Post-hoc XAI framework using EfficientNet B0/B2 to predict and audit 5 vehicle actions. Human-in-the-loop learning with continuous feedback retraining builds trust in safety-critical decisions.</p>
               <div class="stack-pills">
                 <span class="pill">EfficientNet</span><span class="pill">Grad-CAM</span><span class="pill">PyTorch</span><span class="pill">HITL</span><span class="pill">XAI</span>
               </div>
+              <div class="proj-links"><a href="https://github.com/Ravevx/GlassBoxDriver-Post-Hoc-XAI-for-Autonomous-Vehicle-Actions" target="_blank" rel="noopener noreferrer" class="proj-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg> View on GitHub</a></div>
             </div>
             <div class="project-arch-area">
               <svg class="arch-svg" viewBox="0 0 320 280" xmlns="http://www.w3.org/2000/svg">
@@ -506,7 +526,7 @@
         <div class="project-card">
           <div class="project-card-top">
             <div>
-              <div class="project-num-label">Project 02 / 05</div>
+              <div class="project-num-label">Project 02 / 07</div>
               <h3 class="project-title">Explainable Pneumonia Detection</h3>
               <p class="project-body">Medical AI framework achieving AUC > 0.98, comparing CNNs and Vision Transformers. Grad-CAM faithfulness and concentration metrics build clinician trust in AI-assisted radiology.</p>
               <div class="stack-pills">
@@ -558,12 +578,13 @@
         <div class="project-card">
           <div class="project-card-top">
             <div>
-              <div class="project-num-label">Project 03 / 05</div>
+              <div class="project-num-label">Project 03 / 07</div>
               <h3 class="project-title">Agentic GitHub Code Reviewer</h3>
-              <p class="project-body">Privacy-preserving code review using LangGraph, RAG, and local LLMs - no code leaves your machine. Autonomously identifies bugs, security risks, and performance issues across GitHub repos.</p>
+              <p class="project-body">Privacy-preserving code review using LangGraph, RAG, and local LLMs — no code leaves your machine. Autonomously identifies bugs, security risks, and performance issues across GitHub repos.</p>
               <div class="stack-pills">
                 <span class="pill">LangGraph</span><span class="pill">RAG</span><span class="pill">ChromaDB</span><span class="pill">Local LLMs</span><span class="pill">GitHub API</span>
               </div>
+              <div class="proj-links"><a href="https://github.com/Ravevx/Agentic-GitHub-Code-Reviewer" target="_blank" rel="noopener noreferrer" class="proj-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg> View on GitHub</a></div>
             </div>
             <div class="project-arch-area">
               <svg class="arch-svg" viewBox="0 0 320 280" xmlns="http://www.w3.org/2000/svg">
@@ -612,12 +633,13 @@
         <div class="project-card">
           <div class="project-card-top">
             <div>
-              <div class="project-num-label">Project 04 / 05</div>
+              <div class="project-num-label">Project 04 / 07</div>
               <h3 class="project-title">Research Paper → Code Pipeline</h3>
               <p class="project-body">Multi-agent Analyst–Architect–Coder workflow using CrewAI and FAISS that transforms academic PDFs into deployable software. Each agent queries the vector index to ground its output.</p>
               <div class="stack-pills">
                 <span class="pill">CrewAI</span><span class="pill">FAISS</span><span class="pill">Multi-Agent</span><span class="pill">LLM</span><span class="pill">Code Gen</span>
               </div>
+              <div class="proj-links"><a href="https://github.com/Ravevx/Multi-Agent-Research-Paper-to-Codebase-Pipeline" target="_blank" rel="noopener noreferrer" class="proj-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg> View on GitHub</a></div>
             </div>
             <div class="project-arch-area">
               <svg class="arch-svg" viewBox="0 0 320 280" xmlns="http://www.w3.org/2000/svg">
@@ -659,12 +681,13 @@
         <div class="project-card">
           <div class="project-card-top">
             <div>
-              <div class="project-num-label">Project 05 / 05</div>
+              <div class="project-num-label">Project 05 / 07</div>
               <h3 class="project-title">LLM Spatial Reasoning Evaluation</h3>
               <p class="project-body">Physics-based puzzle environment to evaluate spatial reasoning, adaptive learning, and problem-solving of multimodal LLMs. Benchmarks GPT-4V, Claude, and Gemini with increasing difficulty levels.</p>
               <div class="stack-pills">
                 <span class="pill">Multimodal LLMs</span><span class="pill">Physics Engine</span><span class="pill">Benchmarking</span><span class="pill">Adaptive</span>
               </div>
+              <div class="proj-links"><a href="https://github.com/Ravevx/LLM-Spatial-Reasoning-Evaluation-2D-Physics-Puzzle" target="_blank" rel="noopener noreferrer" class="proj-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg> View on GitHub</a></div>
             </div>
             <div class="project-arch-area">
               <svg class="arch-svg" viewBox="0 0 320 280" xmlns="http://www.w3.org/2000/svg">
@@ -704,11 +727,106 @@
         </div>
       </div>
 
+
+      <!-- Panel 5: Bio-Medical Claim Detection -->
+      <div class="project-panel" id="panel-5">
+        <div class="project-card">
+          <div class="project-card-top">
+            <div>
+              <div class="project-num-label">Project 06 / 07</div>
+              <h3 class="project-title">Bio-Medical Claim Detection &amp; Span Extraction</h3>
+              <p class="project-body">An NLP pipeline for detecting and extracting biomedical claims and evidence spans from scientific literature. Combines claim mining with fine-grained span extraction to support evidence-based medical research and automated fact verification.</p>
+              <div class="stack-pills">
+                <span class="pill">NLP</span><span class="pill">Transformers</span><span class="pill">Span Extraction</span><span class="pill">Hugging Face</span><span class="pill">BioMedical NLP</span>
+              </div>
+              <div class="proj-links"><a href="https://github.com/Ravevx/Bio-Medical-Claim-Mining" target="_blank" rel="noopener noreferrer" class="proj-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg> View on GitHub</a></div>
+            </div>
+            <div class="project-arch-area">
+              <svg class="arch-svg" viewBox="0 0 320 280" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <marker id="aw6" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="rgba(74,240,255,0.7)"/></marker>
+                  <filter id="g6"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                </defs>
+                <rect x="70" y="8" width="180" height="34" rx="4" class="an-a" filter="url(#g6)"/>
+                <text x="160" y="26" text-anchor="middle" class="at">Scientific Literature</text>
+                <text x="160" y="38" text-anchor="middle" class="as">Biomedical Papers</text>
+                <line x1="160" y1="42" x2="160" y2="62" class="al-a al-anim" marker-end="url(#aw6)"/>
+                <rect x="90" y="62" width="140" height="30" rx="4" class="an"/>
+                <text x="160" y="81" text-anchor="middle" class="at">Text Preprocessing</text>
+                <line x1="160" y1="92" x2="160" y2="112" class="al-a al-anim" style="animation-delay:.2s" marker-end="url(#aw6)"/>
+                <rect x="60" y="112" width="200" height="38" rx="4" class="an-p" filter="url(#g6)"/>
+                <text x="160" y="131" text-anchor="middle" class="at">Transformer Encoder</text>
+                <text x="160" y="145" text-anchor="middle" class="as">BioBERT / PubMedBERT</text>
+                <line x1="100" y1="150" x2="65" y2="176" class="al al-anim" style="animation-delay:.4s"/>
+                <line x1="220" y1="150" x2="255" y2="176" class="al al-anim" style="animation-delay:.4s"/>
+                <rect x="5" y="176" width="120" height="36" rx="4" fill="rgba(74,240,255,0.06)" stroke="rgba(74,240,255,0.5)" stroke-width="1.2"/>
+                <text x="65" y="194" text-anchor="middle" class="at">Claim Detector</text>
+                <text x="65" y="206" text-anchor="middle" class="as">Classification head</text>
+                <rect x="195" y="176" width="120" height="36" rx="4" fill="rgba(124,111,255,0.06)" stroke="rgba(124,111,255,0.5)" stroke-width="1.2"/>
+                <text x="255" y="194" text-anchor="middle" class="at">Span Extractor</text>
+                <text x="255" y="206" text-anchor="middle" class="as">Evidence boundaries</text>
+                <line x1="65" y1="212" x2="130" y2="242" class="al-a al-anim" style="animation-delay:.65s" marker-end="url(#aw6)"/>
+                <line x1="255" y1="212" x2="190" y2="242" class="al-a al-anim" style="animation-delay:.65s" marker-end="url(#aw6)"/>
+                <rect x="95" y="242" width="130" height="30" rx="4" class="an-a"/>
+                <text x="160" y="261" text-anchor="middle" class="at">Structured Output</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 6: ASP Cloud Resource Allocation -->
+      <div class="project-panel" id="panel-6">
+        <div class="project-card">
+          <div class="project-card-top">
+            <div>
+              <div class="project-num-label">Project 07 / 07</div>
+              <h3 class="project-title">ASP-Based Cloud Resource Allocation</h3>
+              <p class="project-body">An intelligent cloud resource scheduling system using Answer Set Programming (ASP) for optimal allocation. Leverages declarative logic and constraint solving to efficiently assign virtual machines, handle SLA requirements, and minimize operational costs.</p>
+              <div class="stack-pills">
+                <span class="pill">Answer Set Programming</span><span class="pill">Clingo</span><span class="pill">Cloud Computing</span><span class="pill">Constraint Solving</span><span class="pill">Scheduling</span>
+              </div>
+              <div class="proj-links"><a href="https://github.com/Ravevx/CloudRA-ASP-based-Cloud-Resource-Allocation" target="_blank" rel="noopener noreferrer" class="proj-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg> View on GitHub</a></div>
+            </div>
+            <div class="project-arch-area">
+              <svg class="arch-svg" viewBox="0 0 320 280" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <marker id="aw7" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="rgba(74,240,255,0.7)"/></marker>
+                  <filter id="g7"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                </defs>
+                <rect x="70" y="8" width="180" height="34" rx="4" class="an-a" filter="url(#g7)"/>
+                <text x="160" y="26" text-anchor="middle" class="at">Resource Requests</text>
+                <text x="160" y="38" text-anchor="middle" class="as">VMs + SLA Constraints</text>
+                <line x1="160" y1="42" x2="160" y2="62" class="al-a al-anim" marker-end="url(#aw7)"/>
+                <rect x="80" y="62" width="160" height="34" rx="4" class="an"/>
+                <text x="160" y="80" text-anchor="middle" class="at">Constraint Encoder</text>
+                <text x="160" y="92" text-anchor="middle" class="as">ASP Facts &amp; Rules</text>
+                <line x1="160" y1="96" x2="160" y2="116" class="al-a al-anim" style="animation-delay:.2s" marker-end="url(#aw7)"/>
+                <rect x="60" y="116" width="200" height="38" rx="4" class="an-p" filter="url(#g7)"/>
+                <text x="160" y="135" text-anchor="middle" class="at">ASP Solver (Clingo)</text>
+                <text x="160" y="149" text-anchor="middle" class="as">Answer Set Computation</text>
+                <line x1="160" y1="154" x2="160" y2="176" class="al-a al-anim" style="animation-delay:.4s" marker-end="url(#aw7)"/>
+                <rect x="75" y="176" width="170" height="34" rx="4" class="an"/>
+                <text x="160" y="194" text-anchor="middle" class="at">Optimal Solution Set</text>
+                <text x="160" y="206" text-anchor="middle" class="as">Pareto-optimal allocations</text>
+                <line x1="110" y1="210" x2="65" y2="234" class="al al-anim" style="animation-delay:.6s"/>
+                <line x1="210" y1="210" x2="255" y2="234" class="al al-anim" style="animation-delay:.6s"/>
+                <rect x="5" y="234" width="120" height="36" rx="4" fill="rgba(74,240,255,0.06)" stroke="rgba(74,240,255,0.5)" stroke-width="1.2"/>
+                <text x="65" y="252" text-anchor="middle" class="at">VM Assignment</text>
+                <text x="65" y="264" text-anchor="middle" class="as">Hosts mapped</text>
+                <rect x="195" y="234" width="120" height="36" rx="4" fill="rgba(124,111,255,0.06)" stroke="rgba(124,111,255,0.5)" stroke-width="1.2"/>
+                <text x="255" y="252" text-anchor="middle" class="at">Cost Minimized</text>
+                <text x="255" y="264" text-anchor="middle" class="as">SLA satisfied</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
     </div><!-- /panels -->
   </div><!-- /scroll container -->
 </section>
 
-<!-- EXPERIENCE & EDUCATION - Work first, then Education -->
+<!-- EXPERIENCE & EDUCATION — Work first, then Education -->
 <section id="experience">
   <div class="section-eyebrow reveal">Career</div>
   <h2 class="section-title reveal">Experience &<br>Education</h2>
@@ -728,7 +846,7 @@
           <div class="exp-date">June 2023 – May 2024</div>
           <div class="exp-role">AI Consultant (Part-Time)</div>
           <div class="exp-org">Artbider · London, United Kingdom</div>
-          <div class="exp-desc">Built an end-to-end conversational AI system for real-time customer support - integrating STT, ChromaDB RAG, GPT, and TTS pipelines. Achieved full customer support automation with reduced hallucinations.</div>
+          <div class="exp-desc">Built an end-to-end conversational AI system for real-time customer support — integrating STT, ChromaDB RAG, GPT, and TTS pipelines. Achieved full customer support automation with reduced hallucinations.</div>
         </div>
         <div class="exp-item">
           <div class="exp-date">Feb 2023 – June 2023</div>
@@ -828,7 +946,7 @@
   <div class="contact-max">
     <div class="section-eyebrow reveal">Let's Connect</div>
     <h2 class="contact-title reveal">Let's Build<br>Something<br><span class="accent">Intelligent.</span></h2>
-    <p class="contact-sub reveal">Open to research collaborations, AI/ML roles, and interesting projects.<br>Based in Berlin - available globally.</p>
+    <p class="contact-sub reveal">Open to research collaborations, AI/ML roles, and interesting projects.<br>Based in Berlin — available globally.</p>
     <a href="mailto:jayeshchoudhari0@gmail.com" class="contact-email reveal">jayeshchoudhari0@gmail.com</a>
     <div class="contact-links reveal">
       <a href="https://github.com/Ravevx" target="_blank" class="c-link">
@@ -838,6 +956,7 @@
       <a href="https://linkedin.com/in/rav3vx" target="_blank" class="c-link">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
         LinkedIn
+      </a>
       </a>
     </div>
   </div>
