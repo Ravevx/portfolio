@@ -1076,6 +1076,170 @@
     transform: translateY(-1px);
   }
 
+
+
+/* =========================
+   MOBILE HERO FIX
+   + EXPERIENCE / EDUCATION TIMELINE CLEANUP
+   ========================= */
+
+@media (max-width: 900px) {
+  #hero {
+    min-height: auto !important;
+    padding: 96px 24px 56px !important;
+    justify-content: flex-start !important;
+  }
+
+  #hero .hero-inner {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+    align-items: start !important;
+    max-width: 100% !important;
+  }
+
+  #hero .hero-media {
+    order: -1 !important;
+    padding-left: 0 !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+
+  #hero .hero-content {
+    padding-left: 0 !important;
+    align-items: center !important;
+    text-align: center !important;
+    width: 100% !important;
+  }
+
+  #hero .hero-badge {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  #hero .hero-name {
+    font-size: clamp(2.4rem, 13vw, 3.6rem) !important;
+    line-height: 1.02 !important;
+  }
+
+  #hero .hero-sub {
+    font-size: 0.95rem !important;
+  }
+
+  #hero .hero-desc {
+    max-width: 100% !important;
+    text-align: center !important;
+    margin-top: 16px !important;
+  }
+
+  #hero .hero-tags {
+    justify-content: center !important;
+    gap: 6px !important;
+    margin-top: 20px !important;
+  }
+
+  #hero .hero-ctas {
+    width: 100% !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    margin-top: 24px !important;
+  }
+
+  #hero .btn-primary,
+  #hero .btn-outline,
+  #hero .btn-download {
+    width: 100% !important;
+    max-width: 320px !important;
+    text-align: center !important;
+  }
+
+  #hero .hero-stats {
+    width: 100% !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    margin-top: 28px !important;
+    flex-wrap: wrap !important;
+  }
+
+  #hero .hero-stats > div {
+    flex: 1 1 30% !important;
+    min-width: 92px !important;
+  }
+
+  #hero .hero-photo-frame {
+    max-width: 220px !important;
+    margin: 0 auto !important;
+  }
+
+  #hero .scroll-indicator {
+    display: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  #hero {
+    padding: 88px 16px 48px !important;
+  }
+
+  #hero .hero-inner {
+    gap: 20px !important;
+  }
+
+  #hero .hero-photo-frame {
+    max-width: 200px !important;
+  }
+
+  #hero .hero-tag {
+    font-size: 0.68rem !important;
+  }
+
+  #hero .stat-num {
+    font-size: 1.7rem !important;
+  }
+
+  #hero .stat-label {
+    font-size: 0.68rem !important;
+  }
+}
+
+.exp-items::before {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+}
+
+.exp-item,
+.edu-item {
+  border-bottom: none !important;
+  position: relative !important;
+}
+
+.exp-item:not(:last-child)::after,
+.edu-item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 18px;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--border);
+}
+
+@media (max-width: 900px) {
+  .exp-item:not(:last-child)::after,
+  .edu-item:not(:last-child)::after {
+    left: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .exp-item:not(:last-child)::after,
+  .edu-item:not(:last-child)::after {
+    left: 18px;
+  }
+}
+
 </style>
 </head>
 <body>
