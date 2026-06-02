@@ -370,7 +370,7 @@
   width:100%;position:relative;z-index:1;
 }
 
-/* SVG node/line styles (from original index.html) */
+/* SVG node/line styles */
 .an{fill:var(--surface2);stroke:rgba(74,240,255,0.25);stroke-width:1;}
 .an-a{fill:rgba(74,240,255,0.06);stroke:rgba(74,240,255,0.5);stroke-width:1.2;}
 .an-p{fill:rgba(124,111,255,0.06);stroke:rgba(124,111,255,0.4);stroke-width:1;}
@@ -384,23 +384,14 @@
 @keyframes dash{to{stroke-dashoffset:0;}}
 .al-anim{stroke-dasharray:300;stroke-dashoffset:300;animation:dash 1.8s ease forwards;}
 
-/* ── RESPONSIVE ── */
-
   /* EXPERIENCE */
   #experience { background:var(--bg2);border-top:1px solid var(--border); }
   .exp-grid { max-width:1160px;margin:64px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start; }
   .exp-col-title { font-size:0.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border); }
-  .exp-items { display:flex;flex-direction:column;gap:0; }
-  .exp-item { padding:28px 0;border-bottom:1px solid var(--border);position:relative;padding-left:20px; }
-  .exp-item:last-child { border-bottom:none; }
-  .exp-item::before { content:'';position:absolute;left:0;top:34px;width:6px;height:6px;background:var(--accent);border-radius:50%;box-shadow:0 0 8px var(--accent); }
   .exp-date { font-size:0.7rem;font-weight:500;color:var(--accent);letter-spacing:.04em;margin-bottom:6px; }
   .exp-role { font-family:var(--font-head);font-size:1rem;font-weight:700;line-height:1.3;margin-bottom:4px; }
   .exp-org { font-size:0.8rem;color:var(--muted);font-weight:400;margin-bottom:10px; }
   .exp-desc { font-size:0.8rem;color:var(--muted);line-height:1.7; }
-  .edu-item { padding:28px 0;border-bottom:1px solid var(--border);position:relative;padding-left:20px; }
-  .edu-item:last-child { border-bottom:none; }
-  .edu-item::before { content:'';position:absolute;left:0;top:34px;width:6px;height:6px;background:var(--accent2);border-radius:50%;box-shadow:0 0 8px var(--accent2); }
   .edu-date { font-size:0.7rem;font-weight:500;color:var(--accent2);letter-spacing:.04em;margin-bottom:6px; }
   .edu-role { font-family:var(--font-head);font-size:1rem;font-weight:700;line-height:1.3;margin-bottom:4px; }
   .edu-org { font-size:0.8rem;color:var(--muted);font-weight:400; }
@@ -438,12 +429,6 @@
   .c-link { display:flex;align-items:center;gap:8px;border:1px solid var(--border);padding:10px 22px;color:var(--muted);text-decoration:none;font-size:0.8rem;font-weight:500;border-radius:8px;transition:all .2s; }
   .c-link:hover { border-color:var(--border-bright);color:var(--text); }
 
-
-  /* PROJECT GITHUB LINKS */
-  .proj-links { margin-top:18px; }
-  .proj-link { display:inline-flex;align-items:center;gap:7px;padding:8px 18px;background:transparent;border:1px solid rgba(99,179,255,0.25);color:var(--accent);font-size:0.78rem;font-weight:500;border-radius:6px;text-decoration:none;transition:all .2s; }
-  .proj-link:hover { background:rgba(74,240,255,0.07);border-color:var(--accent);transform:translateY(-1px); }
-
   /* FOOTER */
   footer { padding:28px 56px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:0.75rem;color:var(--muted); }
 
@@ -451,795 +436,307 @@
   @keyframes dash { to { stroke-dashoffset:0; } }
   .al-anim { stroke-dasharray:300;stroke-dashoffset:300;animation:dash 1.8s ease forwards; }
 
-  /* Responsive */
-
-
-
-
-  .exp-items::before {
-    left: 4px;
-    top: 12px;
-    bottom: 12px;
-  }
-
   @media (hover: none), (pointer: coarse) {
-    body {
-      cursor: auto;
-    }
-
-    .cursor,
-    .cursor-ring {
-      display: none;
-    }
+    body { cursor: auto; }
+    .cursor, .cursor-ring { display: none; }
   }
 
   @media (max-width: 900px) {
-    html, body {
-      overflow-x: hidden;
-    }
-
-    nav {
-      padding: 0 24px;
-      height: 60px;
-    }
-
-    .nav-links,
-    .nav-cta,
-    .scroll-indicator {
-      display: none;
-    }
-
-    section {
-      padding: 72px 24px;
-    }
-
-    #hero {
-      min-height: auto;
-      padding: 112px 24px 72px;
-    }
-
-    .hero-grid {
-      background-size: 40px 40px;
-    }
-
-    .hero-orb {
-      filter: blur(70px);
-    }
-
-    .hero-orb-1 {
-      width: 360px;
-      height: 360px;
-      top: -80px;
-      right: -120px;
-    }
-
-    .hero-orb-2 {
-      width: 280px;
-      height: 280px;
-      left: -10%;
-      bottom: 5%;
-    }
-
-    .hero-inner {
-      grid-template-columns: 250px minmax(0, 1fr);
-      gap: 40px;
-    }
-
-    .hero-content {
-      align-items: flex-start;
-      text-align: left;
-    }
-
-    .hero-photo-frame {
-      max-width: 220px;
-      padding: 1.5px;
-      border-radius: 22px;
-    }
-
-    .hero-photo {
-      border-radius: 20px;
-      border-width: 0.5px;
-    }
-
-    .hero-desc {
-      max-width: 100%;
-      font-size: 0.88rem;
-      text-align: left;
-    }
-
-    .hero-tags,
-    .hero-ctas,
-    .hero-stats {
-      justify-content: flex-start;
-    }
-
-    .hero-ctas {
-      width: 100%;
-      gap: 10px;
-    }
-
-    .btn-primary,
-    .btn-outline,
-    .btn-download {
-      width: 100%;
-      max-width: 320px;
-      text-align: center;
-    }
-
-    .hero-stats {
-      width: 100%;
-      flex-wrap: wrap;
-      gap: 16px;
-      margin-top: 40px;
-    }
-
-    .hero-stats > div {
-      min-width: 120px;
-    }
-
-    .about-grid {
-      grid-template-columns: 1fr;
-      gap: 32px;
-    }
-
-    .about-row {
-      padding-bottom: 18px;
-    }
-
-    #projects {
-      padding: 72px 0 88px;
-    }
-
-    .proj-header {
-      padding: 0 24px;
-      margin-bottom: 32px;
-    }
-
-    .proj-layout {
-      display: block;
-      max-width: 100%;
-      padding: 0 24px;
-    }
-
-    .left-col {
-      display: none;
-    }
-
-    .right-col {
-      width: 100%;
-    }
-
-    .proj-block {
-      min-height: auto;
-      padding: 28px 0;
-      border-top: 1px solid var(--border);
-    }
-
-    .proj-block-inner {
-      grid-template-columns: 1fr;
-      gap: 22px;
-      align-items: start;
-    }
-
-    .proj-text,
-    .proj-visual {
-      width: 100%;
-    }
-
-    .proj-title {
-      font-size: 1.35rem;
-      line-height: 1.25;
-    }
-
-    .proj-desc {
-      font-size: 0.86rem;
-      line-height: 1.75;
-      margin-bottom: 18px;
-    }
-
-    .proj-pills {
-      gap: 8px;
-      margin-bottom: 18px;
-    }
-
-    .pill {
-      font-size: 0.7rem;
-    }
-
-    .proj-link {
-      width: 100%;
-      justify-content: center;
-    }
-
-    .arch-card {
-      padding: 16px;
-      border-radius: 12px;
-    }
-
-    .arch-svg {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    #experience,
-    #skills,
-    #certifications {
-      padding-top: 72px;
-      padding-bottom: 72px;
-    }
-
-    .exp-grid {
-      grid-template-columns: 1fr;
-      gap: 28px;
-      margin-top: 36px;
-    }
-
-    .exp-col-title {
-      margin-bottom: 16px;
-    }
-
-    .exp-items {
-      padding-left: 0;
-    }
-
-    .exp-items::before {
-      left: 4px;
-      top: 8px;
-      bottom: 8px;
-    }
-
-    .exp-item,
-    .edu-item {
-      padding: 20px 0 20px 18px;
-    }
-
-    .exp-item::before,
-    .edu-item::before {
-      top: 26px;
-    }
-
-    .exp-role,
-    .edu-role {
-      font-size: 0.95rem;
-    }
-
-    .exp-org,
-    .edu-org,
-    .exp-desc {
-      font-size: 0.78rem;
-      line-height: 1.65;
-    }
-
-    .skills-max {
-      max-width: 100%;
-    }
-
-    .skills-grid {
-      grid-template-columns: 1fr;
-      margin-top: 32px;
-      border-radius: 12px;
-    }
-
-    .skill-group {
-      padding: 22px 18px;
-    }
-
-    .skill-chip {
-      font-size: 0.7rem;
-      padding: 5px 9px;
-    }
-
-    .cert-cards {
-      grid-template-columns: 1fr;
-      gap: 16px;
-      margin-top: 32px;
-    }
-
-    .cert-card {
-      padding: 22px 18px;
-    }
-
-    .cert-name {
-      font-size: 1rem;
-    }
-
-    .cert-body {
-      font-size: 0.8rem;
-      line-height: 1.65;
-    }
-
-    #contact {
-      padding: 88px 24px;
-    }
-
-    .contact-sub {
-      font-size: 0.86rem;
-    }
-
-    .contact-cards {
-      grid-template-columns: 1fr;
-      gap: 10px;
-      margin-top: 22px;
-    }
-
-    .other-profile-cards {
-      margin-top: 12px;
-    }
-
-    .contact-card {
-      padding: 16px;
-      border-radius: 10px;
-    }
-
-    .contact-card-value {
-      font-size: 0.8rem;
-    }
-
-    footer {
-      padding: 20px 24px;
-      flex-direction: column;
-      gap: 8px;
-      text-align: center;
-    }
+    html, body { overflow-x: hidden; }
+    nav { padding: 0 24px; height: 60px; }
+    .nav-links, .nav-cta, .scroll-indicator { display: none; }
+    section { padding: 72px 24px; }
+    #hero { min-height: auto; padding: 112px 24px 72px; }
+    .hero-grid { background-size: 40px 40px; }
+    .hero-orb { filter: blur(70px); }
+    .hero-orb-1 { width: 360px; height: 360px; top: -80px; right: -120px; }
+    .hero-orb-2 { width: 280px; height: 280px; left: -10%; bottom: 5%; }
+    .hero-desc { max-width: 100%; font-size: 0.88rem; text-align: left; }
+    .hero-tags, .hero-ctas, .hero-stats { justify-content: flex-start; }
+    .hero-ctas { width: 100%; gap: 10px; }
+    .btn-primary, .btn-outline, .btn-download { width: 100%; max-width: 320px; text-align: center; }
+    .hero-stats { width: 100%; flex-wrap: wrap; gap: 16px; margin-top: 40px; }
+    .hero-stats > div { min-width: 120px; }
+    .about-grid { grid-template-columns: 1fr; gap: 32px; }
+    #projects { padding: 72px 0 88px; }
+    .proj-header { padding: 0 24px; margin-bottom: 32px; }
+    .proj-layout { display: block; max-width: 100%; padding: 0 24px; }
+    .left-col { display: none; }
+    .right-col { width: 100%; }
+    .proj-block { min-height: auto; padding: 28px 0; border-top: 1px solid var(--border); }
+    .proj-block-inner { grid-template-columns: 1fr; gap: 22px; align-items: start; }
+    .proj-title { font-size: 1.35rem; line-height: 1.25; }
+    .proj-desc { font-size: 0.86rem; line-height: 1.75; margin-bottom: 18px; }
+    .proj-pills { gap: 8px; margin-bottom: 18px; }
+    .pill { font-size: 0.7rem; }
+    .proj-link { width: 100%; justify-content: center; }
+    .arch-card { padding: 16px; border-radius: 12px; }
+    .arch-svg { width: 100%; height: auto; display: block; }
+    #experience, #skills, #certifications { padding-top: 72px; padding-bottom: 72px; }
+    .exp-grid { grid-template-columns: 1fr; gap: 28px; margin-top: 36px; }
+    .exp-col-title { margin-bottom: 16px; }
+    .exp-role, .edu-role { font-size: 0.95rem; }
+    .exp-org, .edu-org, .exp-desc { font-size: 0.78rem; line-height: 1.65; }
+    .skills-max { max-width: 100%; }
+    .skills-grid { grid-template-columns: 1fr; margin-top: 32px; border-radius: 12px; }
+    .skill-group { padding: 22px 18px; }
+    .skill-chip { font-size: 0.7rem; padding: 5px 9px; }
+    .cert-cards { grid-template-columns: 1fr; gap: 16px; margin-top: 32px; }
+    .cert-card { padding: 22px 18px; }
+    .cert-name { font-size: 1rem; }
+    .cert-body { font-size: 0.8rem; line-height: 1.65; }
+    #contact { padding: 88px 24px; }
+    .contact-sub { font-size: 0.86rem; }
+    footer { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
   }
 
   @media (max-width: 640px) {
-    .hero-inner {
-      grid-template-columns: 1fr;
-      gap: 24px;
-    }
-
-    .hero-media {
-      order: -1;
-    }
-
-    .hero-photo-frame {
-      max-width: 220px;
-      margin: 0 auto;
-      padding: 1.5px;
-      border-radius: 20px;
-    }
-
-    .hero-photo {
-      border-radius: 18px;
-      border-width: 0.5px;
-    }
-
-    .hero-content {
-      align-items: center;
-      text-align: center;
-    }
-
-    nav {
-      padding: 0 16px;
-      height: 56px;
-    }
-
-    section {
-      padding: 56px 16px;
-    }
-
-    #hero {
-      padding: 96px 16px 56px;
-    }
-
-    .hero-name {
-      font-size: clamp(2.4rem, 13vw, 3.6rem);
-    }
-
-    .hero-sub {
-      font-size: 0.95rem;
-    }
-
-    .hero-tags {
-      gap: 6px;
-      justify-content: center;
-    }
-
-    .hero-tag {
-      font-size: 0.68rem;
-    }
-
-    .hero-ctas {
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .btn-primary,
-    .btn-outline,
-    .btn-download {
-      max-width: none;
-      padding: 12px 18px;
-    }
-
-    .hero-stats {
-      gap: 12px;
-      justify-content: center;
-    }
-
-    .hero-stats > div {
-      flex: 1 1 30%;
-      min-width: 92px;
-    }
-
-    .stat-num {
-      font-size: 1.7rem;
-    }
-
-    .stat-label {
-      font-size: 0.68rem;
-    }
-
-    .section-title {
-      font-size: clamp(1.7rem, 8vw, 2.2rem);
-      margin-bottom: 28px;
-    }
-
-    .proj-header,
-    .proj-layout {
-      padding-left: 16px;
-      padding-right: 16px;
-    }
-
-    .proj-num {
-      font-size: 0.62rem;
-    }
-
-    .proj-title {
-      font-size: 1.18rem;
-    }
-
-    .proj-desc {
-      font-size: 0.82rem;
-      line-height: 1.7;
-    }
-
-    .pill {
-      font-size: 0.66rem;
-    }
-
-    .arch-card {
-      padding: 14px;
-      border-radius: 10px;
-    }
-
-    .about-quote {
-      font-size: 1.25rem;
-      line-height: 1.45;
-    }
-
-    .about-value {
-      font-size: 0.85rem;
-    }
-
-    .exp-grid {
-      margin-top: 28px;
-      gap: 22px;
-    }
-
-    .exp-date,
-    .edu-date {
-      font-size: 0.66rem;
-    }
-
-    .exp-role,
-    .edu-role {
-      font-size: 0.9rem;
-    }
-
-    .exp-org,
-    .edu-org,
-    .exp-desc,
-    .cert-body {
-      font-size: 0.76rem;
-    }
-
-    .skill-group {
-      padding: 18px 16px;
-    }
-
-    .skill-group-name {
-      font-size: 0.75rem;
-    }
-
-    .skill-chip {
-      font-size: 0.68rem;
-    }
-
-    .contact-title {
-      font-size: clamp(2rem, 11vw, 2.8rem);
-    }
-
-    .other-profiles-title {
-      margin-top: 18px;
-      font-size: 0.68rem;
-    }
-
-    .contact-card {
-      padding: 14px;
-    }
-
-    .contact-card-label {
-      font-size: 0.64rem;
-    }
-
-    .contact-card-value {
-      font-size: 0.76rem;
-    }
+    nav { padding: 0 16px; height: 56px; }
+    section { padding: 56px 16px; }
+    #hero { padding: 96px 16px 56px; }
+    .hero-name { font-size: clamp(2.4rem, 13vw, 3.6rem); }
+    .hero-sub { font-size: 0.95rem; }
+    .hero-tags { gap: 6px; justify-content: center; }
+    .hero-tag { font-size: 0.68rem; }
+    .hero-ctas { flex-direction: column; align-items: center; justify-content: center; }
+    .btn-primary, .btn-outline, .btn-download { max-width: none; padding: 12px 18px; }
+    .hero-stats { gap: 12px; justify-content: center; }
+    .hero-stats > div { flex: 1 1 30%; min-width: 92px; }
+    .stat-num { font-size: 1.7rem; }
+    .stat-label { font-size: 0.68rem; }
+    .section-title { font-size: clamp(1.7rem, 8vw, 2.2rem); margin-bottom: 28px; }
+    .proj-header, .proj-layout { padding-left: 16px; padding-right: 16px; }
+    .about-quote { font-size: 1.25rem; line-height: 1.45; }
+    .about-value { font-size: 0.85rem; }
+    .contact-title { font-size: clamp(2rem, 11vw, 2.8rem); }
   }
-
-  /* EXPERIENCE / EDUCATION TIMELINES */
-  .exp-items {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    padding-left: 2px;
-  }
-  .exp-items::before {
-    content: '';
-    position: absolute;
-    left: 2px;
-    top: 12px;
-    bottom: 12px;
-    width: 1px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.08) 100%);
-  }
-  .exp-item,
-  .edu-item {
-    position: relative;
-    padding-left: 20px;
-  }
-  .exp-item:last-child,
-  .edu-item:last-child {
-    border-bottom: none;
-  }
-
-
 
   /* HERO PROFILE */
   .hero-inner {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    max-width: 1180px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 340px minmax(0, 1fr);
-    gap: 72px;
-    align-items: center;
+    position: relative; z-index: 1; width: 100%; max-width: 1180px; margin: 0 auto;
+    display: grid; grid-template-columns: 340px minmax(0, 1fr); gap: 72px; align-items: center;
   }
-
-  .hero-media {
-    display: flex;
-    justify-content: center;
-    padding-left: 8px;
-  }
-
-  .hero-content {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-    padding-left: 8px;
-  }
-
+  .hero-media { display: flex; justify-content: center; padding-left: 8px; }
+  .hero-content { display: flex; flex-direction: column; align-items: flex-start; text-align: left; padding-left: 8px; }
   .hero-photo-frame {
-    width: 100%;
-    max-width: 280px;
-    aspect-ratio: 4 / 5.2;
-    padding: 1.5px;
-    border-radius: 24px;
+    width: 100%; max-width: 280px; aspect-ratio: 4 / 5.2; padding: 1.5px; border-radius: 24px;
     background: linear-gradient(180deg, rgba(74,240,255,0.8) 0%, rgba(124,111,255,0.58) 100%);
     box-shadow: 0 16px 40px rgba(0,0,0,0.24), 0 0 0 1px rgba(255,255,255,0.04);
   }
-
   .hero-photo {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
-    border-radius: 22px;
-    background: var(--surface);
-    border: 0.5px solid rgba(255,255,255,0.05);
+    width: 100%; height: 100%; display: block; object-fit: cover; border-radius: 22px;
+    background: var(--surface); border: 0.5px solid rgba(255,255,255,0.05);
   }
-
-  .hero-content .hero-desc,
-  .hero-content .hero-tags,
-  .hero-content .hero-ctas,
-  .hero-content .hero-stats {
-    justify-content: flex-start;
-  }
-
+  .hero-content .hero-desc, .hero-content .hero-tags, .hero-content .hero-ctas, .hero-content .hero-stats { justify-content: flex-start; }
   .btn-download {
-    background: transparent;
-    border: 1px solid var(--border-bright);
-    color: var(--accent);
-    padding: 11px 28px;
-    font-family: var(--font-body);
-    font-size: 0.85rem;
-    font-weight: 600;
-    border-radius: 6px;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    transition: all .2s;
+    background: transparent; border: 1px solid var(--border-bright); color: var(--accent);
+    padding: 11px 28px; font-family: var(--font-body); font-size: 0.85rem; font-weight: 600;
+    border-radius: 6px; text-decoration: none; display: inline-flex; align-items: center;
+    justify-content: center; gap: 8px; transition: all .2s;
+  }
+  .btn-download:hover { background: rgba(74,240,255,0.06); border-color: var(--accent); transform: translateY(-1px); }
+
+  @media (max-width: 900px) {
+    #hero { min-height: auto !important; padding: 96px 24px 56px !important; justify-content: flex-start !important; }
+    #hero .hero-inner { grid-template-columns: 1fr !important; gap: 24px !important; align-items: start !important; max-width: 100% !important; }
+    #hero .hero-media { order: -1 !important; padding-left: 0 !important; justify-content: center !important; width: 100% !important; }
+    #hero .hero-content { padding-left: 0 !important; align-items: center !important; text-align: center !important; width: 100% !important; }
+    #hero .hero-badge { margin-left: auto !important; margin-right: auto !important; }
+    #hero .hero-name { font-size: clamp(2.4rem, 13vw, 3.6rem) !important; line-height: 1.02 !important; }
+    #hero .hero-sub { font-size: 0.95rem !important; }
+    #hero .hero-desc { max-width: 100% !important; text-align: center !important; margin-top: 16px !important; }
+    #hero .hero-tags { justify-content: center !important; gap: 6px !important; margin-top: 20px !important; }
+    #hero .hero-ctas { width: 100% !important; flex-direction: column !important; align-items: center !important; justify-content: center !important; gap: 10px !important; margin-top: 24px !important; }
+    #hero .btn-primary, #hero .btn-outline, #hero .btn-download { width: 100% !important; max-width: 320px !important; text-align: center !important; }
+    #hero .hero-stats { width: 100% !important; justify-content: center !important; gap: 12px !important; margin-top: 28px !important; flex-wrap: wrap !important; }
+    #hero .hero-stats > div { flex: 1 1 30% !important; min-width: 92px !important; }
+    #hero .hero-photo-frame { max-width: 220px !important; margin: 0 auto !important; }
+    #hero .scroll-indicator { display: none !important; }
+  }
+  @media (max-width: 640px) {
+    #hero { padding: 88px 16px 48px !important; }
+    #hero .hero-inner { gap: 20px !important; }
+    #hero .hero-photo-frame { max-width: 200px !important; }
+    #hero .hero-tag { font-size: 0.68rem !important; }
+    #hero .stat-num { font-size: 1.7rem !important; }
+    #hero .stat-label { font-size: 0.68rem !important; }
   }
 
-  .btn-download:hover {
-    background: rgba(74,240,255,0.06);
-    border-color: var(--accent);
-    transform: translateY(-1px);
+  /* ═══════════════════════════════════════════
+     MORE PROJECTS — timeline layout (NEW)
+  ═══════════════════════════════════════════ */
+  .more-projects-section {
+    max-width:1240px;margin:80px auto 0;padding:0 64px;
+  }
+  .more-projects-header { margin-bottom:32px; }
+  .more-projects-title {
+    font-family:var(--font-head);font-size:clamp(1.3rem,2vw,1.7rem);
+    font-weight:700;letter-spacing:-.025em;color:var(--text);
+  }
+  .more-proj-timeline {
+    display:flex;gap:0;position:relative;align-items:stretch;
+  }
+  /* left rail */
+  .more-proj-left {
+    flex:0 0 32px;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  .more-proj-line-track {
+    position:absolute;
+    top:14px;bottom:14px;left:50%;
+    transform:translateX(-50%);
+    width:1px;
+    background:rgba(255,255,255,0.07);
+    overflow:hidden;border-radius:1px;
+  }
+  .more-proj-line-fill {
+    position:absolute;top:0;left:0;width:100%;height:0%;
+    background:linear-gradient(180deg,rgba(255,255,255,0.55) 0%,rgba(255,255,255,0.15) 100%);
+    transition:height .12s linear;border-radius:1px;
+  }
+  /* dots positioned absolutely inside left col */
+  .more-proj-dots {
+    position:absolute;top:0;left:0;right:0;bottom:0;
+    pointer-events:none;
+  }
+  .more-proj-dot {
+    position:absolute;
+    left:50%;transform:translateX(-50%);
+    width:10px;height:10px;border-radius:50%;
+    border:1.5px solid rgba(255,255,255,0.15);
+    background:var(--bg);
+    transition:border-color .45s,background .45s,box-shadow .45s;
+    z-index:2;
+  }
+  .more-proj-dot.dot-lit {
+    border-color:var(--dot-color,var(--accent));
+    background:var(--dot-color,var(--accent));
+    box-shadow:0 0 12px var(--dot-color,var(--accent));
+  }
+  /* right items */
+  .more-proj-right {
+    flex:1;
+    display:flex;flex-direction:column;
+    border:1px solid var(--border);
+    border-radius:12px;
+    overflow:hidden;
+    margin-left:16px;
+  }
+  .more-proj-item {
+    display:flex;align-items:center;justify-content:space-between;gap:32px;
+    padding:22px 28px;
+    border-bottom:1px solid var(--border);
+    /* scroll reveal */
+    opacity:0;
+    transform:translateX(20px);
+    transition:background .2s, opacity .55s, transform .55s;
+  }
+  .more-proj-item.mp-reveal { opacity:1;transform:none; }
+  .more-proj-item:last-child { border-bottom:none; }
+  .more-proj-item:hover { background:rgba(255,255,255,0.02); }
+  .more-proj-info { flex:1;min-width:0; }
+  .more-proj-name {
+    font-family:var(--font-head);font-size:.95rem;font-weight:700;
+    color:var(--text);margin-bottom:4px;
+  }
+  .more-proj-desc { font-size:.8rem;color:var(--muted);line-height:1.6; }
+  .more-proj-link {
+    flex-shrink:0;display:inline-flex;align-items:center;gap:6px;
+    padding:7px 16px;border-radius:6px;border:1px solid var(--border);
+    color:var(--muted);font-size:.75rem;font-weight:500;
+    text-decoration:none;white-space:nowrap;transition:all .2s;
+  }
+  .more-proj-link:hover {
+    border-color:rgba(74,240,255,0.3);color:var(--accent);
+    background:rgba(74,240,255,0.05);
   }
 
-
-
-/* =========================
-   MOBILE HERO FIX
-   + EXPERIENCE / EDUCATION TIMELINE CLEANUP
-   ========================= */
-
-@media (max-width: 900px) {
-  #hero {
-    min-height: auto !important;
-    padding: 96px 24px 56px !important;
-    justify-content: flex-start !important;
+  @media (max-width:900px) {
+    .more-projects-section { padding:0 24px;margin-top:48px; }
+    .more-proj-item { flex-direction:column;align-items:flex-start;gap:12px;padding:18px 20px; }
+    .more-proj-link { align-self:flex-start; }
+  }
+  @media (max-width:640px) {
+    .more-projects-section { padding:0 16px; }
+    .more-proj-left { display:none; }
+    .more-proj-right { margin-left:0; }
   }
 
-  #hero .hero-inner {
-    grid-template-columns: 1fr !important;
-    gap: 24px !important;
-    align-items: start !important;
-    max-width: 100% !important;
+  /* ═══════════════════════════════════════════
+     EXPERIENCE / EDUCATION TIMELINE (NEW)
+  ═══════════════════════════════════════════ */
+  .exp-timeline-wrap {
+    position:relative;
+    display:flex;flex-direction:column;
+    gap:0;
+    padding-left:0;
+  }
+  .exp-timeline-track {
+    position:absolute;
+    left:2px;top:18px;bottom:18px;
+    width:1px;
+    background:rgba(255,255,255,0.07);
+    overflow:hidden;border-radius:1px;
+    pointer-events:none;
+  }
+  .exp-timeline-fill {
+    position:absolute;top:0;left:0;
+    width:100%;height:0%;
+    border-radius:1px;
+    transition:height .18s linear;
+  }
+  .exp-fill-work {
+    background:linear-gradient(180deg,rgba(74,240,255,0.8) 0%,rgba(74,240,255,0.2) 100%);
+  }
+  .exp-fill-edu {
+    background:linear-gradient(180deg,rgba(124,111,255,0.8) 0%,rgba(124,111,255,0.2) 100%);
   }
 
-  #hero .hero-media {
-    order: -1 !important;
-    padding-left: 0 !important;
-    justify-content: center !important;
-    width: 100% !important;
+  /* timeline items */
+  .exp-item-new, .edu-item-new {
+    position:relative;
+    padding:28px 0 28px 24px;
+    border-bottom:1px solid var(--border);
+    /* scroll reveal */
+    opacity:0;
+    transform:translateY(14px);
+    transition:opacity .5s, transform .5s;
+  }
+  .exp-item-new:last-child, .edu-item-new:last-child { border-bottom:none; }
+  .exp-item-new.tl-reveal, .edu-item-new.tl-reveal { opacity:1;transform:none; }
+
+  /* glowing dot per item */
+  .tl-dot {
+    position:absolute;
+    left:-2px;top:34px;
+    width:9px;height:9px;
+    border-radius:50%;
+    border:1.5px solid rgba(255,255,255,0.12);
+    background:var(--bg2);
+    z-index:2;
+    transition:border-color .45s, background .45s, box-shadow .45s;
+  }
+  .exp-item-new.tl-reveal .tl-dot {
+    border-color:var(--accent);
+    background:var(--accent);
+    box-shadow:0 0 10px var(--accent);
+  }
+  .edu-item-new.tl-reveal .tl-dot {
+    border-color:var(--accent2);
+    background:var(--accent2);
+    box-shadow:0 0 10px var(--accent2);
   }
 
-  #hero .hero-content {
-    padding-left: 0 !important;
-    align-items: center !important;
-    text-align: center !important;
-    width: 100% !important;
+  @media (max-width:900px) {
+    .exp-item-new, .edu-item-new { padding:20px 0 20px 18px; }
+    .tl-dot { top:26px; }
   }
-
-  #hero .hero-badge {
-    margin-left: auto !important;
-    margin-right: auto !important;
+  @media (max-width:640px) {
+    .exp-role, .edu-role { font-size:0.9rem; }
   }
-
-  #hero .hero-name {
-    font-size: clamp(2.4rem, 13vw, 3.6rem) !important;
-    line-height: 1.02 !important;
-  }
-
-  #hero .hero-sub {
-    font-size: 0.95rem !important;
-  }
-
-  #hero .hero-desc {
-    max-width: 100% !important;
-    text-align: center !important;
-    margin-top: 16px !important;
-  }
-
-  #hero .hero-tags {
-    justify-content: center !important;
-    gap: 6px !important;
-    margin-top: 20px !important;
-  }
-
-  #hero .hero-ctas {
-    width: 100% !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 10px !important;
-    margin-top: 24px !important;
-  }
-
-  #hero .btn-primary,
-  #hero .btn-outline,
-  #hero .btn-download {
-    width: 100% !important;
-    max-width: 320px !important;
-    text-align: center !important;
-  }
-
-  #hero .hero-stats {
-    width: 100% !important;
-    justify-content: center !important;
-    gap: 12px !important;
-    margin-top: 28px !important;
-    flex-wrap: wrap !important;
-  }
-
-  #hero .hero-stats > div {
-    flex: 1 1 30% !important;
-    min-width: 92px !important;
-  }
-
-  #hero .hero-photo-frame {
-    max-width: 220px !important;
-    margin: 0 auto !important;
-  }
-
-  #hero .scroll-indicator {
-    display: none !important;
-  }
-}
-
-@media (max-width: 640px) {
-  #hero {
-    padding: 88px 16px 48px !important;
-  }
-
-  #hero .hero-inner {
-    gap: 20px !important;
-  }
-
-  #hero .hero-photo-frame {
-    max-width: 200px !important;
-  }
-
-  #hero .hero-tag {
-    font-size: 0.68rem !important;
-  }
-
-  #hero .stat-num {
-    font-size: 1.7rem !important;
-  }
-
-  #hero .stat-label {
-    font-size: 0.68rem !important;
-  }
-}
-
-.exp-items::before {
-  content: none !important;
-  display: none !important;
-  background: none !important;
-}
-
-.exp-item,
-.edu-item {
-  border-bottom: none !important;
-  position: relative !important;
-}
-
-.exp-item:not(:last-child)::after,
-.edu-item:not(:last-child)::after {
-  content: "";
-  position: absolute;
-  left: 18px;
-  right: 0;
-  bottom: 0;
-  height: 1px;
-  background: var(--border);
-}
-
-@media (max-width: 900px) {
-  .exp-item:not(:last-child)::after,
-  .edu-item:not(:last-child)::after {
-    left: 20px;
-  }
-}
-
-@media (max-width: 640px) {
-  .exp-item:not(:last-child)::after,
-  .edu-item:not(:last-child)::after {
-    left: 18px;
-  }
-}
-
 </style>
 </head>
 <body>
@@ -1336,17 +833,17 @@
   </div>
 </section>
 
-<!-- PROJECTS - sticky scroll like datawizz "how it works" -->
+<!-- PROJECTS -->
 <section id="projects">
 
   <div class="proj-header">
     <div class="section-eyebrow">Selected Work</div>
-    <h2 class="section-title">Here are all my <span>Key Projects</span></h2>
+    <h2 class="section-title">My Top 4 <span>Key Projects</span></h2>
   </div>
 
   <div class="proj-layout">
 
-    <!-- ══ LEFT: sticky timeline ══ -->
+    <!-- LEFT: sticky timeline -->
     <div class="left-col">
       <div class="timeline-line"><div class="timeline-fill" id="timelineFill"></div></div>
       <div class="step-list" id="stepList">
@@ -1382,42 +879,16 @@
             <div class="step-desc-short">CrewAI multi-agent paper implementation</div>
           </div>
         </div>
-        <div class="step-item" id="step-4" data-idx="4" style="--step-color:#ff6b9d">
-          <div class="step-dot"></div>
-          <div class="step-body">
-            <div class="step-num">05</div>
-            <div class="step-title">LLM Spatial Reasoning Evaluation</div>
-            <div class="step-desc-short">Physics-based multimodal LLM benchmark</div>
-          </div>
-        </div>
-        <div class="step-item" id="step-5" data-idx="5" style="--step-color:#7c6fff">
-          <div class="step-dot"></div>
-          <div class="step-body">
-            <div class="step-num">06</div>
-            <div class="step-title">Bio-Medical Claim Detection &amp; Span Extraction</div>
-            <div class="step-desc-short">NLP claim mining & span extraction</div>
-          </div>
-        </div>
-        <div class="step-item" id="step-6" data-idx="6" style="--step-color:#4af0ff">
-          <div class="step-dot"></div>
-          <div class="step-body">
-            <div class="step-num">07</div>
-            <div class="step-title">ASP-Based Cloud Resource Allocation</div>
-            <div class="step-desc-short">Logic-based optimal cloud scheduling</div>
-          </div>
-        </div>
       </div>
-    </div><!-- /left-col -->
+    </div>
 
-    <!-- ══ RIGHT: scrolling project blocks ══ -->
+    <!-- RIGHT: scrolling project blocks -->
     <div class="right-col" id="rightCol">
 
       <div class="proj-block" id="proj-block-0" data-idx="0" style="--block-color:#4af0ff">
         <div class="proj-block-inner">
-
-          <!-- Text -->
           <div class="proj-text">
-            <div class="proj-num">Project 01 / 07</div>
+            <div class="proj-num">Project 01 / 04</div>
             <h3 class="proj-title">Explainable Autonomous Driving</h3>
             <p class="proj-desc">Post-hoc XAI framework using EfficientNet B0/B2 to predict and audit 5 vehicle actions. Human-in-the-loop learning with continuous feedback retraining builds trust in safety-critical decisions.</p>
             <div class="proj-pills"><span class="pill">EfficientNet</span><span class="pill">Grad-CAM</span><span class="pill">PyTorch</span><span class="pill">HITL</span><span class="pill">XAI</span></div>
@@ -1426,8 +897,6 @@
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg> View on GitHub <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
             </a>
           </div>
-
-          <!-- Architecture SVG -->
           <div class="proj-visual">
             <div class="arch-card">
               <div class="arch-label">Architecture</div>
@@ -1447,7 +916,6 @@
                 <rect x="250" y="14" width="60" height="36" rx="4" class="an-p"/>
                 <text x="280" y="30" text-anchor="middle" class="at">Grad-CAM</text>
                 <text x="280" y="43" text-anchor="middle" class="as">Saliency</text>
-                <!-- 5 actions -->
                 <text x="160" y="75" text-anchor="middle" class="as" fill="rgba(74,240,255,0.5)">5 Vehicle Actions Predicted</text>
                 <line x1="175" y1="50" x2="175" y2="80" class="al al-anim" style="animation-delay:.3s"/>
                 <line x1="30" y1="80" x2="295" y2="80" class="al al-anim" style="animation-delay:.4s"/>
@@ -1456,9 +924,7 @@
                 <rect x="129" y="86" width="62" height="28" rx="3" class="an"/><text x="160" y="103" text-anchor="middle" class="as">Turn Left</text>
                 <rect x="198" y="86" width="64" height="28" rx="3" class="an"/><text x="230" y="103" text-anchor="middle" class="as">Turn Right</text>
                 <rect x="269" y="86" width="46" height="28" rx="3" class="an"/><text x="292" y="103" text-anchor="middle" class="as">Hold</text>
-                <!-- lines down -->
                 <line x1="30" y1="80" x2="30" y2="86" class="al"/><line x1="96" y1="80" x2="96" y2="86" class="al"/><line x1="160" y1="80" x2="160" y2="86" class="al"/><line x1="230" y1="80" x2="230" y2="86" class="al"/><line x1="292" y1="80" x2="292" y2="86" class="al"/>
-                <!-- human review -->
                 <line x1="160" y1="114" x2="160" y2="148" class="al-a al-anim" style="animation-delay:.5s"/>
                 <rect x="90" y="148" width="140" height="36" rx="4" class="an-r"/>
                 <text x="160" y="166" text-anchor="middle" class="at">Human Expert Review</text>
@@ -1471,16 +937,13 @@
               </svg>
             </div>
           </div>
-
         </div>
       </div>
 
       <div class="proj-block" id="proj-block-1" data-idx="1" style="--block-color:#ff6b9d">
         <div class="proj-block-inner">
-
-          <!-- Text -->
           <div class="proj-text">
-            <div class="proj-num">Project 02 / 07</div>
+            <div class="proj-num">Project 02 / 04</div>
             <h3 class="proj-title">Explainable Pneumonia Detection</h3>
             <p class="proj-desc">Medical AI framework achieving AUC > 0.98, comparing CNNs and Vision Transformers. Grad-CAM faithfulness and concentration metrics build clinician trust in AI-assisted radiology.</p>
             <div class="proj-pills"><span class="pill">ViT</span><span class="pill">CNN</span><span class="pill">Grad-CAM</span><span class="pill">TensorFlow</span><span class="pill">AUC 0.98+</span></div>
@@ -1489,8 +952,6 @@
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg> View on GitHub <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
             </a>
           </div>
-
-          <!-- Architecture SVG -->
           <div class="proj-visual">
             <div class="arch-card">
               <div class="arch-label">Architecture</div>
@@ -1530,16 +991,13 @@
               </svg>
             </div>
           </div>
-
         </div>
       </div>
 
       <div class="proj-block" id="proj-block-2" data-idx="2" style="--block-color:#7c6fff">
         <div class="proj-block-inner">
-
-          <!-- Text -->
           <div class="proj-text">
-            <div class="proj-num">Project 03 / 07</div>
+            <div class="proj-num">Project 03 / 04</div>
             <h3 class="proj-title">Agentic GitHub Code Reviewer</h3>
             <p class="proj-desc">Privacy-preserving code review using LangGraph, RAG, and local LLMs - no code leaves your machine. Autonomously identifies bugs, security risks, and performance issues across GitHub repos.</p>
             <div class="proj-pills"><span class="pill">LangGraph</span><span class="pill">RAG</span><span class="pill">ChromaDB</span><span class="pill">Local LLMs</span><span class="pill">GitHub API</span></div>
@@ -1548,8 +1006,6 @@
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg> View on GitHub <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
             </a>
           </div>
-
-          <!-- Architecture SVG -->
           <div class="proj-visual">
             <div class="arch-card">
               <div class="arch-label">Architecture</div>
@@ -1573,34 +1029,28 @@
                 <rect x="195" y="118" width="120" height="34" rx="4" class="an-p" filter="url(#g3)"/>
                 <text x="255" y="135" text-anchor="middle" class="at">LangGraph</text>
                 <text x="255" y="148" text-anchor="middle" class="as">Agent Orchestration</text>
-                <!-- 3 agents -->
                 <line x1="255" y1="152" x2="255" y2="172" class="al al-anim" style="animation-delay:.5s"/>
                 <line x1="100" y1="172" x2="255" y2="172" class="al al-anim" style="animation-delay:.55s"/>
                 <rect x="5" y="178" width="90" height="30" rx="3" class="an"/><text x="50" y="197" text-anchor="middle" class="as">Bug Detector</text>
                 <rect x="105" y="178" width="90" height="30" rx="3" class="an"/><text x="150" y="197" text-anchor="middle" class="as">Security Auditor</text>
                 <rect x="205" y="178" width="100" height="30" rx="3" class="an"/><text x="255" y="197" text-anchor="middle" class="as">Perf. Analyzer</text>
                 <line x1="100" y1="172" x2="100" y2="178" class="al"/><line x1="150" y1="172" x2="150" y2="178" class="al"/><line x1="255" y1="172" x2="255" y2="178" class="al"/>
-                <!-- local LLM -->
                 <line x1="50" y1="208" x2="140" y2="238" class="al-a al-anim" style="animation-delay:.7s" marker-end="url(#aw3)"/>
                 <line x1="150" y1="208" x2="155" y2="238" class="al-a al-anim" style="animation-delay:.7s" marker-end="url(#aw3)"/>
                 <line x1="255" y1="208" x2="180" y2="238" class="al-a al-anim" style="animation-delay:.7s" marker-end="url(#aw3)"/>
                 <rect x="95" y="238" width="130" height="34" rx="4" class="an-a"/>
                 <text x="160" y="256" text-anchor="middle" class="at">Local LLM (Privacy-First)</text>
-                <!-- RAG dashed -->
                 <path d="M65,152 Q65,250 95,255" class="al-d al-anim" style="animation-delay:1s" stroke="rgba(124,111,255,0.3)"/>
               </svg>
             </div>
           </div>
-
         </div>
       </div>
 
       <div class="proj-block" id="proj-block-3" data-idx="3" style="--block-color:#4af0ff">
         <div class="proj-block-inner">
-
-          <!-- Text -->
           <div class="proj-text">
-            <div class="proj-num">Project 04 / 07</div>
+            <div class="proj-num">Project 04 / 04</div>
             <h3 class="proj-title">Research Paper → Code Pipeline</h3>
             <p class="proj-desc">Multi-agent Analyst–Architect–Coder workflow using CrewAI and FAISS that transforms academic PDFs into deployable software. Each agent queries the vector index to ground its output.</p>
             <div class="proj-pills"><span class="pill">CrewAI</span><span class="pill">FAISS</span><span class="pill">Multi-Agent</span><span class="pill">LLM</span><span class="pill">Code Gen</span></div>
@@ -1609,8 +1059,6 @@
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg> View on GitHub <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
             </a>
           </div>
-
-          <!-- Architecture SVG -->
           <div class="proj-visual">
             <div class="arch-card">
               <div class="arch-label">Architecture</div>
@@ -1626,248 +1074,166 @@
                 <text x="160" y="76" text-anchor="middle" class="at">FAISS Index</text>
                 <text x="160" y="87" text-anchor="middle" class="as">Vector Embeddings</text>
                 <line x1="160" y1="92" x2="160" y2="112" class="al-a al-anim" style="animation-delay:.2s" marker-end="url(#aw4)"/>
-                <!-- Analyst -->
                 <rect x="90" y="112" width="140" height="46" rx="4" fill="rgba(74,240,255,0.06)" stroke="rgba(74,240,255,0.5)" stroke-width="1.2"/>
                 <text x="160" y="131" text-anchor="middle" class="at">🔍  Analyst Agent</text>
                 <text x="160" y="145" text-anchor="middle" class="as">Reads &amp; extracts key concepts</text>
                 <line x1="160" y1="158" x2="160" y2="174" class="al-a al-anim" style="animation-delay:.45s" marker-end="url(#aw4)" stroke="rgba(124,111,255,0.6)"/>
-                <!-- Architect -->
                 <rect x="90" y="174" width="140" height="46" rx="4" fill="rgba(124,111,255,0.06)" stroke="rgba(124,111,255,0.5)" stroke-width="1.2"/>
                 <text x="160" y="193" text-anchor="middle" class="at">🏗  Architect Agent</text>
                 <text x="160" y="207" text-anchor="middle" class="as">Designs system architecture</text>
                 <line x1="160" y1="220" x2="160" y2="236" class="al-a al-anim" style="animation-delay:.7s" marker-end="url(#aw4)" stroke="rgba(255,107,157,0.6)"/>
-                <!-- Coder -->
                 <rect x="90" y="236" width="140" height="36" rx="4" fill="rgba(255,107,157,0.06)" stroke="rgba(255,107,157,0.5)" stroke-width="1.2"/>
                 <text x="160" y="254" text-anchor="middle" class="at">💻  Coder Agent</text>
                 <text x="160" y="266" text-anchor="middle" class="as">Generates deployable code</text>
-                <!-- FAISS query arrows -->
                 <path d="M230,130 Q280,130 280,155 Q280,190 230,190" class="al-d al-anim" style="animation-delay:.9s" stroke="rgba(74,240,255,0.2)" marker-end="url(#aw4)"/>
               </svg>
             </div>
           </div>
-
         </div>
       </div>
 
-      <div class="proj-block" id="proj-block-4" data-idx="4" style="--block-color:#ff6b9d">
-        <div class="proj-block-inner">
-
-          <!-- Text -->
-          <div class="proj-text">
-            <div class="proj-num">Project 05 / 07</div>
-            <h3 class="proj-title">LLM Spatial Reasoning Evaluation</h3>
-            <p class="proj-desc">Physics-based puzzle environment to evaluate spatial reasoning, adaptive learning, and problem-solving of multimodal LLMs. Benchmarks GPT-4V, Claude, and Gemini with increasing difficulty levels.</p>
-            <div class="proj-pills"><span class="pill">Multimodal LLMs</span><span class="pill">Physics Engine</span><span class="pill">Benchmarking</span><span class="pill">Adaptive</span></div>
-            <a href="https://github.com/Ravevx/LLM-Spatial-Reasoning-Evaluation-2D-Physics-Puzzle" target="_blank" rel="noopener noreferrer" 
-               class="proj-link" style="color:#ff6b9d;border-color:#ff6b9d33">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg> View on GitHub <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-            </a>
-          </div>
-
-          <!-- Architecture SVG -->
-          <div class="proj-visual">
-            <div class="arch-card">
-              <div class="arch-label">Architecture</div>
-              <svg class="arch-svg" viewBox="0 0 320 280" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <marker id="aw5" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="rgba(74,240,255,0.7)"/></marker>
-                  <filter id="g5"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-                </defs>
-                <rect x="80" y="8" width="160" height="34" rx="4" class="an-a" filter="url(#g5)"/>
-                <text x="160" y="26" text-anchor="middle" class="at">Physics Puzzle</text>
-                <text x="160" y="38" text-anchor="middle" class="as">Environment Generator</text>
-                <line x1="160" y1="42" x2="160" y2="58" class="al al-anim"/>
-                <!-- levels -->
-                <line x1="35" y1="58" x2="285" y2="58" class="al al-anim" style="animation-delay:.15s"/>
-                <rect x="5" y="64" width="60" height="28" rx="3" class="an"/><text x="35" y="81" text-anchor="middle" class="as">Level 1</text>
-                <rect x="73" y="64" width="60" height="28" rx="3" class="an"/><text x="103" y="81" text-anchor="middle" class="as">Level 2</text>
-                <rect x="141" y="64" width="60" height="28" rx="3" class="an"/><text x="171" y="81" text-anchor="middle" class="as">Level 3</text>
-                <rect x="209" y="64" width="74" height="28" rx="3" class="an-p"/><text x="246" y="81" text-anchor="middle" class="as">Adaptive</text>
-                <line x1="35" y1="58" x2="35" y2="64" class="al"/><line x1="103" y1="58" x2="103" y2="64" class="al"/><line x1="171" y1="58" x2="171" y2="64" class="al"/><line x1="246" y1="58" x2="246" y2="64" class="al"/>
-                <!-- multimodal LLM -->
-                <line x1="160" y1="92" x2="160" y2="116" class="al-a al-anim" style="animation-delay:.4s" marker-end="url(#aw5)"/>
-                <rect x="75" y="116" width="170" height="38" rx="4" class="an-p" filter="url(#g5)"/>
-                <text x="160" y="135" text-anchor="middle" class="at">Multimodal LLM</text>
-                <text x="160" y="147" text-anchor="middle" class="as">GPT-4V · Claude · Gemini</text>
-                <line x1="160" y1="154" x2="160" y2="174" class="al-a al-anim" style="animation-delay:.6s" marker-end="url(#aw5)"/>
-                <rect x="95" y="174" width="130" height="34" rx="4" class="an"/>
-                <text x="160" y="192" text-anchor="middle" class="at">Reasoning Output</text>
-                <text x="160" y="203" text-anchor="middle" class="as">Predicted solution</text>
-                <line x1="160" y1="208" x2="160" y2="228" class="al-a al-anim" style="animation-delay:.8s" marker-end="url(#aw5)"/>
-                <rect x="80" y="228" width="160" height="36" rx="4" class="an-r"/>
-                <text x="160" y="246" text-anchor="middle" class="at">Benchmark Evaluator</text>
-                <text x="160" y="258" text-anchor="middle" class="as">Accuracy · Reasoning Score</text>
-                <!-- feedback loop -->
-                <path d="M240,246 Q300,246 300,135 Q300,30 240,26" class="al-d al-anim" style="animation-delay:1s" stroke="rgba(124,111,255,0.25)" marker-end="url(#aw5)"/>
-              </svg>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <div class="proj-block" id="proj-block-5" data-idx="5" style="--block-color:#7c6fff">
-        <div class="proj-block-inner">
-
-          <!-- Text -->
-          <div class="proj-text">
-            <div class="proj-num">Project 06 / 07</div>
-            <h3 class="proj-title">Bio-Medical Claim Detection &amp; Span Extraction</h3>
-            <p class="proj-desc">An NLP pipeline for detecting and extracting biomedical claims and evidence spans from scientific literature. Combines claim mining with fine-grained span extraction to support evidence-based medical research and automated fact verification.</p>
-            <div class="proj-pills"><span class="pill">NLP</span><span class="pill">Transformers</span><span class="pill">Span Extraction</span><span class="pill">Hugging Face</span><span class="pill">BioMedical NLP</span></div>
-            <a href="https://github.com/Ravevx/Bio-Medical-Claim-Mining" target="_blank" rel="noopener noreferrer" 
-               class="proj-link" style="color:#7c6fff;border-color:#7c6fff33">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg> View on GitHub <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-            </a>
-          </div>
-
-          <!-- Architecture SVG -->
-          <div class="proj-visual">
-            <div class="arch-card">
-              <div class="arch-label">Architecture</div>
-              <svg class="arch-svg" viewBox="0 0 320 280" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <marker id="aw6" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="rgba(74,240,255,0.7)"/></marker>
-                  <filter id="g6"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-                </defs>
-                <rect x="70" y="8" width="180" height="34" rx="4" class="an-a" filter="url(#g6)"/>
-                <text x="160" y="26" text-anchor="middle" class="at">Scientific Literature</text>
-                <text x="160" y="38" text-anchor="middle" class="as">Biomedical Papers</text>
-                <line x1="160" y1="42" x2="160" y2="62" class="al-a al-anim" marker-end="url(#aw6)"/>
-                <rect x="90" y="62" width="140" height="30" rx="4" class="an"/>
-                <text x="160" y="81" text-anchor="middle" class="at">Text Preprocessing</text>
-                <line x1="160" y1="92" x2="160" y2="112" class="al-a al-anim" style="animation-delay:.2s" marker-end="url(#aw6)"/>
-                <rect x="60" y="112" width="200" height="38" rx="4" class="an-p" filter="url(#g6)"/>
-                <text x="160" y="131" text-anchor="middle" class="at">Transformer Encoder</text>
-                <text x="160" y="145" text-anchor="middle" class="as">BioBERT / PubMedBERT</text>
-                <line x1="100" y1="150" x2="65" y2="176" class="al al-anim" style="animation-delay:.4s"/>
-                <line x1="220" y1="150" x2="255" y2="176" class="al al-anim" style="animation-delay:.4s"/>
-                <rect x="5" y="176" width="120" height="36" rx="4" fill="rgba(74,240,255,0.06)" stroke="rgba(74,240,255,0.5)" stroke-width="1.2"/>
-                <text x="65" y="194" text-anchor="middle" class="at">Claim Detector</text>
-                <text x="65" y="206" text-anchor="middle" class="as">Classification head</text>
-                <rect x="195" y="176" width="120" height="36" rx="4" fill="rgba(124,111,255,0.06)" stroke="rgba(124,111,255,0.5)" stroke-width="1.2"/>
-                <text x="255" y="194" text-anchor="middle" class="at">Span Extractor</text>
-                <text x="255" y="206" text-anchor="middle" class="as">Evidence boundaries</text>
-                <line x1="65" y1="212" x2="130" y2="242" class="al-a al-anim" style="animation-delay:.65s" marker-end="url(#aw6)"/>
-                <line x1="255" y1="212" x2="190" y2="242" class="al-a al-anim" style="animation-delay:.65s" marker-end="url(#aw6)"/>
-                <rect x="95" y="242" width="130" height="30" rx="4" class="an-a"/>
-                <text x="160" y="261" text-anchor="middle" class="at">Structured Output</text>
-              </svg>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <div class="proj-block" id="proj-block-6" data-idx="6" style="--block-color:#4af0ff">
-        <div class="proj-block-inner">
-
-          <!-- Text -->
-          <div class="proj-text">
-            <div class="proj-num">Project 07 / 07</div>
-            <h3 class="proj-title">ASP-Based Cloud Resource Allocation</h3>
-            <p class="proj-desc">An intelligent cloud resource scheduling system using Answer Set Programming (ASP) for optimal allocation. Leverages declarative logic and constraint solving to efficiently assign virtual machines, handle SLA requirements, and minimize operational costs.</p>
-            <div class="proj-pills"><span class="pill">Answer Set Programming</span><span class="pill">Clingo</span><span class="pill">Cloud Computing</span><span class="pill">Constraint Solving</span><span class="pill">Scheduling</span></div>
-            <a href="https://github.com/Ravevx/CloudRA-ASP-based-Cloud-Resource-Allocation" target="_blank" rel="noopener noreferrer" 
-               class="proj-link" style="color:#4af0ff;border-color:#4af0ff33">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg> View on GitHub <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-            </a>
-          </div>
-
-          <!-- Architecture SVG -->
-          <div class="proj-visual">
-            <div class="arch-card">
-              <div class="arch-label">Architecture</div>
-              <svg class="arch-svg" viewBox="0 0 320 280" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <marker id="aw7" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="rgba(74,240,255,0.7)"/></marker>
-                  <filter id="g7"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-                </defs>
-                <rect x="70" y="8" width="180" height="34" rx="4" class="an-a" filter="url(#g7)"/>
-                <text x="160" y="26" text-anchor="middle" class="at">Resource Requests</text>
-                <text x="160" y="38" text-anchor="middle" class="as">VMs + SLA Constraints</text>
-                <line x1="160" y1="42" x2="160" y2="62" class="al-a al-anim" marker-end="url(#aw7)"/>
-                <rect x="80" y="62" width="160" height="34" rx="4" class="an"/>
-                <text x="160" y="80" text-anchor="middle" class="at">Constraint Encoder</text>
-                <text x="160" y="92" text-anchor="middle" class="as">ASP Facts &amp; Rules</text>
-                <line x1="160" y1="96" x2="160" y2="116" class="al-a al-anim" style="animation-delay:.2s" marker-end="url(#aw7)"/>
-                <rect x="60" y="116" width="200" height="38" rx="4" class="an-p" filter="url(#g7)"/>
-                <text x="160" y="135" text-anchor="middle" class="at">ASP Solver (Clingo)</text>
-                <text x="160" y="149" text-anchor="middle" class="as">Answer Set Computation</text>
-                <line x1="160" y1="154" x2="160" y2="176" class="al-a al-anim" style="animation-delay:.4s" marker-end="url(#aw7)"/>
-                <rect x="75" y="176" width="170" height="34" rx="4" class="an"/>
-                <text x="160" y="194" text-anchor="middle" class="at">Optimal Solution Set</text>
-                <text x="160" y="206" text-anchor="middle" class="as">Pareto-optimal allocations</text>
-                <line x1="110" y1="210" x2="65" y2="234" class="al al-anim" style="animation-delay:.6s"/>
-                <line x1="210" y1="210" x2="255" y2="234" class="al al-anim" style="animation-delay:.6s"/>
-                <rect x="5" y="234" width="120" height="36" rx="4" fill="rgba(74,240,255,0.06)" stroke="rgba(74,240,255,0.5)" stroke-width="1.2"/>
-                <text x="65" y="252" text-anchor="middle" class="at">VM Assignment</text>
-                <text x="65" y="264" text-anchor="middle" class="as">Hosts mapped</text>
-                <rect x="195" y="234" width="120" height="36" rx="4" fill="rgba(124,111,255,0.06)" stroke="rgba(124,111,255,0.5)" stroke-width="1.2"/>
-                <text x="255" y="252" text-anchor="middle" class="at">Cost Minimized</text>
-                <text x="255" y="264" text-anchor="middle" class="as">SLA satisfied</text>
-              </svg>
-            </div>
-          </div>
-
-        </div>
-      </div>
     </div><!-- /right-col -->
   </div><!-- /proj-layout -->
+
+  <!-- ═══════════════════════════════════════
+       MORE PROJECTS — timeline layout (NEW)
+  ═══════════════════════════════════════ -->
+  <div class="more-projects-section">
+    <div class="more-projects-header reveal">
+      <div class="section-eyebrow" style="margin-bottom:8px;">Also Built</div>
+      <h3 class="more-projects-title">More Projects</h3>
+    </div>
+
+    <div class="more-proj-timeline">
+
+      <!-- Left rail: line + dots -->
+      <div class="more-proj-left" id="mpLeft">
+        <div class="more-proj-line-track">
+          <div class="more-proj-line-fill" id="mpLineFill"></div>
+        </div>
+        <div class="more-proj-dots" id="mpDots">
+          <div class="more-proj-dot" id="mpDot0" style="--dot-color:#4af0ff"></div>
+          <div class="more-proj-dot" id="mpDot1" style="--dot-color:#ff6b9d"></div>
+          <div class="more-proj-dot" id="mpDot2" style="--dot-color:#7c6fff"></div>
+        </div>
+      </div>
+
+      <!-- Right col: items -->
+      <div class="more-proj-right" id="mpRight">
+
+        <div class="more-proj-item" id="mpItem0">
+          <div class="more-proj-info">
+            <h4 class="more-proj-name">LLM Spatial Reasoning Evaluation</h4>
+            <p class="more-proj-desc">Physics-based puzzle environment to benchmark spatial reasoning and problem-solving of multimodal LLMs (GPT-4V, Claude, Gemini) across adaptive difficulty levels.</p>
+          </div>
+          <a href="https://github.com/Ravevx/LLM-Spatial-Reasoning-Evaluation-2D-Physics-Puzzle" target="_blank" rel="noopener noreferrer" class="more-proj-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub
+          </a>
+        </div>
+
+        <div class="more-proj-item" id="mpItem1">
+          <div class="more-proj-info">
+            <h4 class="more-proj-name">Bio-Medical Claim Detection &amp; Span Extraction</h4>
+            <p class="more-proj-desc">NLP pipeline using BioBERT/PubMedBERT to detect and extract biomedical claims and evidence spans from scientific literature for automated fact verification.</p>
+          </div>
+          <a href="https://github.com/Ravevx/Bio-Medical-Claim-Mining" target="_blank" rel="noopener noreferrer" class="more-proj-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub
+          </a>
+        </div>
+
+        <div class="more-proj-item" id="mpItem2">
+          <div class="more-proj-info">
+            <h4 class="more-proj-name">ASP-Based Cloud Resource Allocation</h4>
+            <p class="more-proj-desc">Intelligent cloud resource scheduler using Answer Set Programming (Clingo) for optimal VM allocation, SLA satisfaction, and cost minimization through declarative constraint solving.</p>
+          </div>
+          <a href="https://github.com/Ravevx/CloudRA-ASP-based-Cloud-Resource-Allocation" target="_blank" rel="noopener noreferrer" class="more-proj-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub
+          </a>
+        </div>
+
+      </div><!-- /mpRight -->
+    </div><!-- /more-proj-timeline -->
+  </div><!-- /more-projects-section -->
+
 </section>
 
-<!-- EXPERIENCE & EDUCATION - Work first, then Education -->
+<!-- EXPERIENCE & EDUCATION -->
 <section id="experience">
   <div class="section-eyebrow reveal">Career</div>
   <h2 class="section-title reveal">Experience &<br>Education</h2>
 
   <div class="exp-grid">
-    <!-- WORK -->
+
+    <!-- WORK with animated timeline -->
     <div class="reveal">
       <div class="exp-col-title">Work Experience</div>
-      <div class="exp-items">
-        <div class="exp-item">
+      <div class="exp-timeline-wrap" id="workTimeline">
+        <div class="exp-timeline-track">
+          <div class="exp-timeline-fill exp-fill-work" id="workFill"></div>
+        </div>
+
+        <div class="exp-item-new">
+          <div class="tl-dot"></div>
           <div class="exp-date">May 2024 – Sept 2024</div>
           <div class="exp-role">AI Researcher Intern</div>
           <div class="exp-org">Rovren · California, United States</div>
           <div class="exp-desc">Created algorithms for an image processing and computer vision platform. Collaborated with Senior Image Processing Scientists on medical and scientific image analysis.</div>
         </div>
-        <div class="exp-item">
+
+        <div class="exp-item-new">
+          <div class="tl-dot"></div>
           <div class="exp-date">June 2023 – May 2024</div>
           <div class="exp-role">AI Consultant (Part-Time)</div>
           <div class="exp-org">Artbider · London, United Kingdom</div>
           <div class="exp-desc">Built an end-to-end conversational AI system for real-time customer support - integrating STT, ChromaDB RAG, GPT, and TTS pipelines. Achieved full customer support automation with reduced hallucinations.</div>
         </div>
-        <div class="exp-item">
+
+        <div class="exp-item-new">
+          <div class="tl-dot"></div>
           <div class="exp-date">Feb 2023 – June 2023</div>
           <div class="exp-role">AI Researcher Intern</div>
           <div class="exp-org">Dawn Digitech · India</div>
           <div class="exp-desc">Developed an automated answer-checking ML system using NLTK, SpaCy, and ML algorithms for semantic analysis, grading, and intelligent feedback generation.</div>
         </div>
+
       </div>
     </div>
 
-    <!-- EDUCATION -->
+    <!-- EDUCATION with animated timeline -->
     <div class="reveal" style="transition-delay:.15s">
       <div class="exp-col-title">Education</div>
-      <div class="exp-items">
-        <div class="edu-item">
+      <div class="exp-timeline-wrap" id="eduTimeline">
+        <div class="exp-timeline-track">
+          <div class="exp-timeline-fill exp-fill-edu" id="eduFill"></div>
+        </div>
+
+        <div class="edu-item-new">
+          <div class="tl-dot"></div>
           <div class="edu-date">2024 – Present</div>
           <div class="edu-role">M.Sc. Cognitive Systems (AI)</div>
           <div class="edu-org">Universität Potsdam · Germany</div>
         </div>
-        <div class="edu-item">
+
+        <div class="edu-item-new">
+          <div class="tl-dot"></div>
           <div class="edu-date">2021 – 2023</div>
           <div class="edu-role">Master of Computer Applications</div>
           <div class="edu-org">Bharati Vidyapeeth University · India</div>
         </div>
-        <div class="edu-item">
+
+        <div class="edu-item-new">
+          <div class="tl-dot"></div>
           <div class="edu-date">2018 – 2021</div>
           <div class="edu-role">Bachelor of Computer Applications</div>
           <div class="edu-org">Savitribai Phule Pune University · India</div>
         </div>
+
       </div>
     </div>
+
   </div>
 </section>
 
@@ -1939,12 +1305,9 @@
     <p class="contact-sub reveal">Open to research collaborations, AI/ML roles, and interesting projects.<br>Based in Berlin - available globally.</p>
     <a href="mailto:jayeshchoudhari0@gmail.com" class="contact-email reveal">Get In Touch</a>
     
-    <!-- Primary Social Links Row -->
     <div class="contact-links reveal">
       <a href="mailto:jayeshchoudhari0@gmail.com" target="_blank" class="c-link">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-        </svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
         Mail
       </a>
       <a href="https://github.com/Ravevx" target="_blank" class="c-link">
@@ -1957,31 +1320,15 @@
       </a>
     </div>
 
-    <!-- Layout Styles for Other Profiles Section -->
     <style>
-.profile-section {
-        margin-top: 32px;  /* Spacing between upper row and this section */
-        text-align: center; /* Centers the "Other Profiles" purple heading */
-      }
-      .profile-section h3 {
-        color: #7C6FFF;
-        margin-bottom: 16px;
-        font-size: 1.1rem;
-        font-weight: 600;
-      }
-      .profile-links-container {
-        display: flex;        /* Forces the boxes horizontal */
-        justify-content: center; /* ALIGNS AND CENTERS THE BOXES */
-        flex-wrap: wrap;      /* Responsiveness for mobile screens */
-        gap: 12px;            /* Spacing between the boxes */
-      }
+      .profile-section { margin-top: 32px; text-align: center; }
+      .profile-section h3 { color: #7C6FFF; margin-bottom: 16px; font-size: 1.1rem; font-weight: 600; }
+      .profile-links-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
     </style>
 
-    <!-- Other Profiles Section Row -->
     <div class="profile-section reveal">
       <h3>Other Profiles</h3>
       <div class="profile-links-container">
-        <!-- Google Profile (Grey SVG Vector) -->
         <a href="https://share.google/CVkxykd9KZwEVx5xk" target="_blank" class="c-link">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
             <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -1991,14 +1338,12 @@
           </svg>
           Google
         </a>
-        <!-- Medium Profile -->
         <a href="https://medium.com/@jayeshchoudhari" target="_blank" class="c-link">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
             <path d="M13.54 12a6.8 6.8 0 11-13.54 0 6.8 6.8 0 0113.54 0zM21.14 12c0 3.41-1.51 6.19-3.39 6.19s-3.38-2.78-3.38-6.19 1.51-6.18 3.38-6.18 3.39 2.77 3.39 6.18zM24 12c0 3.12-.53 5.65-1.18 5.65s-1.18-2.53-1.18-5.65.53-5.65 1.18-5.65S24 8.88 24 12z"/>
           </svg>
           Medium
         </a>
-
       </div>
     </div>
 
@@ -2012,7 +1357,7 @@
 
 
 <script>
-  // Cursor
+  /* ── Custom Cursor ── */
   const cur = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
   let mx=0,my=0,rx=0,ry=0;
@@ -2023,59 +1368,147 @@
     el.addEventListener('mouseleave',()=>{ ring.style.width='32px';ring.style.height='32px';ring.style.borderColor='rgba(74,240,255,0.4)'; });
   });
 
-  // Scroll reveal
+  /* ── General scroll reveal ── */
   const obs = new IntersectionObserver(entries=>{
     entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
   },{threshold:0.1});
   document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
 
+  /* ── Key Projects sticky timeline ── */
   (function() {
-  const steps      = document.querySelectorAll('.step-item');
-  const blocks     = document.querySelectorAll('.proj-block');
-  const lineFill   = document.getElementById('timelineFill');
-  const stepList   = document.getElementById('stepList');
-  let current = 0;
+    const steps    = document.querySelectorAll('.step-item');
+    const blocks   = document.querySelectorAll('.proj-block');
+    const lineFill = document.getElementById('timelineFill');
+    const stepList = document.getElementById('stepList');
+    let current = 0;
 
-  /* ── activate a step ── */
-  function activate(idx) {
-    if (idx === current && steps[idx].classList.contains('active')) return;
-    steps[current].classList.remove('active');
-    current = idx;
-    steps[current].classList.add('active');
+    function activate(idx) {
+      if (idx === current && steps[idx].classList.contains('active')) return;
+      steps[current].classList.remove('active');
+      current = idx;
+      steps[current].classList.add('active');
+      const listH  = stepList.getBoundingClientRect().height;
+      const stepEl = steps[idx];
+      const stepTop = stepEl.offsetTop + stepEl.offsetHeight / 2;
+      lineFill.style.height = Math.min(100, (stepTop / listH) * 100) + '%';
+    }
 
-    /* update timeline fill: how far down the step list */
-    const listH   = stepList.getBoundingClientRect().height;
-    const stepEl  = steps[idx];
-    const stepTop = stepEl.offsetTop + stepEl.offsetHeight / 2;
-    lineFill.style.height = Math.min(100, (stepTop / listH) * 100) + '%';
-  }
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('reveal');
+          activate(parseInt(e.target.dataset.idx));
+        }
+      });
+    }, { threshold: 0, rootMargin: '-35% 0px -35% 0px' });
 
-  /* ── Intersection Observer - reveal & sync nav ── */
-  const revealObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('reveal');
-        activate(parseInt(e.target.dataset.idx));
+    blocks.forEach(b => revealObs.observe(b));
+    steps.forEach((s, i) => {
+      s.addEventListener('click', () => {
+        blocks[i].scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    });
+    blocks[0].classList.add('reveal');
+    activate(0);
+  })();
+
+  /* ─────────────────────────────────────────
+     MORE PROJECTS — dot + line scroll reveal
+  ───────────────────────────────────────── */
+  (function() {
+    const items    = Array.from(document.querySelectorAll('.more-proj-item'));
+    const dots     = Array.from(document.querySelectorAll('.more-proj-dot'));
+    const fill     = document.getElementById('mpLineFill');
+    const leftCol  = document.getElementById('mpLeft');
+    const dotsWrap = document.getElementById('mpDots');
+
+    /* Position dots to align vertically with each item's midpoint */
+    function positionDots() {
+      if (!leftCol || !dotsWrap) return;
+      const leftRect = leftCol.getBoundingClientRect();
+      items.forEach((item, i) => {
+        const dot = dots[i];
+        if (!dot) return;
+        const itemRect = item.getBoundingClientRect();
+        // relative to leftCol top
+        const relMid = (itemRect.top - leftRect.top) + itemRect.height / 2 - 5;
+        dot.style.top = Math.max(0, relMid) + 'px';
+      });
+      // set dotsWrap height to match leftCol
+      dotsWrap.style.height = leftCol.offsetHeight + 'px';
+    }
+
+    /* On scroll: reveal items, light dots, grow line */
+    function update() {
+      const vh = window.innerHeight;
+      let lastLitIdx = -1;
+
+      items.forEach((item, i) => {
+        const r = item.getBoundingClientRect();
+        const mid = r.top + r.height / 2;
+        if (mid < vh * 0.82) {
+          item.classList.add('mp-reveal');
+          if (dots[i]) {
+            dots[i].classList.add('dot-lit');
+            lastLitIdx = i;
+          }
+        }
+      });
+
+      /* grow line to last lit dot */
+      if (lastLitIdx >= 0 && dots[lastLitIdx] && fill && dotsWrap) {
+        const dotEl   = dots[lastLitIdx];
+        const wrapH   = dotsWrap.offsetHeight;
+        const dotTop  = parseFloat(dotEl.style.top || '0') + 5; // +5 = dot center
+        const pct     = wrapH > 0 ? Math.min(100, (dotTop / wrapH) * 100) : 0;
+        fill.style.height = pct + '%';
       }
-    });
-  }, {
-    threshold: 0,
-    rootMargin: '-35% 0px -35% 0px'   /* fires when block is ~centred in viewport */
-  });
+    }
 
-  blocks.forEach(b => revealObs.observe(b));
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', () => { positionDots(); update(); });
 
-  /* ── click step → smooth scroll to block ── */
-  steps.forEach((s, i) => {
-    s.addEventListener('click', () => {
-      blocks[i].scrollIntoView({ behavior: 'smooth', block: 'center' });
-    });
-  });
+    // Initial run after layout settles
+    setTimeout(() => { positionDots(); update(); }, 350);
+  })();
 
-  /* ── init first reveal ── */
-  blocks[0].classList.add('reveal');
-  activate(0);
-})();
+  /* ─────────────────────────────────────────
+     EXPERIENCE / EDUCATION animated timelines
+  ───────────────────────────────────────── */
+  (function() {
+    function initTimeline(wrapId, fillId, itemSel) {
+      const wrap  = document.getElementById(wrapId);
+      const fill  = document.getElementById(fillId);
+      if (!wrap || !fill) return;
+      const items = Array.from(wrap.querySelectorAll(itemSel));
+
+      function update() {
+        const vh    = window.innerHeight;
+        const wrapH = wrap.offsetHeight;
+        let maxRelMid = 0;
+
+        items.forEach(item => {
+          const r   = item.getBoundingClientRect();
+          const mid = r.top + r.height / 2;
+          if (mid < vh * 0.8) {
+            item.classList.add('tl-reveal');
+            /* relative midpoint within wrap */
+            const relMid = item.offsetTop + item.offsetHeight / 2;
+            if (relMid > maxRelMid) maxRelMid = relMid;
+          }
+        });
+
+        const pct = wrapH > 0 ? Math.min(100, (maxRelMid / wrapH) * 100) : 0;
+        fill.style.height = pct + '%';
+      }
+
+      window.addEventListener('scroll', update, { passive: true });
+      setTimeout(update, 200);
+    }
+
+    initTimeline('workTimeline', 'workFill', '.exp-item-new');
+    initTimeline('eduTimeline',  'eduFill',  '.edu-item-new');
+  })();
 </script>
 </body>
 </html>
