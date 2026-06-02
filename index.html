@@ -737,6 +737,48 @@
   @media (max-width:640px) {
     .exp-role, .edu-role { font-size:0.9rem; }
   }
+    /* experience + education logos */
+  .exp-header-row,
+  .edu-header-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 6px;
+  }
+
+  .company-logo,
+  .edu-logo {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    padding: 6px;
+    flex-shrink: 0;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.02) inset;
+  }
+
+  .exp-text-block,
+  .edu-text-block {
+    display: block;
+    min-width: 0;
+  }
+
+  @media (max-width: 640px) {
+    .exp-header-row,
+    .edu-header-row {
+      gap: 10px;
+    }
+
+    .company-logo,
+    .edu-logo {
+      width: 36px;
+      height: 36px;
+      padding: 5px;
+      border-radius: 8px;
+    }
+  }
 </style>
 </head>
 <body>
@@ -1160,16 +1202,17 @@
 
 </section>
 
-<!-- EXPERIENCE & EDUCATION -->
+<!-- EXPERIENCE / EDUCATION -->
 <section id="experience">
   <div class="section-eyebrow reveal">Career</div>
-  <h2 class="section-title reveal">Experience &<br>Education</h2>
+  <h2 class="section-title reveal">Experience <br>Education</h2>
 
   <div class="exp-grid">
 
-    <!-- WORK with animated timeline -->
+    <!-- WORK -->
     <div class="reveal">
       <div class="exp-col-title">Work Experience</div>
+
       <div class="exp-timeline-wrap" id="workTimeline">
         <div class="exp-timeline-track">
           <div class="exp-timeline-fill exp-fill-work" id="workFill"></div>
@@ -1178,33 +1221,60 @@
         <div class="exp-item-new">
           <div class="tl-dot"></div>
           <div class="exp-date">May 2024 – Sept 2024</div>
-          <div class="exp-role">AI Researcher Intern</div>
-          <div class="exp-org">Rovren · California, United States</div>
-          <div class="exp-desc">Created algorithms for an image processing and computer vision platform. Collaborated with Senior Image Processing Scientists on medical and scientific image analysis.</div>
+
+          <div class="exp-header-row">
+            <img src="images/logos/rovren_logo.png" alt="Rovren logo" class="company-logo">
+            <div class="exp-text-block">
+              <div class="exp-role">AI Researcher Intern</div>
+              <div class="exp-org">Rovren · California, United States</div>
+            </div>
+          </div>
+
+          <div class="exp-desc">
+            Created algorithms for an image processing and computer vision platform. Collaborated with Senior Image Processing Scientists on medical and scientific image analysis.
+          </div>
         </div>
 
         <div class="exp-item-new">
           <div class="tl-dot"></div>
           <div class="exp-date">June 2023 – May 2024</div>
-          <div class="exp-role">AI Consultant (Part-Time)</div>
-          <div class="exp-org">Artbider · London, United Kingdom</div>
-          <div class="exp-desc">Built an end-to-end conversational AI system for real-time customer support - integrating STT, ChromaDB RAG, GPT, and TTS pipelines. Achieved full customer support automation with reduced hallucinations.</div>
+
+          <div class="exp-header-row">
+            <img src="images/logos/artbider_logo.png" alt="Artbider logo" class="company-logo">
+            <div class="exp-text-block">
+              <div class="exp-role">AI Consultant Part-Time</div>
+              <div class="exp-org">Artbider · London, United Kingdom</div>
+            </div>
+          </div>
+
+          <div class="exp-desc">
+            Built an end-to-end conversational AI system for real-time customer support - integrating STT, ChromaDB, RAG, GPT, and TTS pipelines. Achieved full customer support automation with reduced hallucinations.
+          </div>
         </div>
 
         <div class="exp-item-new">
           <div class="tl-dot"></div>
           <div class="exp-date">Feb 2023 – June 2023</div>
-          <div class="exp-role">AI Researcher Intern</div>
-          <div class="exp-org">Dawn Digitech · India</div>
-          <div class="exp-desc">Developed an automated answer-checking ML system using NLTK, SpaCy, and ML algorithms for semantic analysis, grading, and intelligent feedback generation.</div>
-        </div>
 
+          <div class="exp-header-row">
+            <img src="images/logos/dawn_digitech_logo.jpeg" alt="Dawn Digitech logo" class="company-logo">
+            <div class="exp-text-block">
+              <div class="exp-role">AI Researcher Intern</div>
+              <div class="exp-org">Dawn Digitech · India</div>
+            </div>
+          </div>
+
+          <div class="exp-desc">
+            Developed an automated answer-checking ML system using NLTK, SpaCy, and ML algorithms for semantic analysis, grading, and intelligent feedback generation.
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- EDUCATION with animated timeline -->
+    <!-- EDUCATION -->
     <div class="reveal" style="transition-delay:.15s">
       <div class="exp-col-title">Education</div>
+
       <div class="exp-timeline-wrap" id="eduTimeline">
         <div class="exp-timeline-track">
           <div class="exp-timeline-fill exp-fill-edu" id="eduFill"></div>
@@ -1213,24 +1283,41 @@
         <div class="edu-item-new">
           <div class="tl-dot"></div>
           <div class="edu-date">2024 – Present</div>
-          <div class="edu-role">M.Sc. Cognitive Systems (AI)</div>
-          <div class="edu-org">Universität Potsdam · Germany</div>
+
+          <div class="edu-header-row">
+            <img src="images/logos/UP_logo.png" alt="Universität Potsdam logo" class="edu-logo">
+            <div class="edu-text-block">
+              <div class="edu-role">M.Sc. Cognitive Systems (AI)</div>
+              <div class="edu-org">Universität Potsdam · Germany</div>
+            </div>
+          </div>
         </div>
 
         <div class="edu-item-new">
           <div class="tl-dot"></div>
           <div class="edu-date">2021 – 2023</div>
-          <div class="edu-role">Master of Computer Applications</div>
-          <div class="edu-org">Bharati Vidyapeeth University · India</div>
+
+          <div class="edu-header-row">
+            <img src="images/logos/bvp_university_logo.png" alt="Bharati Vidyapeeth University logo" class="edu-logo">
+            <div class="edu-text-block">
+              <div class="edu-role">Master of Computer Applications</div>
+              <div class="edu-org">Bharati Vidyapeeth University · India</div>
+            </div>
+          </div>
         </div>
 
         <div class="edu-item-new">
           <div class="tl-dot"></div>
           <div class="edu-date">2018 – 2021</div>
-          <div class="edu-role">Bachelor of Computer Applications</div>
-          <div class="edu-org">Savitribai Phule Pune University · India</div>
-        </div>
 
+          <div class="edu-header-row">
+            <img src="images/logos/sppu_logo.png" alt="Savitribai Phule Pune University logo" class="edu-logo">
+            <div class="edu-text-block">
+              <div class="edu-role">Bachelor of Computer Applications</div>
+              <div class="edu-org">Savitribai Phule Pune University · India</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
