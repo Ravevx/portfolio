@@ -1,82 +1,120 @@
 <style>
-/* HERO */
-#hero {
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  padding:120px 56px 80px;
-  position:relative;
-  overflow:hidden;
-}
+  /* HERO */
+  #hero {
+    min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
+    padding:120px 56px 80px;position:relative;overflow:hidden;
+  }
+  .hero-grid {
+    position:absolute;inset:0;
+    background-image:linear-gradient(rgba(74,240,255,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(74,240,255,0.035) 1px,transparent 1px);
+    background-size:72px 72px;
+    mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 20%,transparent 100%);
+  }
+  .hero-orb { position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none; }
+  .hero-orb-1 { width:700px;height:700px;background:radial-gradient(circle,rgba(74,240,255,0.07),transparent 70%);top:-150px;right:-100px; }
+  .hero-orb-2 { width:500px;height:500px;background:radial-gradient(circle,rgba(124,111,255,0.08),transparent 70%);bottom:0;left:5%; }
 
-.hero-grid {
-  position:absolute;
-  inset:0;
-  background-image:
-    linear-gradient(rgba(74,240,255,0.035) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(74,240,255,0.035) 1px,transparent 1px);
-  background-size:72px 72px;
-  mask-image:radial-gradient(
-    ellipse 80% 80% at 50% 50%,
-    black 20%,
-    transparent 100%
-  );
-}
+  .hero-badge {
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(74,240,255,0.06);border:1px solid rgba(74,240,255,0.15);
+    padding:6px 14px 6px 10px;border-radius:100px;width:fit-content;
+    font-size:0.75rem;font-weight:500;color:var(--accent);margin-bottom:28px;
+    animation:fadeUp .7s ease both;
+  }
+  .hero-badge-dot { width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.5)} }
 
-.hero-orb {
-  position:absolute;
-  border-radius:50%;
-  filter:blur(90px);
-  pointer-events:none;
-}
+  .hero-name {
+    font-family:var(--font-head);
+    font-size:clamp(3.2rem,7.5vw,7.5rem);
+    font-weight:800;line-height:1;letter-spacing:-0.03em;
+    animation:fadeUp .7s .08s ease both;
+  }
+  .hero-name .accent { color:var(--accent); }
+  .hero-sub {
+    font-family:var(--font-head);
+    font-size:clamp(1rem,2vw,1.5rem);
+    font-weight:400;color:var(--muted);margin-top:12px;
+    animation:fadeUp .7s .16s ease both;
+  }
+  .hero-desc {
+    max-width:520px;font-size:0.9rem;line-height:1.75;
+    color:var(--muted);font-weight:400;margin-top:20px;
+    animation:fadeUp .7s .24s ease both;text-align:center;
+  }
+  .hero-tags { display:flex;flex-wrap:wrap;gap:8px;margin-top:28px;animation:fadeUp .7s .32s ease both;justify-content:center; }
+  .hero-tag { padding:5px 12px;background:var(--surface);border:1px solid var(--border);border-radius:6px;font-size:0.75rem;font-weight:500;color:var(--muted); }
+  .hero-ctas { display:flex;gap:12px;margin-top:36px;flex-wrap:wrap;animation:fadeUp .7s .4s ease both;justify-content:center; }
+  .btn-primary { background:var(--accent);color:#050810;padding:11px 28px;font-family:var(--font-body);font-size:0.85rem;font-weight:600;border:none;cursor:pointer;border-radius:6px;text-decoration:none;display:inline-block;transition:all .2s; }
+  .btn-primary:hover { background:#6ef7ff;transform:translateY(-1px); }
+  .btn-outline { background:transparent;border:1px solid var(--border);color:var(--text);padding:11px 28px;font-family:var(--font-body);font-size:0.85rem;font-weight:500;border-radius:6px;text-decoration:none;display:inline-block;transition:all .2s; }
+  .btn-outline:hover { border-color:var(--border-bright);background:rgba(255,255,255,0.03); }
 
-.hero-orb-1 {
-  width:700px;
-  height:700px;
-  background:radial-gradient(circle,rgba(74,240,255,0.07),transparent 70%);
-  top:-150px;
-  right:-100px;
-}
+  .hero-stats { display:flex;gap:48px;margin-top:64px;animation:fadeUp .7s .48s ease both;justify-content:center; }
+  .stat-num { font-family:var(--font-head);font-size:2.2rem;font-weight:800;color:var(--text);letter-spacing:-0.02em; }
+  .stat-label { font-size:0.75rem;color:var(--muted);font-weight:400;margin-top:2px; }
 
-.hero-orb-2 {
-  width:500px;
-  height:500px;
-  background:radial-gradient(circle,rgba(124,111,255,0.08),transparent 70%);
-  bottom:0;
-  left:5%;
-}
+  .scroll-indicator { position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:12px;color:var(--muted);font-size:0.72rem;animation:fadeUp .7s .6s ease both; }
+  .scroll-line { width:40px;height:1px;background:linear-gradient(to right,var(--accent),transparent);animation:scrollPulse 2s ease infinite; }
+  @keyframes scrollPulse { 0%,100%{opacity:.3;transform:scaleX(.5);transform-origin:left}50%{opacity:1;transform:scaleX(1);transform-origin:left} }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)} }
 
-/* keep all your existing hero classes:
-hero-badge
-hero-name
-hero-sub
-hero-desc
-hero-tags
-hero-tag
-hero-ctas
-hero-stats
-hero-inner
-hero-photo-frame
-hero-photo
-btn-primary
-btn-outline
-btn-download
-scroll-indicator
-etc.
-*/
+  /* HERO PROFILE */
+  .hero-inner {
+    position: relative; z-index: 1; width: 100%; max-width: 1180px; margin: 0 auto;
+    display: grid; grid-template-columns: 340px minmax(0, 1fr); gap: 72px; align-items: center;
+  }
+  .hero-media { display: flex; justify-content: center; padding-left: 8px; }
+  .hero-content { display: flex; flex-direction: column; align-items: flex-start; text-align: left; padding-left: 8px; }
+  .hero-photo-frame {
+    width: 100%; max-width: 280px; aspect-ratio: 4 / 5.2; padding: 1.5px; border-radius: 24px;
+    background: linear-gradient(180deg, rgba(74,240,255,0.8) 0%, rgba(124,111,255,0.58) 100%);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.24), 0 0 0 1px rgba(255,255,255,0.04);
+  }
+  .hero-photo {
+    width: 100%; height: 100%; display: block; object-fit: cover; border-radius: 22px;
+    background: var(--surface); border: 0.5px solid rgba(255,255,255,0.05);
+  }
+  .hero-content .hero-desc,
+  .hero-content .hero-tags,
+  .hero-content .hero-ctas,
+  .hero-content .hero-stats { justify-content: flex-start; }
+  .btn-download {
+    background: transparent; border: 1px solid var(--border-bright); color: var(--accent);
+    padding: 11px 28px; font-family: var(--font-body); font-size: 0.85rem; font-weight: 600;
+    border-radius: 6px; text-decoration: none; display: inline-flex; align-items: center;
+    justify-content: center; gap: 8px; transition: all .2s;
+  }
+  .btn-download:hover { background: rgba(74,240,255,0.06); border-color: var(--accent); transform: translateY(-1px); }
 
-@media (max-width:900px){
-  /* keep your hero responsive styles */
-}
-
-@media (max-width:640px){
-  /* keep your hero responsive styles */
-}
+  @media (max-width: 900px) {
+    #hero { min-height: auto !important; padding: 96px 24px 56px !important; justify-content: flex-start !important; }
+    #hero .hero-inner { grid-template-columns: 1fr !important; gap: 24px !important; align-items: start !important; max-width: 100% !important; }
+    #hero .hero-media { order: -1 !important; padding-left: 0 !important; justify-content: center !important; width: 100% !important; }
+    #hero .hero-content { padding-left: 0 !important; align-items: center !important; text-align: center !important; width: 100% !important; }
+    #hero .hero-badge { margin-left: auto !important; margin-right: auto !important; }
+    #hero .hero-name { font-size: clamp(2.4rem, 13vw, 3.6rem) !important; line-height: 1.02 !important; }
+    #hero .hero-sub { font-size: 0.95rem !important; }
+    #hero .hero-desc { max-width: 100% !important; text-align: center !important; margin-top: 16px !important; }
+    #hero .hero-tags { justify-content: center !important; gap: 6px !important; margin-top: 20px !important; }
+    #hero .hero-ctas { width: 100% !important; flex-direction: column !important; align-items: center !important; justify-content: center !important; gap: 10px !important; margin-top: 24px !important; }
+    #hero .btn-primary, #hero .btn-outline, #hero .btn-download { width: 100% !important; max-width: 320px !important; text-align: center !important; }
+    #hero .hero-stats { width: 100% !important; justify-content: center !important; gap: 12px !important; margin-top: 28px !important; flex-wrap: wrap !important; }
+    #hero .hero-stats > div { flex: 1 1 30% !important; min-width: 92px !important; }
+    #hero .hero-photo-frame { max-width: 220px !important; margin: 0 auto !important; }
+    #hero .scroll-indicator { display: none !important; }
+  }
+  @media (max-width: 640px) {
+    #hero { padding: 88px 16px 48px !important; }
+    #hero .hero-inner { gap: 20px !important; }
+    #hero .hero-photo-frame { max-width: 200px !important; }
+    #hero .hero-tag { font-size: 0.68rem !important; }
+    #hero .stat-num { font-size: 1.7rem !important; }
+    #hero .stat-label { font-size: 0.68rem !important; }
+  }
 </style>
 
+<!-- HERO -->
 <section id="hero">
   <div class="hero-grid"></div>
   <div class="hero-orb hero-orb-1"></div>
@@ -85,33 +123,15 @@ etc.
   <div class="hero-inner">
     <div class="hero-media">
       <div class="hero-photo-frame">
-        <img src="profile-photo.jpg"
-             alt="Jayesh Choudhari"
-             class="hero-photo">
+        <img src="profile-photo.jpg" alt="Jayesh Choudhari" class="hero-photo">
       </div>
     </div>
 
     <div class="hero-content">
-      <div class="hero-badge">
-        <div class="hero-badge-dot"></div>
-        Available · Berlin, Germany
-      </div>
-
-      <h1 class="hero-name">
-        Jayesh<br>
-        <span class="accent">Choudhari</span>
-      </h1>
-
-      <p class="hero-sub">
-        AI Researcher & Developer
-      </p>
-
-      <p class="hero-desc">
-        Building intelligent systems at the intersection of ML,
-        NLP, Computer Vision, and Agentic AI. Pursuing M.Sc.
-        Cognitive Systems (AI) at Universität Potsdam.
-      </p>
-
+      <div class="hero-badge"><div class="hero-badge-dot"></div> Available · Berlin, Germany</div>
+      <h1 class="hero-name">Jayesh<br><span class="accent">Choudhari</span></h1>
+      <p class="hero-sub">AI Researcher & Developer</p>
+      <p class="hero-desc">Building intelligent systems at the intersection of ML, NLP, Computer Vision, and Agentic AI. Pursuing M.Sc. Cognitive Systems (AI) at Universität Potsdam.</p>
       <div class="hero-tags">
         <span class="hero-tag">Machine Learning</span>
         <span class="hero-tag">LLMs & RAG</span>
@@ -119,44 +139,18 @@ etc.
         <span class="hero-tag">Computer Vision</span>
         <span class="hero-tag">NLP</span>
       </div>
-
       <div class="hero-ctas">
-        <a href="#projects" class="btn-primary">
-          View Projects
-        </a>
-
-        <a href="Jayesh-Choudhari-CV.pdf"
-           class="btn-download"
-           download>
-          Download CV
-        </a>
-
-        <a href="#contact" class="btn-outline">
-          Contact Me
-        </a>
+        <a href="#projects" class="btn-primary">View Projects</a>
+        <a href="Jayesh-Choudhari-CV.pdf" class="btn-download" download>Download CV</a>
+        <a href="#contact" class="btn-outline">Contact Me</a>
       </div>
-
       <div class="hero-stats">
-        <div>
-          <div class="stat-num">2+</div>
-          <div class="stat-label">Years Experience</div>
-        </div>
-
-        <div>
-          <div class="stat-num">10+</div>
-          <div class="stat-label">Key Projects</div>
-        </div>
-
-        <div>
-          <div class="stat-num">3</div>
-          <div class="stat-label">Roles Held</div>
-        </div>
+        <div><div class="stat-num">2+</div><div class="stat-label">Years Experience</div></div>
+        <div><div class="stat-num">10+</div><div class="stat-label">Key Projects</div></div>
+        <div><div class="stat-num">3</div><div class="stat-label">Roles Held</div></div>
       </div>
     </div>
   </div>
 
-  <div class="scroll-indicator">
-    <div class="scroll-line"></div>
-    <span>Scroll to explore</span>
-  </div>
+  <div class="scroll-indicator"><div class="scroll-line"></div><span>Scroll to explore</span></div>
 </section>
