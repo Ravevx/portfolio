@@ -136,6 +136,7 @@
       fetch(file)
         .then(r => r.text())
         .then(html => { document.getElementById(id).innerHTML = html; })
+        .catch(err => console.warn('Section load failed:', err))
     )
   ).then(initScripts);
 
