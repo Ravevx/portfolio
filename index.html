@@ -164,7 +164,7 @@
       const blocks   = document.querySelectorAll('.proj-block');
       const lineFill = document.getElementById('timelineFill');
       const stepList = document.getElementById('stepList');
-      let current = 0;
+      if (!steps.length || !blocks.length || !lineFill || !stepList) return; 
 
       function activate(idx) {
         if (idx === current && steps[idx].classList.contains('active')) return;
