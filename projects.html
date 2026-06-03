@@ -1,0 +1,746 @@
+<style>
+  /* ── PROJECTS SECTION ── */
+  #projects { padding:100px 0 160px; }
+
+  .proj-header {
+    text-align:center;padding:0 64px;margin-bottom:96px;
+  }
+  .proj-header .section-eyebrow {
+    font-size:.7rem;font-weight:600;letter-spacing:.18em;
+    text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:14px;
+  }
+  .proj-header .section-title {
+    font-family:var(--font-head);
+    font-size:clamp(2rem,4vw,3.2rem);font-weight:800;
+    letter-spacing:-.04em;line-height:1.1;
+    color:var(--text);
+  }
+  .proj-header .section-title span { color:var(--accent); }
+
+  /* ── MAIN LAYOUT ── */
+  .proj-layout {
+    max-width:1240px;margin:0 auto;
+    padding:0 64px;
+    display:flex;
+    gap:72px;
+    align-items:flex-start;
+  }
+
+  /* ── LEFT STICKY COL ── */
+  .left-col {
+    flex:0 0 300px;
+    position:sticky;
+    top:96px;
+    align-self:flex-start;
+  }
+
+  /* vertical timeline line */
+  .timeline-line {
+    position:absolute;
+    left:4px;top:10px;
+    width:1px;
+    background:rgba(255,255,255,0.06);
+    bottom:10px;
+  }
+  .timeline-fill {
+    position:absolute;
+    top:0;left:0;width:100%;height:0%;
+    background:linear-gradient(180deg,rgba(255,255,255,0.55) 0%,rgba(255,255,255,0.2) 100%);
+    transition:height .08s linear;
+    border-radius:1px;
+  }
+
+  /* step items */
+  .step-list {
+    position:relative;
+    display:flex;flex-direction:column;
+  }
+  .step-item {
+    display:flex;gap:18px;
+    padding:20px 0 20px 24px;
+    cursor:pointer;
+    transition:opacity .3s;
+    opacity:.22;
+    position:relative;
+  }
+  .step-item.active { opacity:1; }
+  .step-item:first-child { padding-top:0; }
+  .step-item:last-child { padding-bottom:0; }
+
+  /* dot marker */
+  .step-dot {
+    position:absolute;left:0;top:22px;
+    width:9px;height:9px;
+    border-radius:50%;
+    border:1.5px solid rgba(255,255,255,0.2);
+    background:transparent;
+    transition:border-color .3s,background .3s,box-shadow .3s;
+    flex-shrink:0;
+  }
+  .step-item:first-child .step-dot { top:2px; }
+  .step-item.active .step-dot {
+    border-color:var(--step-color,var(--accent));
+    background:var(--step-color,var(--accent));
+    box-shadow:0 0 10px var(--step-color,var(--accent));
+  }
+
+  .step-num {
+    font-size:.6rem;font-weight:700;letter-spacing:.12em;
+    color:var(--step-color,var(--muted2));
+    margin-bottom:4px;
+    transition:color .3s;
+  }
+  .step-item.active .step-num { color:var(--step-color,var(--accent)); }
+  .step-title {
+    font-family:var(--font-head);
+    font-size:.95rem;font-weight:700;
+    letter-spacing:-.015em;line-height:1.25;
+    color:var(--text);margin-bottom:4px;
+    transition:color .3s;
+  }
+  .step-item:not(.active) .step-title { color:var(--muted); }
+  .step-desc-short {
+    font-size:.73rem;line-height:1.5;color:var(--muted2);
+  }
+  .step-item.active .step-desc-short { color:var(--muted); }
+
+  /* ── RIGHT SCROLLING COL ── */
+  .right-col {
+    flex:1;
+    display:flex;flex-direction:column;
+    gap:0;
+  }
+
+  /* each project block */
+  .proj-block {
+    min-height:95vh;
+    display:flex;align-items:center;
+    padding:72px 0;
+    border-top:1px solid var(--border2);
+    position:relative;
+  }
+  .proj-block:first-child { border-top:none; }
+
+  .proj-block-inner {
+    width:100%;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:52px;
+    align-items:center;
+  }
+
+  .proj-num {
+    font-size:.65rem;font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--block-color,var(--accent));
+    margin-bottom:12px;
+    opacity:0;transform:translateY(12px);
+    transition:opacity .5s,transform .5s;
+  }
+  .proj-block.reveal .proj-num { opacity:1;transform:none; }
+
+  .proj-title {
+    font-family:var(--font-head);
+    font-size:clamp(1.45rem,2vw,1.85rem);
+    font-weight:800;letter-spacing:-.025em;line-height:1.2;
+    margin-bottom:14px;
+    opacity:0;transform:translateY(16px);
+    transition:opacity .5s .06s,transform .5s .06s;
+  }
+  .proj-block.reveal .proj-title { opacity:1;transform:none; }
+
+  .proj-desc {
+    font-size:.875rem;line-height:1.85;color:var(--muted);
+    margin-bottom:22px;
+    opacity:0;transform:translateY(12px);
+    transition:opacity .5s .12s,transform .5s .12s;
+  }
+  .proj-block.reveal .proj-desc { opacity:1;transform:none; }
+
+  .proj-pills {
+    display:flex;flex-wrap:wrap;gap:6px;
+    margin-bottom:26px;
+    opacity:0;transition:opacity .5s .18s;
+  }
+  .proj-block.reveal .proj-pills { opacity:1; }
+  .pill {
+    padding:4px 11px;
+    background:var(--surface2);
+    border:1px solid var(--border);
+    border-radius:5px;
+    font-size:.68rem;font-weight:500;color:var(--muted);
+  }
+
+  .proj-link {
+    display:inline-flex;align-items:center;gap:8px;
+    padding:9px 18px;border-radius:8px;
+    border:1px solid;
+    font-size:.76rem;font-weight:600;
+    text-decoration:none;
+    opacity:0;transform:translateY(8px);
+    transition:opacity .5s .24s,transform .5s .24s,background .2s,gap .2s;
+  }
+  .proj-block.reveal .proj-link { opacity:1;transform:none; }
+  .proj-link:hover { background:rgba(255,255,255,0.05);gap:12px; }
+
+  /* ARCH / VISUAL SIDE */
+  .proj-visual {
+    opacity:0;transform:translateX(24px) scale(.97);
+    transition:opacity .65s .1s,transform .65s .1s;
+  }
+  .proj-block.reveal .proj-visual { opacity:1;transform:none; }
+
+  .arch-card {
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:28px 24px;
+    position:relative;
+    overflow:hidden;
+    transition:border-color .3s;
+  }
+  .arch-card:hover { border-color:rgba(74,240,255,0.18); }
+
+  .arch-card::before {
+    content:'';position:absolute;top:0;left:0;right:0;height:1px;
+    background:linear-gradient(90deg,transparent 5%,var(--block-color,#4af0ff) 50%,transparent 95%);
+    opacity:.5;
+  }
+  .arch-card::after {
+    content:'';position:absolute;inset:0;pointer-events:none;
+    background-image:
+      linear-gradient(rgba(74,240,255,0.025) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(74,240,255,0.025) 1px,transparent 1px);
+    background-size:32px 32px;
+    mask-image:radial-gradient(ellipse at 70% 30%,black,transparent 70%);
+  }
+
+  .arch-label {
+    font-size:.6rem;font-weight:600;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--muted2);
+    margin-bottom:14px;position:relative;z-index:1;
+  }
+  .arch-svg { width:100%;position:relative;z-index:1; }
+
+  /* SVG node/line styles */
+  .an{fill:var(--surface2);stroke:rgba(74,240,255,0.25);stroke-width:1;}
+  .an-a{fill:rgba(74,240,255,0.06);stroke:rgba(74,240,255,0.5);stroke-width:1.2;}
+  .an-p{fill:rgba(124,111,255,0.06);stroke:rgba(124,111,255,0.4);stroke-width:1;}
+  .an-r{fill:rgba(255,107,157,0.06);stroke:rgba(255,107,157,0.45);stroke-width:1;}
+  .at{fill:var(--text);font-family:'Inter',sans-serif;font-size:8.5px;}
+  .as{fill:#6b7a9a;font-family:'Inter',sans-serif;font-size:7px;}
+  .al{stroke:rgba(74,240,255,0.3);stroke-width:1;fill:none;}
+  .al-a{stroke:rgba(74,240,255,0.55);stroke-width:1.1;fill:none;marker-end:url(#aw);}
+  .al-p{stroke:rgba(124,111,255,0.45);stroke-width:1;fill:none;marker-end:url(#awp);}
+  .al-d{stroke:rgba(74,240,255,0.2);stroke-width:1;fill:none;stroke-dasharray:4 3;}
+  @keyframes dash { to { stroke-dashoffset:0; } }
+  .al-anim { stroke-dasharray:300;stroke-dashoffset:300;animation:dash 1.8s ease forwards; }
+
+  /* ── MORE PROJECTS ── */
+  .more-projects-section {
+    max-width:1240px;margin:80px auto 0;padding:0 64px;
+  }
+  .more-projects-header { margin-bottom:32px; }
+  .more-projects-title {
+    font-family:var(--font-head);font-size:clamp(1.3rem,2vw,1.7rem);
+    font-weight:700;letter-spacing:-.025em;color:var(--text);
+  }
+  .more-proj-timeline {
+    display:flex;gap:0;position:relative;align-items:stretch;
+  }
+  .more-proj-left {
+    flex:0 0 32px;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  .more-proj-line-track {
+    position:absolute;
+    top:14px;bottom:14px;left:50%;
+    transform:translateX(-50%);
+    width:1px;
+    background:rgba(255,255,255,0.07);
+    overflow:hidden;border-radius:1px;
+  }
+  .more-proj-line-fill {
+    position:absolute;top:0;left:0;width:100%;height:0%;
+    background:linear-gradient(180deg,rgba(255,255,255,0.55) 0%,rgba(255,255,255,0.15) 100%);
+    transition:height .12s linear;border-radius:1px;
+  }
+  .more-proj-dots {
+    position:absolute;top:0;left:0;right:0;bottom:0;
+    pointer-events:none;
+  }
+  .more-proj-dot {
+    position:absolute;
+    left:50%;transform:translateX(-50%);
+    width:10px;height:10px;border-radius:50%;
+    border:1.5px solid rgba(255,255,255,0.15);
+    background:var(--bg);
+    transition:border-color .45s,background .45s,box-shadow .45s;
+    z-index:2;
+  }
+  .more-proj-dot.dot-lit {
+    border-color:var(--dot-color,var(--accent));
+    background:var(--dot-color,var(--accent));
+    box-shadow:0 0 12px var(--dot-color,var(--accent));
+  }
+  .more-proj-right {
+    flex:1;
+    display:flex;flex-direction:column;
+    border:1px solid var(--border);
+    border-radius:12px;
+    overflow:hidden;
+    margin-left:16px;
+  }
+  .more-proj-item {
+    display:flex;align-items:center;justify-content:space-between;gap:32px;
+    padding:22px 28px;
+    border-bottom:1px solid var(--border);
+    opacity:0;
+    transform:translateX(20px);
+    transition:background .2s, opacity .55s, transform .55s;
+  }
+  .more-proj-item.mp-reveal { opacity:1;transform:none; }
+  .more-proj-item:last-child { border-bottom:none; }
+  .more-proj-item:hover { background:rgba(255,255,255,0.02); }
+  .more-proj-info { flex:1;min-width:0; }
+  .more-proj-name {
+    font-family:var(--font-head);font-size:.95rem;font-weight:700;
+    color:var(--text);margin-bottom:4px;
+  }
+  .more-proj-desc { font-size:.8rem;color:var(--muted);line-height:1.6; }
+  .more-proj-link {
+    flex-shrink:0;display:inline-flex;align-items:center;gap:6px;
+    padding:7px 16px;border-radius:6px;border:1px solid var(--border);
+    color:var(--muted);font-size:.75rem;font-weight:500;
+    text-decoration:none;white-space:nowrap;transition:all .2s;
+  }
+  .more-proj-link:hover {
+    border-color:rgba(74,240,255,0.3);color:var(--accent);
+    background:rgba(74,240,255,0.05);
+  }
+
+  @media (max-width:900px) {
+    #projects { padding: 72px 0 88px; }
+    .proj-header { padding: 0 24px; margin-bottom: 32px; }
+    .proj-layout { display: block; max-width: 100%; padding: 0 24px; }
+    .left-col { display: none; }
+    .right-col { width: 100%; }
+    .proj-block { min-height: auto; padding: 28px 0; border-top: 1px solid var(--border); }
+    .proj-block-inner { grid-template-columns: 1fr; gap: 22px; align-items: start; }
+    .proj-title { font-size: 1.35rem; line-height: 1.25; }
+    .proj-desc { font-size: 0.86rem; line-height: 1.75; margin-bottom: 18px; }
+    .proj-pills { gap: 8px; margin-bottom: 18px; }
+    .pill { font-size: 0.7rem; }
+    .proj-link { width: 100%; justify-content: center; }
+    .arch-card { padding: 16px; border-radius: 12px; }
+    .arch-svg { width: 100%; height: auto; display: block; }
+    .more-projects-section { padding:0 24px;margin-top:48px; }
+    .more-proj-item { flex-direction:column;align-items:flex-start;gap:12px;padding:18px 20px; }
+    .more-proj-link { align-self:flex-start; }
+  }
+  @media (max-width:640px) {
+    .proj-header, .proj-layout { padding-left: 16px; padding-right: 16px; }
+    .more-projects-section { padding:0 16px; }
+    .more-proj-left { display:none; }
+    .more-proj-right { margin-left:0; }
+    .section-title { font-size: clamp(1.7rem, 8vw, 2.2rem); margin-bottom: 28px; }
+  }
+</style>
+
+<!-- PROJECTS -->
+<section id="projects">
+
+  <div class="proj-header">
+    <div class="section-eyebrow">Selected Work</div>
+    <h2 class="section-title">My Top 4 <span style="color:var(--accent)">Key Projects</span></h2>
+  </div>
+
+  <div class="proj-layout">
+
+    <!-- LEFT: sticky timeline -->
+    <div class="left-col">
+      <div class="step-list" id="stepList">
+        <div class="timeline-line"><div class="timeline-fill" id="timelineFill"></div></div>
+
+        <div class="step-item active" id="step-0" data-idx="0" style="--step-color:#4af0ff">
+          <div class="step-dot"></div>
+          <div class="step-body">
+            <div class="step-num">01</div>
+            <div class="step-title">Explainable Autonomous Driving</div>
+            <div class="step-desc-short">XAI + Human-in-the-loop retraining</div>
+          </div>
+        </div>
+
+        <div class="step-item" id="step-1" data-idx="1" style="--step-color:#ff6b9d">
+          <div class="step-dot"></div>
+          <div class="step-body">
+            <div class="step-num">02</div>
+            <div class="step-title">Dial AI</div>
+            <div class="step-desc-short">Real-time phone conversational AI</div>
+          </div>
+        </div>
+
+        <div class="step-item" id="step-2" data-idx="2" style="--step-color:#7c6fff">
+          <div class="step-dot"></div>
+          <div class="step-body">
+            <div class="step-num">03</div>
+            <div class="step-title">AI for Specials</div>
+            <div class="step-desc-short">Vision AI for blind &amp; deaf accessibility</div>
+          </div>
+        </div>
+
+        <div class="step-item" id="step-3" data-idx="3" style="--step-color:#4af0ff">
+          <div class="step-dot"></div>
+          <div class="step-body">
+            <div class="step-num">04</div>
+            <div class="step-title">Agentic GitHub Code Reviewer</div>
+            <div class="step-desc-short">Privacy-preserving LangGraph + RAG pipeline</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- RIGHT: scrolling project blocks -->
+    <div class="right-col" id="rightCol">
+
+      <!-- PROJECT 01 -->
+      <div class="proj-block" id="proj-block-0" data-idx="0" style="--block-color:#4af0ff">
+        <div class="proj-block-inner">
+          <div class="proj-text">
+            <div class="proj-num">Project 01 / 04</div>
+            <h3 class="proj-title">Explainable Autonomous Driving</h3>
+            <p class="proj-desc">Post-hoc XAI framework using EfficientNet B0/B2 to predict and audit 5 vehicle actions. Human-in-the-loop learning with continuous feedback retraining builds trust in safety-critical decisions.</p>
+            <div class="proj-pills">
+              <span class="pill">EfficientNet</span>
+              <span class="pill">Grad-CAM</span>
+              <span class="pill">PyTorch</span>
+              <span class="pill">HITL</span>
+              <span class="pill">XAI</span>
+            </div>
+            <a href="https://github.com/Ravevx/GlassBoxDriver-Post-Hoc-XAI-for-Autonomous-Vehicle-Actions" target="_blank" rel="noopener noreferrer" class="proj-link" style="color:#4af0ff;border-color:#4af0ff33">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              View on GitHub
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </a>
+          </div>
+          <div class="proj-visual">
+            <div class="arch-card">
+              <div class="arch-label">Architecture</div>
+              <svg class="arch-svg" viewBox="0 0 320 260" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <marker id="aw" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="rgba(74,240,255,0.7)"/></marker>
+                  <marker id="awp" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="rgba(124,111,255,0.7)"/></marker>
+                </defs>
+                <rect x="10" y="14" width="90" height="36" rx="4" fill="rgba(74,240,255,0.06)" stroke="rgba(74,240,255,0.5)" stroke-width="1.2"/>
+                <text x="55" y="32" text-anchor="middle" fill="#f0f4ff" font-family="Inter,sans-serif" font-size="8.5px">Camera Input</text>
+                <text x="55" y="44" text-anchor="middle" fill="#6b7a9a" font-family="Inter,sans-serif" font-size="7px">Video Feed</text>
+                <line x1="100" y1="32" x2="130" y2="32" stroke="rgba(74,240,255,0.55)" stroke-width="1.1" fill="none" marker-end="url(#aw)"/>
+                <rect x="130" y="14" width="90" height="36" rx="4" fill="rgba(74,240,255,0.06)" stroke="rgba(74,240,255,0.5)" stroke-width="1.2"/>
+                <text x="175" y="30" text-anchor="middle" fill="#f0f4ff" font-family="Inter,sans-serif" font-size="8.5px">EfficientNet</text>
+                <text x="175" y="43" text-anchor="middle" fill="#6b7a9a" font-family="Inter,sans-serif" font-size="7px">B0 / B2</text>
+                <line x1="220" y1="32" x2="250" y2="32" stroke="rgba(74,240,255,0.55)" stroke-width="1.1" fill="none" marker-end="url(#aw)"/>
+                <rect x="250" y="14" width="64" height="36" rx="4" fill="rgba(124,111,255,0.06)" stroke="rgba(124,111,255,0.4)" stroke-width="1"/>
+                <text x="282" y="30" text-anchor="middle" fill="#f0f4ff" font-family="Inter,sans-serif" font-size="8px">Grad-CAM</text>
+                <text x="282" y="43" text-anchor="middle" fill="#6b7a9a" font-family="Inter,sans-serif" font-size="7px">Saliency</text>
+                <text x="160" y="72" text-anchor="middle" fill="rgba(74,240,255,0.55)" font-family="Inter,sans-serif" font-size="7px">5 Vehicle Actions Predicted</text>
+                <line x1="175" y1="50" x2="175" y2="78" stroke="rgba(74,240,255,0.4)" stroke-width="1" fill="none" marker-end="url(#aw)"/>
+                <rect x="5" y="84" width="58" height="26" rx="3" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/><text x="34" y="100" text-anchor="middle" fill="#6b7a9a" font-family="Inter,sans-serif" font-size="7px">Accelerate</text>
+                <rect x="70" y="84" width="52" height="26" rx="3" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/><text x="96" y="100" text-anchor="middle" fill="#6b7a9a" font-family="Inter,sans-serif" font-size="7px">Brake</text>
+                <rect x="129" y="84" width="62" height="26" rx="3" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/><text x="160" y="100" text-anchor="middle" fill="#6b7a9a" font-family="Inter,sans-serif" font-size="7px">Turn Left</text>
+                <rect x="198" y="84" width="64" height="26" rx="3" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/><text x="230" y="100" text-anchor="middle" fill="#6b7a9a" font-family="Inter,sans-serif" font-size="7px">Turn Right</text>
+                <rect x="269" y="84" width="46" height="26" rx="3" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/><text x="292" y="100" text-anchor="middle" fill="#6b7a9a" font-family="Inter,sans-serif" font-size="7px">Hold</text>
+                <line x1="160" y1="110" x2="160" y2="136" stroke="rgba(74,240,255,0.4)" stroke-width="1" fill="none" marker-end="url(#aw)"/>
+                <rect x="90" y="136" width="140" height="34" rx="4" fill="rgba(255,107,157,0.06)" stroke="rgba(255,107,157,0.4)" stroke-width="1"/>
+                <text x="160" y="152" text-anchor="middle" fill="#f0f4ff" font-family="Inter,sans-serif" font-size="8.5px">Human Expert Review</text>
+                <text x="160" y="163" text-anchor="middle" fill="#6b7a9a" font-family="Inter,sans-serif" font-size="7px">Feedback Annotation</text>
+                <line x1="160" y1="170" x2="160" y2="196" stroke="rgba(74,240,255,0.4)" stroke-width="1" fill="none" marker-end="url(#aw)"/>
+                <rect x="90" y="196" width="140" height="34" rx="4" fill="rgba(74,240,255,0.06)" stroke="rgba(74,240,255,0.4)" stroke-width="1"/>
+                <text x="160" y="212" text-anchor="middle" fill="#f0f4ff" font-family="Inter,sans-serif" font-size="8.5px">Retraining Loop</text>
+                <text x="160" y="223" text-anchor="middle" fill="#6b7a9a" font-family="Inter,sans-serif" font-size="7px">Continuous HITL Learning</text>
+                <path d="M90,213 Q20,213 20,32 L10,32" stroke="rgba(124,111,255,0.25)" stroke-width="1" fill="none" stroke-dasharray="4 3"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 02: Dial AI -->
+      <div class="proj-block" id="proj-block-1" data-idx="1" style="--block-color:#ff6b9d">
+        <div class="proj-block-inner">
+          <div class="proj-text">
+            <div class="proj-num">Project 02 / 04</div>
+            <h3 class="proj-title">Dial AI</h3>
+            <p class="proj-desc">An end-to-end conversational AI system that speaks to customers in real-time via phone calls. Integrates speech-to-text, retrieves relevant knowledge via RAG, generates intelligent responses with LLMs, and converts them back to natural speech — all with sub-second latency.</p>
+            <div class="proj-pills">
+              <span class="pill">Speech-to-Text</span>
+              <span class="pill">RAG</span>
+              <span class="pill">LLM</span>
+              <span class="pill">Text-to-Speech</span>
+              <span class="pill">ChromaDB</span>
+              <span class="pill">Telephony API</span>
+            </div>
+            <a href="#" class="proj-link" style="color:#ff6b9d;border-color:#ff6b9d33">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              View on GitHub
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </a>
+          </div>
+          <div class="proj-visual">
+            <div class="arch-card">
+              <div class="arch-label">Architecture</div>
+              <svg class="arch-svg" viewBox="0 0 320 290" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <marker id="aw2" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="rgba(255,107,157,0.7)"/></marker>
+                  <marker id="aw2b" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="rgba(74,240,255,0.7)"/></marker>
+                </defs>
+                <rect x="105" y="8" width="110" height="32" rx="4" fill="rgba(255,107,157,0.06)" stroke="rgba(255,107,157,0.5)" stroke-width="1.2"/>
+                <text x="160" y="22" text-anchor="middle" fill="#f0f4ff" font-family="Inter,sans-serif" font-size="8px"> Incoming Phone Call</text>
+                <text x="160" y="34" text-anchor="middle" fill="#6b7a9a" font-family="Inter,sans-serif" font-size="7px">Telephony API (Twilio / SIP)</text>
+                <line x1="160" y1="40" x2="160" y2="66" stroke="rgba(255,107,157,0.55)" stroke-width="1.1" fill="none" marker-end="url(#aw2)"/>
+                <rect x="90" y="66" width="140" height="32" rx="4" fill="rgba(255,107,157,0.06)" stroke="rgba(255,107,157,0.4)" stroke-width="1"/>
+                <text x="160" y="80" text-anchor="middle" fill="#f0f4ff" font-family="Inter,sans-serif" font-size="8.5px">Speech-to-Text (STT)</text>
+                <text x="160" y="91" text-anchor="middle" fill="#6b7a9a" font-family="Inter,sans-serif" font-size="7px">Whisper / Deepgram</text>
+                <line x1="160" y1="98" x2="160" y2="124" stroke="rgba(74,240,255,0.55)" stroke-width="1.1" fill="none" marker-end="url(#aw2b)"/>
+                <rect x="75" y="124" width="170" height="36" rx="4" fill="rgba(74,240,255,0.06)" stroke="rgba(74,240,255,0.5)" stroke-width="1.2"/>
+                <text x="160" y="140" text-anchor="middle" fill="#f0f4ff" font-family="Inter,sans-serif" font-size="8.5px">RAG — Knowledge Retrieval</text>
+                <text x="160" y="152" text-anchor="middle" fill="#6b7a9a" font-family="Inter,sans-serif" font-size="7px">ChromaDB · Embedding Search</text>
+                <rect x="8" y="132" width="58" height="24" rx="3" fill="rgba(255,255,255,0.03)" stroke="rgba(74,240,255,0.2)" stroke-width="1"/>
+                <text x="37" y="147" text-anchor="middle" fill="#6b7a9a" font-family="Inter,sans-serif" font-size="7px">Knowledge Base</text>
+                <line x1="66" y1="144" x2="75" y2="144" stroke="rgba(74,240,255,0.3)" stroke-width="1" fill="none" stroke-dasharray="3 2"/>
+                <line x1="160" y1="160" x2="160" y2="186" stroke="rgba(124,111,255,0.55)" stroke-width="1.1" fill="none" marker-end="url(#aw2b)"/>
+                <rect x="90" y="186" width="140" height="32" rx="4" fill="rgba(124,111,255,0.06)" stroke="rgba(124,111,255,0.4)" stroke-width="1"/>
+                <text x="160" y="200" text-anchor="middle" fill="#f0f4ff" font-family="Inter,sans-serif" font-size="8.5px">LLM Response Generation</text>
+                <text x="160" y="211" text-anchor="middle" fill="#6b7a9a" font-family="Inter,sans-serif" font-size="7px">GPT-4 / Local LLM</text>
+                <line x1="160" y1="218" x2="160" y2="244" stroke="rgba(255,107,157,0.55)" stroke-width="1.1" fill="none" marker-end="url(#aw2)"/>
+                <rect x="90" y="244" width="140" height="32" rx="4" fill="rgba(255,107,157,0.06)" stroke="rgba(255,107,157,0.4)" stroke-width="1"/>
+                <text x="160" y="258" text-anchor="middle" fill="#f0f4ff" font-family="Inter,sans-serif" font-size="8.5px">Text-to-Speech (TTS)</text>
+                <text x="160" y="269" text-anchor="middle" fill="#6b7a9a" font-family="Inter,sans-serif" font-size="7px">ElevenLabs / Azure TTS</text>
+                <path d="M230,260 Q300,260 300,24 L215,24" stroke="rgba(255,107,157,0.2)" stroke-width="1" fill="none" stroke-dasharray="4 3"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 03: AI for Specials -->
+      <div class="proj-block" id="proj-block-2" data-idx="2" style="--block-color:#7c6fff">
+        <div class="proj-block-inner">
+          <div class="proj-text">
+            <div class="proj-num">Project 03 / 04</div>
+            <h3 class="proj-title">AI for Specials</h3>
+            <p class="proj-desc">An accessibility AI system with two modules: a Vision Transformer-based scene understanding pipeline that narrates surroundings for visually impaired users in real-time, and an audio-to-sign-language translation system that converts spoken audio into sign language gestures for deaf and hard-of-hearing individuals.</p>
+            <div class="proj-pills">
+              <span class="pill">Vision Transformer</span>
+              <span class="pill">Scene Understanding</span>
+              <span class="pill">Audio-to-Sign</span>
+              <span class="pill">ASR</span>
+              <span class="pill">TTS</span>
+              <span class="pill">Accessibility AI</span>
+            </div>
+            <a href="#" class="proj-link" style="color:#7c6fff;border-color:#7c6fff33">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              View on GitHub
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </a>
+          </div>
+          <div class="proj-visual">
+            <div class="arch-card">
+              <div class="arch-label">Architecture</div>
+              <svg class="arch-svg" viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <marker id="aw3a" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="rgba(124,111,255,0.7)"/></marker>
+                  <marker id="aw3b" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="rgba(74,240,100,0.7)"/></marker>
+                </defs>
+                <text x="80" y="13" text-anchor="middle" fill="rgba(124,111,255,0.7)" font-family="Inter,sans-serif" font-size="7px" font-weight="600" letter-spacing="0.08em">FOR BLIND</text>
+                <text x="240" y="13" text-anchor="middle" fill="rgba(74,240,100,0.6)" font-family="Inter,sans-serif" font-size="7px" font-weight="600" letter-spacing="0.08em">FOR DEAF</text>
+                <line x1="160" y1="6" x2="160" y2="295" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4 4"/>
+                <rect x="30" y="18" width="100" height="28" rx="4" fill="rgba(124,111,255,0.06)" stroke="rgba(124,111,255,0.4)" stroke-width="1"/>
+                <text x="80" y="31" text-anchor="middle" fill="#f0f4ff" font-family="Inter,sans-serif" font-size="8px"> Camera / Image</text>
+                <text x="80" y="41" text-anchor="middle" fill="#6b7a9a" font-family="Inter,sans-serif" font-size="6.5px">Real-time video feed</text>
+                <line x1="80" y1="46" x2="80" y2="70" stroke="rgba(124,111,255,0.55)" stroke-width="1" fill="none" marker-end="url(#aw3a)"/>
+                <rect x="22" y="70" width="116" height="30" rx="4" fill="rgba(124,111,255,0.06)" stroke="rgba(124,111,255,0.5)" stroke-width="1.2"/>
+                <text x="80" y="83" text-anchor="middle" fill="#f0f4ff" font-family="Inter,sans-serif" font-size="8px">Vision Transformer (ViT)</text>
+                <text x="80" y="94" text-anchor="middle" fill="#6b7a9a" font-family="Inter,sans-serif" font-size="6.5px">Scene Classification</text>
+                <line x1="80" y1="100" x2="80" y2="124" stroke="rgba(124,111,255,0.55)" stroke-width="1" fill="none" marker-end="url(#aw3a)"/>
+                <rect x="22" y="124" width="116" height="28" rx="4" fill="rgba(124,111,255,0.06)" stroke="rgba(124,111,255,0.3)" stroke-width="1"/>
+                <text x="80" y="137" text-anchor="middle" fill="#f0f4ff" font-family="Inter,sans-serif" font-size="8px">Object Detection</text>
+                <text x="80" y="148" text-anchor="middle" fill="#6b7a9a" font-family="Inter,sans-serif" font-size="6.5px">YOLO / DETR</text>
+                <line x1="80" y1="152" x2="80" y2="176" stroke="rgba(124,111,255,0.55)" stroke-width="1" fill="none" marker-end="url(#aw3a)"/>
+                <rect x="22" y="176" width="116" height="28" rx="4" fill="rgba(124,111,255,0.06)" stroke="rgba(124,111,255,0.3)" stroke-width="1"/>
+                <text x="80" y="189" text-anchor="middle" fill="#f0f4ff" font-family="Inter,sans-serif" font-size="8px">Caption Generator</text>
+                <text x="80" y="200" text-anchor="middle" fill="#6b7a9a" font-family="Inter,sans-serif" font-size="6.5px">LLM scene description</text>
+                <line x1="80" y1="204" x2="80" y2="228" stroke="rgba(124,111,255,0.55)" stroke-width="1" fill="none" marker-end="url(#aw3a)"/>
+                <rect x="22" y="228" width="116" height="28" rx="4" fill="rgba(255,107,157,0.06)" stroke="rgba(255,107,157,0.35)" stroke-width="1"/>
+                <text x="80" y="241" text-anchor="middle" fill="#f0f4ff" font-family="Inter,sans-serif" font-size="8px"> Voice Output (TTS)</text>
+                <text x="80" y="252" text-anchor="middle" fill="#6b7a9a" font-family="Inter,sans-serif" font-size="6.5px">Earpiece narration</text>
+                <rect x="190" y="18" width="100" height="28" rx="4" fill="rgba(74,240,100,0.06)" stroke="rgba(74,240,100,0.4)" stroke-width="1"/>
+                <text x="240" y="31" text-anchor="middle" fill="#f0f4ff" font-family="Inter,sans-serif" font-size="8px"> Microphone / Audio</text>
+                <text x="240" y="41" text-anchor="middle" fill="#6b7a9a" font-family="Inter,sans-serif" font-size="6.5px">Ambient sound capture</text>
+                <line x1="240" y1="46" x2="240" y2="70" stroke="rgba(74,240,100,0.55)" stroke-width="1" fill="none" marker-end="url(#aw3b)"/>
+                <rect x="182" y="70" width="116" height="30" rx="4" fill="rgba(74,240,100,0.06)" stroke="rgba(74,240,100,0.5)" stroke-width="1.2"/>
+                <text x="240" y="83" text-anchor="middle" fill="#f0f4ff" font-family="Inter,sans-serif" font-size="8px">ASR — Speech Recognition</text>
+                <text x="240" y="94" text-anchor="middle" fill="#6b7a9a" font-family="Inter,sans-serif" font-size="6.5px">Whisper / wav2vec2</text>
+                <line x1="240" y1="100" x2="240" y2="124" stroke="rgba(74,240,100,0.55)" stroke-width="1" fill="none" marker-end="url(#aw3b)"/>
+                <rect x="182" y="124" width="116" height="28" rx="4" fill="rgba(74,240,100,0.06)" stroke="rgba(74,240,100,0.3)" stroke-width="1"/>
+                <text x="240" y="137" text-anchor="middle" fill="#f0f4ff" font-family="Inter,sans-serif" font-size="8px">NLP Intent Classifier</text>
+                <text x="240" y="148" text-anchor="middle" fill="#6b7a9a" font-family="Inter,sans-serif" font-size="6.5px">Context understanding</text>
+                <line x1="240" y1="152" x2="240" y2="176" stroke="rgba(74,240,100,0.55)" stroke-width="1" fill="none" marker-end="url(#aw3b)"/>
+                <rect x="182" y="176" width="116" height="28" rx="4" fill="rgba(74,240,100,0.06)" stroke="rgba(74,240,100,0.3)" stroke-width="1"/>
+                <text x="240" y="189" text-anchor="middle" fill="#f0f4ff" font-family="Inter,sans-serif" font-size="8px">Sign Language Mapper</text>
+                <text x="240" y="200" text-anchor="middle" fill="#6b7a9a" font-family="Inter,sans-serif" font-size="6.5px">Text → Gesture sequence</text>
+                <line x1="240" y1="204" x2="240" y2="228" stroke="rgba(74,240,100,0.55)" stroke-width="1" fill="none" marker-end="url(#aw3b)"/>
+                <rect x="182" y="228" width="116" height="28" rx="4" fill="rgba(74,240,100,0.06)" stroke="rgba(74,240,100,0.35)" stroke-width="1"/>
+                <text x="240" y="241" text-anchor="middle" fill="#f0f4ff" font-family="Inter,sans-serif" font-size="8px"> Sign Animation UI</text>
+                <text x="240" y="252" text-anchor="middle" fill="#6b7a9a" font-family="Inter,sans-serif" font-size="6.5px">Real-time visual display</text>
+                <text x="80" y="290" text-anchor="middle" fill="rgba(124,111,255,0.4)" font-family="Inter,sans-serif" font-size="7px"> Blind User</text>
+                <text x="240" y="290" text-anchor="middle" fill="rgba(74,240,100,0.4)" font-family="Inter,sans-serif" font-size="7px"> Deaf User</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 04: Agentic GitHub Code Reviewer -->
+      <div class="proj-block" id="proj-block-3" data-idx="3" style="--block-color:#4af0ff">
+        <div class="proj-block-inner">
+          <div class="proj-text">
+            <div class="proj-num">Project 04 / 04</div>
+            <h3 class="proj-title">Agentic GitHub Code Reviewer</h3>
+            <p class="proj-desc">Privacy-preserving code review using LangGraph, RAG, and local LLMs — no code leaves your machine. Autonomously identifies bugs, security risks, and performance issues across GitHub repos.</p>
+            <div class="proj-pills">
+              <span class="pill">LangGraph</span>
+              <span class="pill">RAG</span>
+              <span class="pill">ChromaDB</span>
+              <span class="pill">Local LLMs</span>
+              <span class="pill">GitHub API</span>
+            </div>
+            <a href="https://github.com/Ravevx/Agentic-GitHub-Code-Reviewer" target="_blank" rel="noopener noreferrer" class="proj-link" style="color:#4af0ff;border-color:#4af0ff33">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              View on GitHub
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </a>
+          </div>
+          <div class="proj-visual">
+            <div class="arch-card">
+              <div class="arch-label">Architecture</div>
+              <svg class="arch-svg" viewBox="0 0 320 270" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <marker id="aw4" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="rgba(74,240,255,0.7)"/></marker>
+                  <marker id="aw4p" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="rgba(124,111,255,0.7)"/></marker>
+                </defs>
+                <rect x="100" y="8" width="120" height="30" rx="4" fill="rgba(74,240,255,0.06)" stroke="rgba(74,240,255,0.5)" stroke-width="1.2"/>
+                <text x="160" y="21" text-anchor="middle" fill="#f0f4ff" font-family="Inter,sans-serif" font-size="8.5px">GitHub Repository</text>
+                <text x="160" y="32" text-anchor="middle" fill="#6b7a9a" font-family="Inter,sans-serif" font-size="7px">GitHub API · PR / Commit</text>
+                <line x1="160" y1="38" x2="160" y2="62" stroke="rgba(74,240,255,0.55)" stroke-width="1.1" fill="none" marker-end="url(#aw4)"/>
+                <rect x="85" y="62" width="150" height="32" rx="4" fill="rgba(74,240,255,0.06)" stroke="rgba(74,240,255,0.5)" stroke-width="1.2"/>
+                <text x="160" y="76" text-anchor="middle" fill="#f0f4ff" font-family="Inter,sans-serif" font-size="8.5px">LangGraph Agent Orchestrator</text>
+                <text x="160" y="87" text-anchor="middle" fill="#6b7a9a" font-family="Inter,sans-serif" font-size="7px">State machine · Multi-step reasoning</text>
+                <line x1="100" y1="94" x2="60" y2="118" stroke="rgba(74,240,255,0.4)" stroke-width="1" fill="none" marker-end="url(#aw4)"/>
+                <line x1="160" y1="94" x2="160" y2="118" stroke="rgba(74,240,255,0.4)" stroke-width="1" fill="none" marker-end="url(#aw4)"/>
+                <line x1="220" y1="94" x2="258" y2="118" stroke="rgba(74,240,255,0.4)" stroke-width="1" fill="none" marker-end="url(#aw4)"/>
+                <rect x="10" y="118" width="90" height="30" rx="4" fill="rgba(124,111,255,0.06)" stroke="rgba(124,111,255,0.4)" stroke-width="1"/>
+                <text x="55" y="131" text-anchor="middle" fill="#f0f4ff" font-family="Inter,sans-serif" font-size="8px">RAG Retriever</text>
+                <text x="55" y="142" text-anchor="middle" fill="#6b7a9a" font-family="Inter,sans-serif" font-size="7px">ChromaDB</text>
+                <rect x="115" y="118" width="90" height="30" rx="4" fill="rgba(124,111,255,0.06)" stroke="rgba(124,111,255,0.4)" stroke-width="1"/>
+                <text x="160" y="131" text-anchor="middle" fill="#f0f4ff" font-family="Inter,sans-serif" font-size="8px">Local LLM</text>
+                <text x="160" y="142" text-anchor="middle" fill="#6b7a9a" font-family="Inter,sans-serif" font-size="7px">Ollama / CodeLlama</text>
+                <rect x="220" y="118" width="90" height="30" rx="4" fill="rgba(124,111,255,0.06)" stroke="rgba(124,111,255,0.4)" stroke-width="1"/>
+                <text x="265" y="131" text-anchor="middle" fill="#f0f4ff" font-family="Inter,sans-serif" font-size="8px">Code Parser</text>
+                <text x="265" y="142" text-anchor="middle" fill="#6b7a9a" font-family="Inter,sans-serif" font-size="7px">AST · Tree-sitter</text>
+                <line x1="55" y1="148" x2="120" y2="172" stroke="rgba(124,111,255,0.4)" stroke-width="1" fill="none" marker-end="url(#aw4p)"/>
+                <line x1="160" y1="148" x2="160" y2="172" stroke="rgba(124,111,255,0.4)" stroke-width="1" fill="none" marker-end="url(#aw4p)"/>
+                <line x1="265" y1="148" x2="200" y2="172" stroke="rgba(124,111,255,0.4)" stroke-width="1" fill="none" marker-end="url(#aw4p)"/>
+                <rect x="75" y="172" width="170" height="32" rx="4" fill="rgba(255,107,157,0.06)" stroke="rgba(255,107,157,0.4)" stroke-width="1"/>
+                <text x="160" y="186" text-anchor="middle" fill="#f0f4ff" font-family="Inter,sans-serif" font-size="8.5px">Review Report Generator</text>
+                <text x="160" y="197" text-anchor="middle" fill="#6b7a9a" font-family="Inter,sans-serif" font-size="7px">Bugs · Security · Performance</text>
+                <line x1="160" y1="204" x2="160" y2="228" stroke="rgba(74,240,255,0.55)" stroke-width="1.1" fill="none" marker-end="url(#aw4)"/>
+                <rect x="85" y="228" width="150" height="30" rx="4" fill="rgba(74,240,255,0.06)" stroke="rgba(74,240,255,0.4)" stroke-width="1"/>
+                <text x="160" y="241" text-anchor="middle" fill="#f0f4ff" font-family="Inter,sans-serif" font-size="8.5px">PR Comment / Report</text>
+                <text x="160" y="252" text-anchor="middle" fill="#6b7a9a" font-family="Inter,sans-serif" font-size="7px">Posted to GitHub · 100% Private</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end right-col -->
+  </div><!-- /proj-layout -->
+
+  <!-- MORE PROJECTS -->
+  <div class="more-projects-section">
+    <div class="more-projects-header reveal">
+      <div class="section-eyebrow" style="margin-bottom:8px;">Also Built</div>
+      <h3 class="more-projects-title">More Projects</h3>
+    </div>
+
+    <div class="more-proj-timeline">
+
+      <!-- Left rail: line + dots -->
+      <div class="more-proj-left" id="mpLeft">
+        <div class="more-proj-line-track">
+          <div class="more-proj-line-fill" id="mpLineFill"></div>
+        </div>
+        <div class="more-proj-dots" id="mpDots">
+          <div class="more-proj-dot" id="mpDot0" style="--dot-color:#4af0ff"></div>
+          <div class="more-proj-dot" id="mpDot1" style="--dot-color:#ff6b9d"></div>
+          <div class="more-proj-dot" id="mpDot2" style="--dot-color:#7c6fff"></div>
+          <div class="more-proj-dot" id="mpDot3" style="--dot-color:#4af0ff"></div>
+          <div class="more-proj-dot" id="mpDot4" style="--dot-color:#ff6b9d"></div>
+        </div>
+      </div>
+
+      <!-- Right col: items -->
+      <div class="more-proj-right" id="mpRight">
+
+        <div class="more-proj-item" id="mpItem0">
+          <div class="more-proj-info">
+            <h4 class="more-proj-name">Explainable Pneumonia Detection</h4>
+            <p class="more-proj-desc">Medical AI framework achieving AUC &gt; 0.98, comparing CNNs and Vision Transformers. Grad-CAM faithfulness and concentration metrics build clinician trust in AI-assisted radiology.</p>
+          </div>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="more-proj-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub
+          </a>
+        </div>
+
+        <div class="more-proj-item" id="mpItem1">
+          <div class="more-proj-info">
+            <h4 class="more-proj-name">Research Paper → Code Pipeline</h4>
+            <p class="more-proj-desc">Multi-agent Analyst–Architect–Coder workflow using CrewAI and FAISS that transforms academic PDFs into deployable software. Each agent queries the vector index to ground its output.</p>
+          </div>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="more-proj-link">GitHub</a>
+        </div>
+
+        <div class="more-proj-item" id="mpItem2">
+          <div class="more-proj-info">
+            <h4 class="more-proj-name">LLM Spatial Reasoning Evaluation</h4>
+            <p class="more-proj-desc">Physics-based puzzle environment to benchmark spatial reasoning and problem-solving of multimodal LLMs (GPT-4V, Claude, Gemini) across adaptive difficulty levels.</p>
+          </div>
+          <a href="https://github.com/Ravevx/LLM-Spatial-Reasoning-Evaluation-2D-Physics-Puzzle" target="_blank" rel="noopener noreferrer" class="more-proj-link">GitHub</a>
+        </div>
+
+        <div class="more-proj-item" id="mpItem3">
+          <div class="more-proj-info">
+            <h4 class="more-proj-name">Bio-Medical Claim Detection &amp; Span Extraction</h4>
+            <p class="more-proj-desc">NLP pipeline using BioBERT/PubMedBERT to detect and extract biomedical claims and evidence spans from scientific literature for automated fact verification.</p>
+          </div>
+          <a href="https://github.com/Ravevx/Bio-Medical-Claim-Mining" target="_blank" rel="noopener noreferrer" class="more-proj-link">GitHub</a>
+        </div>
+
+        <div class="more-proj-item" id="mpItem4">
+          <div class="more-proj-info">
+            <h4 class="more-proj-name">ASP-Based Cloud Resource Allocation</h4>
+            <p class="more-proj-desc">Intelligent cloud resource scheduler using Answer Set Programming (Clingo) for optimal VM allocation, SLA satisfaction, and cost minimization through declarative constraint solving.</p>
+          </div>
+          <a href="https://github.com/Ravevx/CloudRA-ASP-based-Cloud-Resource-Allocation" target="_blank" rel="noopener noreferrer" class="more-proj-link">GitHub</a>
+        </div>
+
+      </div><!-- /mpRight -->
+    </div><!-- /more-proj-timeline -->
+  </div><!-- /more-projects-section -->
+
+</section>
