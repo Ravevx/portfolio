@@ -1,0 +1,140 @@
+<style>
+/* ABOUT */
+
+#about {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.about-grid {
+  max-width: 1160px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.about-quote {
+  font-family: var(--font-head);
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.about-quote em {
+  color: var(--accent);
+  font-style: normal;
+}
+
+.about-details {
+  display: grid;
+  gap: 24px;
+}
+
+.about-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.about-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.about-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.about-value {
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+@media (max-width:900px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+@media (max-width:640px) {
+  .about-quote {
+    font-size: 1.25rem;
+    line-height: 1.45;
+  }
+
+  .about-value {
+    font-size: 0.85rem;
+  }
+}
+</style>
+
+<section id="about">
+  <div class="about-grid">
+
+    <div class="reveal">
+      <div class="section-eyebrow">
+        About Me
+      </div>
+
+      <p class="about-quote">
+        "I'm an AI Researcher driven by a small goal,
+        engineer technology to solve problems and make
+        humans lives a little easier.
+
+        I focus on <em>healthcare</em>,
+        <em>autonomous systems</em>,
+        <em>research</em>,
+        and <em>enterprise applications</em>.
+
+        I'm always motivated by the opportunity to
+        develop AI systems that provide value and
+        support human progress."
+      </p>
+    </div>
+
+    <div class="about-details reveal"
+         style="transition-delay:.12s">
+
+      <div class="about-row">
+        <span class="about-label">Location</span>
+        <span class="about-value">
+          Berlin, Germany
+        </span>
+      </div>
+
+      <div class="about-row">
+        <span class="about-label">Education</span>
+        <span class="about-value">
+          M.Sc. Cognitive Systems (AI) · Universität Potsdam
+        </span>
+      </div>
+
+      <div class="about-row">
+        <span class="about-label">Current Focus Areas</span>
+        <span class="about-value">
+          AI Agent Memory · Linguistics · Safe AI · AI in Healthcare
+        </span>
+      </div>
+
+      <div class="about-row">
+        <span class="about-label">Languages</span>
+        <span class="about-value">
+          English · German · Hindi · Marathi
+        </span>
+      </div>
+
+    </div>
+
+  </div>
+</section>
