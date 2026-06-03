@@ -66,6 +66,11 @@
   .section-eyebrow { font-size:0.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:12px; }
   .section-title { font-family:var(--font-head);font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-.04em;line-height:1.1;margin-bottom:48px; }
 
+  /* REVEAL ANIMATIONS */
+ .reveal {opacity: 0;transform: translateY(30px);transition: opacity .8s ease, transform .8s ease;}
+
+.reveal.visible {opacity: 1;transform: translateY(0);}
+  
   /* FOOTER */
   footer { padding:28px 56px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:0.75rem;color:var(--muted); }
 
