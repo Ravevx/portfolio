@@ -184,13 +184,13 @@
       }
 
       const revealObs = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            e.target.classList.add('visible');
-            activate(parseInt(e.target.dataset.idx));
-          }
-        });
-      }, { threshold: 0, rootMargin: '-35% 0px -35% 0px' });
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('reveal', 'visible');
+      activate(parseInt(e.target.dataset.idx));
+    }
+  });
+}, { threshold: 0, rootMargin: '-35% 0px -35% 0px' });
 
       blocks.forEach(b => revealObs.observe(b));
       steps.forEach((s, i) => {
