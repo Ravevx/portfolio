@@ -4,100 +4,118 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jayesh Choudhari - AI Researcher</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 <style>
-  :root {
-    --muted2: #8b97b3;
-    --border2: rgba(255,255,255,0.06);
-    --bg: #050810;
-    --bg2: #07091A;
-    --surface: #0d1221;
-    --surface2: #111830;
-    --border: rgba(255,255,255,0.08);
-    --border-bright: rgba(99,179,255,0.2);
-    --accent: #4af0ff;
-    --accent2: #7c6fff;
-    --accent3: #ff6b9d;
-    --text: #f0f4ff;
-    --muted: #6b7a9a;
-    --glow: rgba(74,240,255,0.12);
-    --font-head: 'Plus Jakarta Sans', sans-serif;
-    --font-body: 'Inter', sans-serif;
-  }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--font-body);
-    font-size: 15px;
-    line-height: 1.6;
-    overflow-x: hidden;
-    cursor: none;
-  }
+:root {
+  --muted2:#8b97b3;
+  --border2:rgba(255,255,255,0.06);
+  --bg:#050810;
+  --bg2:#07091A;
+  --surface:#0d1221;
+  --surface2:#111830;
+  --border:rgba(255,255,255,0.08);
+  --accent:#4af0ff;
+  --text:#f0f4ff;
+  --muted:#6b7a9a;
+  --font-head:'Plus Jakarta Sans',sans-serif;
+  --font-body:'Inter',sans-serif;
+}
 
-  /* CURSOR */
-  .cursor { position:fixed;width:8px;height:8px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s;mix-blend-mode:screen; }
-  .cursor-ring { position:fixed;width:32px;height:32px;border:1px solid rgba(74,240,255,0.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s,border-color .3s; }
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
 
-  /* NOISE */
-  body::before { content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9990; }
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font-body);
+  font-size:15px;
+  line-height:1.6;
+  overflow-x:hidden;
+  cursor:none;
+}
 
-  /* NAV */
-  nav {
-    position:fixed;top:0;left:0;right:0;z-index:100;
-    padding:0 56px;height:64px;
-    display:flex;align-items:center;justify-content:space-between;
-    background:rgba(5,8,16,0.85);
-    backdrop-filter:blur(20px);
-    border-bottom:1px solid var(--border);
-  }
-  .nav-logo { font-family:var(--font-head);font-weight:800;font-size:1rem;color:var(--text);text-decoration:none;letter-spacing:-0.01em; }
-  .nav-logo span { color:var(--accent); }
-  .nav-links { display:flex;gap:32px;list-style:none; }
-  .nav-links a { color:var(--muted);text-decoration:none;font-size:0.82rem;font-weight:500;transition:color .2s; }
-  .nav-links a:hover { color:var(--text); }
-  .nav-cta { background:transparent;border:1px solid var(--border-bright);color:var(--text);padding:8px 20px;font-family:var(--font-body);font-size:0.8rem;font-weight:500;cursor:pointer;transition:all .2s;text-decoration:none;border-radius:6px; }
-  .nav-cta:hover { background:rgba(74,240,255,0.06);border-color:var(--accent);color:var(--accent); }
+/* CURSOR */
+.cursor{
+  position:fixed;width:8px;height:8px;
+  background:var(--accent);
+  border-radius:50%;
+  pointer-events:none;
+  z-index:9999;
+  transform:translate(-50%,-50%);
+}
+.cursor-ring{
+  position:fixed;width:32px;height:32px;
+  border:1px solid rgba(74,240,255,0.4);
+  border-radius:50%;
+  pointer-events:none;
+  z-index:9998;
+  transform:translate(-50%,-50%);
+}
 
-  /* SECTIONS */
-  section { padding:100px 56px; }
-  .section-eyebrow { font-size:0.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:12px; }
-  .section-title { font-family:var(--font-head);font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-.04em;line-height:1.1;margin-bottom:48px; }
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;
+  height:64px;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:0 56px;
+  background:rgba(5,8,16,0.85);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  z-index:100;
+}
 
-  /* REVEAL ANIMATIONS */
- .reveal {opacity: 0;transform: translateY(30px);transition: opacity .8s ease, transform .8s ease;}
+.nav-logo{font-weight:800;text-decoration:none;color:var(--text)}
+.nav-logo span{color:var(--accent)}
 
-.reveal.visible {opacity: 1;transform: translateY(0);}
-  
-  /* FOOTER */
-  footer { padding:28px 56px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:0.75rem;color:var(--muted); }
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{text-decoration:none;color:var(--muted)}
+.nav-links a:hover{color:var(--text)}
 
-  @media (hover: none), (pointer: coarse) {
-    body { cursor: auto; }
-    .cursor, .cursor-ring { display: none; }
-  }
+/* SECTIONS */
+section{padding:100px 56px}
 
-  @media (max-width: 900px) {
-    nav { padding: 0 24px; height: 60px; }
-    .nav-links, .nav-cta { display: none; }
-    section { padding: 72px 24px; }
-    footer { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
-  }
+/* =========================
+   ONLY ONE REVEAL SYSTEM
+========================= */
 
-  @media (max-width: 640px) {
-    nav { padding: 0 16px; height: 56px; }
-    section { padding: 56px 16px; }
-  }
+.reveal{
+  opacity:0;
+  transform:translateY(24px);
+  transition:opacity .7s ease, transform .7s ease;
+  will-change:opacity,transform;
+}
+
+.reveal.is-visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* FOOTER */
+footer{
+  padding:28px 56px;
+  border-top:1px solid var(--border);
+  display:flex;
+  justify-content:space-between;
+  color:var(--muted);
+}
+
+/* MOBILE */
+@media(max-width:900px){
+  nav{padding:0 24px}
+  section{padding:70px 24px}
+  .nav-links{display:none}
+}
 </style>
 </head>
+
 <body>
 
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
-<!-- NAV -->
 <nav>
   <a href="#hero" class="nav-logo">Jayesh <span>Choudhari</span></a>
   <ul class="nav-links">
@@ -107,10 +125,9 @@
     <li><a href="#skills">Skills</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="mailto:jayeshchoudhari0@gmail.com" class="nav-cta">Get In Touch →</a>
 </nav>
 
-<!-- SECTIONS (each in its own file) -->
+<!-- WRAPPERS -->
 <div id="hero-section-wrapper"></div>
 <div id="about-section-wrapper"></div>
 <div id="projects-section-wrapper"></div>
@@ -121,166 +138,88 @@
 
 <footer>
   <span>© 2025 Jayesh Choudhari</span>
-  <span style="color:var(--accent)">Berlin, Germany · Open to Opportunities</span>
+  <span>Berlin, Germany</span>
 </footer>
 
 <script>
-  /* ── Load section HTML files ── */
-  const sections = [
-    { id: 'hero-section-wrapper',          file: 'sections/hero.html' },
-    { id: 'about-section-wrapper',         file: 'sections/about.html' },
-    { id: 'projects-section-wrapper',      file: 'sections/projects.html' },
-    { id: 'experience-section-wrapper',    file: 'sections/experience.html' },
-    { id: 'skills-section-wrapper',        file: 'sections/skills.html' },
-    { id: 'certifications-section-wrapper',file: 'sections/certifications.html' },
-    { id: 'contact-section-wrapper',       file: 'sections/contact.html' },
-  ];
+/* =========================
+   LOAD SECTIONS SAFELY
+========================= */
+const sections = [
+  {id:'hero-section-wrapper',file:'sections/hero.html'},
+  {id:'about-section-wrapper',file:'sections/about.html'},
+  {id:'projects-section-wrapper',file:'sections/projects.html'},
+  {id:'experience-section-wrapper',file:'sections/experience.html'},
+  {id:'skills-section-wrapper',file:'sections/skills.html'},
+  {id:'certifications-section-wrapper',file:'sections/certifications.html'},
+  {id:'contact-section-wrapper',file:'sections/contact.html'},
+];
 
-  Promise.all(
-    sections.map(({ id, file }) =>
-      fetch(file)
-        .then(r => r.text())
-        .then(html => { document.getElementById(id).innerHTML = html; })
-        .catch(err => console.warn('Section load failed:', err))
+function loadSections(){
+  return Promise.all(
+    sections.map(s =>
+      fetch(s.file)
+        .then(r=>r.text())
+        .then(html=>{
+          document.getElementById(s.id).innerHTML = html;
+        })
     )
-  ).then(initScripts);
+  );
+}
 
-  function initScripts() {
-    /* ── Custom Cursor ── */
-    const cur = document.getElementById('cursor');
-    const ring = document.getElementById('cursorRing');
-    let mx=0,my=0,rx=0,ry=0;
-    document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; cur.style.left=mx+'px'; cur.style.top=my+'px'; });
-    (function animRing(){ rx+=(mx-rx)*.1; ry+=(my-ry)*.1; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(animRing); })();
-    document.querySelectorAll('a,button,.step-item').forEach(el => {
-      el.addEventListener('mouseenter',()=>{ ring.style.width='50px';ring.style.height='50px';ring.style.borderColor='rgba(74,240,255,0.7)'; });
-      el.addEventListener('mouseleave',()=>{ ring.style.width='32px';ring.style.height='32px';ring.style.borderColor='rgba(74,240,255,0.4)'; });
-    });
-
-    /* ── General scroll reveal ── */
-    const obs = new IntersectionObserver(entries=>{
-      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
-    },{threshold:0.1});
-    document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
-
-    /* ── Key Projects sticky timeline ── */
-    (function() {
-      const steps    = document.querySelectorAll('.step-item');
-      const blocks   = document.querySelectorAll('.proj-block');
-      const lineFill = document.getElementById('timelineFill');
-      const stepList = document.getElementById('stepList');
-      if (!steps.length || !blocks.length || !lineFill || !stepList) return; 
-      let current = 0;
-
-      function activate(idx) {
-        if (idx === current && steps[idx].classList.contains('active')) return;
-        steps[current].classList.remove('active');
-        current = idx;
-        steps[current].classList.add('active');
-        const listH  = stepList.getBoundingClientRect().height;
-        const stepEl = steps[idx];
-        const stepTop = stepEl.offsetTop + stepEl.offsetHeight / 2;
-        lineFill.style.height = Math.min(100, (stepTop / listH) * 100) + '%';
-      }
-
-      const revealObs = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('reveal', 'visible');
-      activate(parseInt(e.target.dataset.idx));
+/* =========================
+   REVEAL SYSTEM (FIXED)
+========================= */
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('is-visible');
+      observer.unobserve(e.target);
     }
   });
-}, { threshold: 0, rootMargin: '-35% 0px -35% 0px' });
+},{threshold:0.15});
 
-      blocks.forEach(b => revealObs.observe(b));
-      steps.forEach((s, i) => {
-        s.addEventListener('click', () => {
-          blocks[i].scrollIntoView({ behavior: 'smooth', block: 'center' });
-        });
-      });
-      blocks[0].classList.add('visible');
-      activate(0);
-    })();
+function initRevealSystem(){
+  document.querySelectorAll('.reveal').forEach(el=>{
+    observer.observe(el);
+  });
+}
 
-    /* ── More Projects dot + line scroll reveal ── */
-    (function() {
-      const items    = Array.from(document.querySelectorAll('.more-proj-item'));
-      const dots     = Array.from(document.querySelectorAll('.more-proj-dot'));
-      const fill     = document.getElementById('mpLineFill');
-      const leftCol  = document.getElementById('mpLeft');
-      const dotsWrap = document.getElementById('mpDots');
+/* =========================
+   CURSOR
+========================= */
+function initCursor(){
+  const c=document.getElementById('cursor');
+  const r=document.getElementById('cursorRing');
+  let mx=0,my=0,rx=0,ry=0;
 
-      function positionDots() {
-        if (!leftCol || !dotsWrap) return;
-        const leftRect = leftCol.getBoundingClientRect();
-        items.forEach((item, i) => {
-          const dot = dots[i];
-          if (!dot) return;
-          const itemRect = item.getBoundingClientRect();
-          const relMid = (itemRect.top - leftRect.top) + itemRect.height / 2 - 5;
-          dot.style.top = Math.max(0, relMid) + 'px';
-        });
-        dotsWrap.style.height = leftCol.offsetHeight + 'px';
-      }
+  document.addEventListener('mousemove',e=>{
+    mx=e.clientX;my=e.clientY;
+    c.style.left=mx+'px';
+    c.style.top=my+'px';
+  });
 
-      function update() {
-        const vh = window.innerHeight;
-        let lastLitIdx = -1;
-        items.forEach((item, i) => {
-          const r = item.getBoundingClientRect();
-          const mid = r.top + r.height / 2;
-          if (mid < vh * 0.82) {
-            item.classList.add('mp-reveal');
-            if (dots[i]) { dots[i].classList.add('dot-lit'); lastLitIdx = i; }
-          }
-        });
-        if (lastLitIdx >= 0 && dots[lastLitIdx] && fill && dotsWrap) {
-          const dotEl  = dots[lastLitIdx];
-          const wrapH  = dotsWrap.offsetHeight;
-          const dotTop = parseFloat(dotEl.style.top || '0') + 5;
-          const pct    = wrapH > 0 ? Math.min(100, (dotTop / wrapH) * 100) : 0;
-          fill.style.height = pct + '%';
-        }
-      }
+  (function animate(){
+    rx+=(mx-rx)*0.12;
+    ry+=(my-ry)*0.12;
+    r.style.left=rx+'px';
+    r.style.top=ry+'px';
+    requestAnimationFrame(animate);
+  })();
+}
 
-      window.addEventListener('scroll', update, { passive: true });
-      window.addEventListener('resize', () => { positionDots(); update(); });
-      setTimeout(() => { positionDots(); update(); }, 350);
-    })();
+/* =========================
+   INIT EVERYTHING (SAFE ORDER)
+========================= */
+loadSections().then(()=>{
+  initCursor();
 
-    /* ── Experience / Education animated timelines ── */
-    (function() {
-      function initTimeline(wrapId, fillId, itemSel) {
-        const wrap  = document.getElementById(wrapId);
-        const fill  = document.getElementById(fillId);
-        if (!wrap || !fill) return;
-        const items = Array.from(wrap.querySelectorAll(itemSel));
-
-        function update() {
-          const vh    = window.innerHeight;
-          const wrapH = wrap.offsetHeight;
-          let maxRelMid = 0;
-          items.forEach(item => {
-            const r   = item.getBoundingClientRect();
-            const mid = r.top + r.height / 2;
-            if (mid < vh * 0.8) {
-              item.classList.add('tl-reveal');
-              const relMid = item.offsetTop + item.offsetHeight / 2;
-              if (relMid > maxRelMid) maxRelMid = relMid;
-            }
-          });
-          const pct = wrapH > 0 ? Math.min(100, (maxRelMid / wrapH) * 100) : 0;
-          fill.style.height = pct + '%';
-        }
-
-        window.addEventListener('scroll', update, { passive: true });
-        setTimeout(update, 200);
-      }
-
-      initTimeline('workTimeline', 'workFill', '.exp-item-new');
-      initTimeline('eduTimeline',  'eduFill',  '.edu-item-new');
-    })();
-  }
+  // wait DOM paint after fetch injection
+  setTimeout(()=>{
+    initRevealSystem();
+  },150);
+});
 </script>
+
 </body>
 </html>
