@@ -186,7 +186,7 @@
       const revealObs = new IntersectionObserver((entries) => {
         entries.forEach(e => {
           if (e.isIntersecting) {
-            e.target.classList.add('reveal');
+            e.target.classList.add('visible');
             activate(parseInt(e.target.dataset.idx));
           }
         });
@@ -198,7 +198,7 @@
           blocks[i].scrollIntoView({ behavior: 'smooth', block: 'center' });
         });
       });
-      blocks[0].classList.add('reveal');
+      blocks[0].classList.add('visible');
       activate(0);
     })();
 
