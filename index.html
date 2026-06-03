@@ -165,6 +165,7 @@
       const lineFill = document.getElementById('timelineFill');
       const stepList = document.getElementById('stepList');
       if (!steps.length || !blocks.length || !lineFill || !stepList) return; 
+      let current = 0;
 
       function activate(idx) {
         if (idx === current && steps[idx].classList.contains('active')) return;
