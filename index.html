@@ -34,7 +34,9 @@
     font-size: 15px;
     line-height: 1.6;
     overflow-x: hidden;
-    cursor: none;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    body { cursor: none; }
   }
 
   /* CURSOR */
@@ -121,7 +123,44 @@
   @keyframes scrollPulse { 0%,100%{opacity:.3;transform:scaleX(.5);transform-origin:left}50%{opacity:1;transform:scaleX(1);transform-origin:left} }
   @keyframes fadeUp { from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)} }
 
+ /* ── Scroll Reveal — base hidden state & revealed state ── */
+/* Exclude .proj-block AND anything inside #projects */
+  #projects .reveal {opacity: 1 !important;transform: none !important}
+  .reveal:not(.proj-block) {opacity: 0;transform: translateY(20px);transition: opacity 0.6s ease, transform 0.6s ease;}
+  .reveal.visible:not(.proj-block) {opacity: 1;transform: none;}
+
+  /* ── Scroll Reveal — base hidden state & revealed state ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
   
+  /* Status Badge — positioned top-right of arch-card */
+  .arch-card { position: relative; }
+  .status-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 3;
+    font-size: 9.5px;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+    background: rgba(0,0,0,0.35);
+    color: var(--block-color, var(--accent));
+    border: 1px solid var(--block-color, var(--accent));
+    box-shadow: 0 0 8px -2px var(--block-color, var(--accent));
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+
   /* ABOUT */
   #about { background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border); }
   .about-grid { max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center; }
@@ -184,7 +223,7 @@
 .timeline-fill{
   position:absolute;
   top:0;left:0;width:100%;height:0%;
-  background:linear-gradient(180deg,rgba(255,255,255,0.55) 0%,rgba(255,255,255,0.2) 100%);
+  background:linear-gradient(180deg,rgba(255,255,255,0.95) 0%,rgba(255,255,255,0.4) 100%);
   transition:height .08s linear;
   border-radius:1px;
 }
@@ -397,14 +436,115 @@
   .edu-org { font-size:0.8rem;color:var(--muted);font-weight:400; }
 
   /* SKILLS */
-  #skills { background:var(--bg); }
-  .skills-max { max-width:1160px;margin:0 auto; }
-  .skills-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-top:56px; }
-  .skill-group { background:var(--bg);padding:28px 24px; }
-  .skill-group-name { font-family:var(--font-head);font-size:0.78rem;font-weight:700;color:var(--text);margin-bottom:16px; }
-  .skill-chips { display:flex;flex-wrap:wrap;gap:6px; }
-  .skill-chip { padding:4px 10px;background:var(--surface);border:1px solid var(--border);border-radius:5px;font-size:0.72rem;font-weight:400;color:var(--muted);transition:all .2s; }
-  .skill-chip:hover { border-color:rgba(74,240,255,0.25);color:var(--text); }
+  #skills { background: var(--bg); position: relative; }
+  .skills-max { max-width: 1160px; margin: 0 auto; }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 56px;
+  }
+
+  /* ── Project-style Card ── */
+  .skill-group {
+    position: relative;
+    overflow: hidden;
+    padding: 28px 24px;
+    border-radius: 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    transition: border-color .3s, transform .4s cubic-bezier(.22,1,.36,1);
+  }
+
+  /* Top colour line — same as arch-card */
+  .skill-group::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 5%,
+      var(--card-accent, var(--accent)) 50%,
+      transparent 95%
+    );
+    opacity: .55;
+    pointer-events: none;
+  }
+
+  /* Subtle grid bg — same as arch-card */
+  .skill-group::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(74,240,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(74,240,255,0.025) 1px, transparent 1px);
+    background-size: 32px 32px;
+    mask-image: radial-gradient(ellipse at 70% 30%, black, transparent 70%);
+  }
+
+  .skill-group:hover {
+    border-color: rgba(74,240,255,0.18);
+    transform: translateY(-6px);
+  }
+
+  /* Scroll pop animation */
+  .skill-group.reveal {
+    opacity: 0;
+    transform: translateY(40px) scale(0.92);
+    filter: blur(4px);
+    transition:
+      opacity .8s ease,
+      transform .8s cubic-bezier(.22,1,.36,1),
+      filter .8s ease;
+  }
+  .skill-group.reveal.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+  .skill-group.reveal.visible:hover {
+    transform: translateY(-6px) scale(1);
+  }
+
+  .skill-group-name {
+    font-family: var(--font-head);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text);
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .skill-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .skill-chip {
+    padding: 5px 11px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    font-size: 0.73rem;
+    font-weight: 400;
+    color: var(--muted);
+    transition: color .22s ease, border-color .22s ease, background .22s ease;
+  }
+  .skill-chip:hover {
+    color: var(--text);
+    border-color: rgba(74,240,255,0.28);
+    background: rgba(74,240,255,0.06);
+  }
 
   /* CERTIFICATIONS */
   #certifications { background:var(--bg2);border-top:1px solid var(--border); }
@@ -478,7 +618,7 @@
     .exp-role, .edu-role { font-size: 0.95rem; }
     .exp-org, .edu-org, .exp-desc { font-size: 0.78rem; line-height: 1.65; }
     .skills-max { max-width: 100%; }
-    .skills-grid { grid-template-columns: 1fr; margin-top: 32px; border-radius: 12px; }
+    .skills-grid { grid-template-columns: 1fr; gap: 14px; margin-top: 32px; }
     .skill-group { padding: 22px 18px; }
     .skill-chip { font-size: 0.7rem; padding: 5px 9px; }
     .cert-cards { grid-template-columns: 1fr; gap: 16px; margin-top: 32px; }
@@ -594,8 +734,8 @@
   }
   .more-proj-line-fill {
     position:absolute;top:0;left:0;width:100%;height:0%;
-    background:linear-gradient(180deg,rgba(255,255,255,0.55) 0%,rgba(255,255,255,0.15) 100%);
-    transition:height .12s linear;border-radius:1px;
+    background:linear-gradient(180deg,rgba(255,255,255,0.95) 0%,rgba(255,255,255,0.5) 100%);
+    border-radius:1px;
   }
   /* dots positioned absolutely inside left col */
   .more-proj-dots {
@@ -686,7 +826,6 @@
     position:absolute;top:0;left:0;
     width:100%;height:0%;
     border-radius:1px;
-    transition:height .18s linear;
   }
   .exp-fill-work {
     background:linear-gradient(180deg,rgba(74,240,255,0.8) 0%,rgba(74,240,255,0.2) 100%);
@@ -951,6 +1090,7 @@ I'm always motivated by the opportunity to develop AI systems that gives a value
           </div>
           <div class="proj-visual">
             <div class="arch-card">
+              <span class="status-badge status-active">● Ongoing</span>
               <div class="arch-label">Architecture</div>
               <svg class="arch-svg" viewBox="0 0 320 260" xmlns="http://www.w3.org/2000/svg">
                 <defs>
@@ -1071,6 +1211,7 @@ I'm always motivated by the opportunity to develop AI systems that gives a value
           </div>
           <div class="proj-visual">
             <div class="arch-card">
+              <span class="status-badge status-active">● Ongoing</span>
               <div class="arch-label">Architecture</div>
               <svg class="arch-svg" viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
                 <defs>
@@ -1226,6 +1367,7 @@ I'm always motivated by the opportunity to develop AI systems that gives a value
           </div>
           <a href="#" target="_blank" rel="noopener noreferrer" class="more-proj-link">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
             GitHub
           </a>
         </div>
@@ -1236,6 +1378,7 @@ I'm always motivated by the opportunity to develop AI systems that gives a value
             <p class="more-proj-desc">Multi-agent Analyst–Architect–Coder workflow using CrewAI and FAISS that transforms academic PDFs into deployable software. Each agent queries the vector index to ground its output.</p>
           </div>
           <a href="#" target="_blank" rel="noopener noreferrer" class="more-proj-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
             GitHub
           </a>
         </div>
@@ -1246,6 +1389,7 @@ I'm always motivated by the opportunity to develop AI systems that gives a value
             <p class="more-proj-desc">Physics-based puzzle environment to benchmark spatial reasoning and problem-solving of multimodal LLMs (GPT-4V, Claude, Gemini) across adaptive difficulty levels.</p>
           </div>
           <a href="https://github.com/Ravevx/LLM-Spatial-Reasoning-Evaluation-2D-Physics-Puzzle" target="_blank" rel="noopener noreferrer" class="more-proj-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
             GitHub
           </a>
         </div>
@@ -1256,6 +1400,7 @@ I'm always motivated by the opportunity to develop AI systems that gives a value
             <p class="more-proj-desc">NLP pipeline using BioBERT/PubMedBERT to detect and extract biomedical claims and evidence spans from scientific literature for automated fact verification.</p>
           </div>
           <a href="https://github.com/Ravevx/Bio-Medical-Claim-Mining" target="_blank" rel="noopener noreferrer" class="more-proj-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
             GitHub
           </a>
         </div>
@@ -1266,6 +1411,7 @@ I'm always motivated by the opportunity to develop AI systems that gives a value
             <p class="more-proj-desc">Intelligent cloud resource scheduler using Answer Set Programming (Clingo) for optimal VM allocation, SLA satisfaction, and cost minimization through declarative constraint solving.</p>
           </div>
           <a href="https://github.com/Ravevx/CloudRA-ASP-based-Cloud-Resource-Allocation" target="_blank" rel="noopener noreferrer" class="more-proj-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
             GitHub
           </a>
         </div>
@@ -1404,37 +1550,37 @@ I'm always motivated by the opportunity to develop AI systems that gives a value
     <div class="section-eyebrow reveal">Technical Arsenal</div>
     <h2 class="section-title reveal">Skills</h2>
     <div class="skills-grid">
-      <div class="skill-group reveal" style="transition-delay:.05s">
+      <div class="skill-group reveal" style="transition-delay:.05s;--card-accent:#4af0ff">
         <div class="skill-group-name">AI / ML Frameworks</div>
         <div class="skill-chips">
           <span class="skill-chip">PyTorch</span><span class="skill-chip">TensorFlow</span><span class="skill-chip">Scikit-learn</span><span class="skill-chip">Hugging Face</span><span class="skill-chip">OpenAI SDK</span>
         </div>
       </div>
-      <div class="skill-group reveal" style="transition-delay:.09s">
+      <div class="skill-group reveal" style="transition-delay:.09s;--card-accent:#ff6b9d">
         <div class="skill-group-name">NLP & LLMs</div>
         <div class="skill-chips">
           <span class="skill-chip">Fine-tuning</span><span class="skill-chip">Prompt Engineering</span><span class="skill-chip">Semantic Analysis</span><span class="skill-chip">NLTK</span><span class="skill-chip">SpaCy</span>
         </div>
       </div>
-      <div class="skill-group reveal" style="transition-delay:.13s">
+      <div class="skill-group reveal" style="transition-delay:.13s;--card-accent:#7c6fff">
         <div class="skill-group-name">Agentic AI & LLM Systems</div>
         <div class="skill-chips">
           <span class="skill-chip">Multi-Agent Systems</span><span class="skill-chip">LangGraph</span><span class="skill-chip">CrewAI</span><span class="skill-chip">RAG</span><span class="skill-chip">ChromaDB</span><span class="skill-chip">FAISS</span>
         </div>
       </div>
-      <div class="skill-group reveal" style="transition-delay:.17s">
+      <div class="skill-group reveal" style="transition-delay:.17s;--card-accent:#4af0ff">
         <div class="skill-group-name">Computer Vision</div>
         <div class="skill-chips">
           <span class="skill-chip">OpenCV</span><span class="skill-chip">Segmentation</span><span class="skill-chip">Object Detection</span><span class="skill-chip">CNNs</span><span class="skill-chip">Vision Transformers</span><span class="skill-chip">Grad-CAM</span>
         </div>
       </div>
-      <div class="skill-group reveal" style="transition-delay:.21s">
+      <div class="skill-group reveal" style="transition-delay:.21s;--card-accent:#ff6b9d">
         <div class="skill-group-name">MLOps & Deployment</div>
         <div class="skill-chips">
           <span class="skill-chip">AWS (EC2/S3/Lambda)</span><span class="skill-chip">Docker</span><span class="skill-chip">FastAPI</span><span class="skill-chip">RESTful APIs</span><span class="skill-chip">Git</span>
         </div>
       </div>
-      <div class="skill-group reveal" style="transition-delay:.25s">
+      <div class="skill-group reveal" style="transition-delay:.25s;--card-accent:#7c6fff">
         <div class="skill-group-name">Programming & Data</div>
         <div class="skill-chips">
           <span class="skill-chip">Python</span><span class="skill-chip">SQL</span><span class="skill-chip">MongoDB</span><span class="skill-chip">NumPy</span><span class="skill-chip">Pandas</span><span class="skill-chip">Django</span>
@@ -1537,10 +1683,11 @@ I'm always motivated by the opportunity to develop AI systems that gives a value
 
   /* ── Key Projects sticky timeline ── */
   (function() {
-    const steps    = document.querySelectorAll('.step-item');
-    const blocks   = document.querySelectorAll('.proj-block');
-    const lineFill = document.getElementById('timelineFill');
-    const stepList = document.getElementById('stepList');
+    const steps      = document.querySelectorAll('.step-item');
+    const blocks     = document.querySelectorAll('.proj-block');
+    const lineFill   = document.getElementById('timelineFill');
+    const stepList   = document.getElementById('stepList');
+    const projSection = document.getElementById('projects');
     let current = 0;
 
     function activate(idx) {
@@ -1548,32 +1695,50 @@ I'm always motivated by the opportunity to develop AI systems that gives a value
       steps[current].classList.remove('active');
       current = idx;
       steps[current].classList.add('active');
-      const listH  = stepList.getBoundingClientRect().height;
-      const stepEl = steps[idx];
-      const stepTop = stepEl.offsetTop + stepEl.offsetHeight / 2;
-      lineFill.style.height = Math.min(100, (stepTop / listH) * 100) + '%';
     }
 
-    const revealObs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('reveal');
-          activate(parseInt(e.target.dataset.idx));
+    function update() {
+      if (!projSection || !lineFill || !stepList) return;
+
+      const vh      = window.innerHeight;
+      const rect    = projSection.getBoundingClientRect();
+      const total   = rect.height - vh;
+      const scrolled = Math.max(0, -rect.top);
+      const progress = total > 0 ? Math.min(1, scrolled / total) : 0;
+
+      /* ── Smooth line tied to scroll ── */
+      lineFill.style.height = (progress * 100) + '%';
+
+      /* ── Sync dot activation + block reveal to line position ──
+         Each block occupies an equal slice of the total scroll range.
+         Reveal + activate when the line reaches that block's slice.     */
+      const sliceSize = 1 / blocks.length;
+      blocks.forEach((block, i) => {
+        /* line reaches this block when progress > its start threshold */
+        const threshold = i === 0 ? 0 : (i / blocks.length) - sliceSize * 0.15;
+        if (progress >= threshold) {
+          block.classList.add('reveal');
+          activate(i);
         }
       });
-    }, { threshold: 0, rootMargin: '-35% 0px -35% 0px' });
+    }
 
-    blocks.forEach(b => revealObs.observe(b));
+    /* Step click nav */
     steps.forEach((s, i) => {
       s.addEventListener('click', () => {
         blocks[i].scrollIntoView({ behavior: 'smooth', block: 'center' });
       });
     });
+
+    /* Init first block immediately */
     blocks[0].classList.add('reveal');
     activate(0);
+
+    window.addEventListener('scroll', update, { passive: true });
+    update();
   })();
 
-  /* ─────────────────────────────────────────
+    /* ─────────────────────────────────────────
      MORE PROJECTS — dot + line scroll reveal
   ───────────────────────────────────────── */
   (function() {
@@ -1583,7 +1748,6 @@ I'm always motivated by the opportunity to develop AI systems that gives a value
     const leftCol  = document.getElementById('mpLeft');
     const dotsWrap = document.getElementById('mpDots');
 
-    /* Position dots to align vertically with each item's midpoint */
     function positionDots() {
       if (!leftCol || !dotsWrap) return;
       const leftRect = leftCol.getBoundingClientRect();
@@ -1591,45 +1755,37 @@ I'm always motivated by the opportunity to develop AI systems that gives a value
         const dot = dots[i];
         if (!dot) return;
         const itemRect = item.getBoundingClientRect();
-        // relative to leftCol top
         const relMid = (itemRect.top - leftRect.top) + itemRect.height / 2 - 5;
         dot.style.top = Math.max(0, relMid) + 'px';
       });
-      // set dotsWrap height to match leftCol
       dotsWrap.style.height = leftCol.offsetHeight + 'px';
     }
 
-    /* On scroll: reveal items, light dots, grow line */
     function update() {
       const vh = window.innerHeight;
-      let lastLitIdx = -1;
 
+      /* Reveal items + light dots as they scroll into view */
       items.forEach((item, i) => {
-        const r = item.getBoundingClientRect();
+        const r   = item.getBoundingClientRect();
         const mid = r.top + r.height / 2;
         if (mid < vh * 0.82) {
           item.classList.add('mp-reveal');
-          if (dots[i]) {
-            dots[i].classList.add('dot-lit');
-            lastLitIdx = i;
-          }
+          if (dots[i]) dots[i].classList.add('dot-lit');
         }
       });
 
-      /* grow line to last lit dot */
-      if (lastLitIdx >= 0 && dots[lastLitIdx] && fill && dotsWrap) {
-        const dotEl   = dots[lastLitIdx];
-        const wrapH   = dotsWrap.offsetHeight;
-        const dotTop  = parseFloat(dotEl.style.top || '0') + 5; // +5 = dot center
-        const pct     = wrapH > 0 ? Math.min(100, (dotTop / wrapH) * 100) : 0;
+      /* Smooth line: map scroll progress through section → fill height */
+      if (fill && leftCol) {
+        const wrapH  = leftCol.offsetHeight;
+        const rect   = leftCol.getBoundingClientRect();
+        const scrolled = Math.max(0, vh * 0.5 - rect.top);
+        const pct    = wrapH > 0 ? Math.min(100, (scrolled / wrapH) * 100) : 0;
         fill.style.height = pct + '%';
       }
     }
 
     window.addEventListener('scroll', update, { passive: true });
     window.addEventListener('resize', () => { positionDots(); update(); });
-
-    // Initial run after layout settles
     setTimeout(() => { positionDots(); update(); }, 350);
   })();
 
@@ -1644,22 +1800,19 @@ I'm always motivated by the opportunity to develop AI systems that gives a value
       const items = Array.from(wrap.querySelectorAll(itemSel));
 
       function update() {
-        const vh    = window.innerHeight;
-        const wrapH = wrap.offsetHeight;
-        let maxRelMid = 0;
+        const vh       = window.innerHeight;
+        const wrapRect = wrap.getBoundingClientRect();
+        const wrapH    = wrap.offsetHeight;
 
+        /* Reveal items as they cross 80% of viewport */
         items.forEach(item => {
-          const r   = item.getBoundingClientRect();
-          const mid = r.top + r.height / 2;
-          if (mid < vh * 0.8) {
-            item.classList.add('tl-reveal');
-            /* relative midpoint within wrap */
-            const relMid = item.offsetTop + item.offsetHeight / 2;
-            if (relMid > maxRelMid) maxRelMid = relMid;
-          }
+          const mid = item.getBoundingClientRect().top + item.offsetHeight / 2;
+          if (mid < vh * 0.80) item.classList.add('tl-reveal');
         });
 
-        const pct = wrapH > 0 ? Math.min(100, (maxRelMid / wrapH) * 100) : 0;
+        /* Smooth fill: how far has the viewport center travelled through the wrap */
+        const scrolled = Math.max(0, vh * 0.5 - wrapRect.top);
+        const pct      = wrapH > 0 ? Math.min(100, (scrolled / wrapH) * 100) : 0;
         fill.style.height = pct + '%';
       }
 
@@ -1670,6 +1823,7 @@ I'm always motivated by the opportunity to develop AI systems that gives a value
     initTimeline('workTimeline', 'workFill', '.exp-item-new');
     initTimeline('eduTimeline',  'eduFill',  '.edu-item-new');
   })();
+
 </script>
 </body>
 </html>
