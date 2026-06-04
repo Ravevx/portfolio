@@ -316,8 +316,8 @@
   text-transform:uppercase;
   color:var(--block-color,var(--accent));
   margin-bottom:12px;
-  opacity:0;transform:translateY(12px);
-  transition:opacity .5s,transform .5s;
+  opacity:0;transform:translateY(18px);
+  transition:opacity .55s .05s,transform .55s .05s;
 }
 .proj-block.reveal .proj-num{opacity:1;transform:none;}
 
@@ -326,25 +326,25 @@
   font-size:clamp(1.45rem,2vw,1.85rem);
   font-weight:800;letter-spacing:-.025em;line-height:1.2;
   margin-bottom:14px;
-  opacity:0;transform:translateY(16px);
-  transition:opacity .5s .06s,transform .5s .06s;
+  opacity:0;transform:translateY(22px);
+  transition:opacity .6s .15s,transform .6s .15s;
 }
 .proj-block.reveal .proj-title{opacity:1;transform:none;}
 
 .proj-desc{
   font-size:.875rem;line-height:1.85;color:var(--muted);
   margin-bottom:22px;
-  opacity:0;transform:translateY(12px);
-  transition:opacity .5s .12s,transform .5s .12s;
+  opacity:0;transform:translateY(16px);
+  transition:opacity .6s .28s,transform .6s .28s;
 }
 .proj-block.reveal .proj-desc{opacity:1;transform:none;}
 
 .proj-pills{
   display:flex;flex-wrap:wrap;gap:6px;
   margin-bottom:26px;
-  opacity:0;transition:opacity .5s .18s;
+  opacity:0;transform:translateY(10px);transition:opacity .55s .42s,transform .55s .42s;
 }
-.proj-block.reveal .proj-pills{opacity:1;}
+.proj-block.reveal .proj-pills{opacity:1;transform:none;}
 .pill{
   padding:4px 11px;
   background:var(--surface2);
@@ -360,18 +360,47 @@
   font-size:.76rem;font-weight:600;
   text-decoration:none;
   transition:background .2s,gap .2s;
-  opacity:0;transform:translateY(8px);
-  transition:opacity .5s .24s,transform .5s .24s,background .2s,gap .2s;
+  opacity:0;transform:translateY(10px);
+  transition:opacity .55s .55s,transform .55s .55s,background .2s,gap .2s;
 }
 .proj-block.reveal .proj-link{opacity:1;transform:none;}
 .proj-link:hover{background:rgba(255,255,255,0.05);gap:12px;}
 
 /* ARCH / VISUAL SIDE */
 .proj-visual{
-  opacity:0;transform:translateX(24px) scale(.97);
-  transition:opacity .65s .1s,transform .65s .1s;
+  opacity:0;transform:translateX(40px) scale(.95);
+  transition:opacity .75s .2s,transform .75s .2s;
 }
 .proj-block.reveal .proj-visual{opacity:1;transform:none;}
+
+  /* ── SVG Architecture "draw-in" animation ── */
+  .arch-svg line,
+  .arch-svg path,
+  .arch-svg polyline,
+  .proj-block.reveal .arch-svg line,
+  .proj-block.reveal .arch-svg path,
+  .proj-block.reveal .arch-svg polyline,
+  .proj-block.reveal .arch-svg rect {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 0.8s cubic-bezier(.4,0,.2,1) .35s;
+  }
+  /* Nodes (filled circles/rects) fade in with a pop */
+  .arch-svg .an,
+  .arch-svg .an-a,
+  .arch-svg text {
+    opacity: 0;
+    transform: scale(0.7);
+    transform-origin: center;
+    transform-box: fill-box;
+    transition: opacity 0s, transform 0s;
+  }
+  .proj-block.reveal .arch-svg .an,
+  .proj-block.reveal .arch-svg .an-a,
+  .proj-block.reveal .arch-svg text {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity .5s .6s, transform .5s .6s cubic-bezier(.34,1.56,.64,1);
+  }
 
 .arch-card{
   background:var(--surface);
@@ -1683,10 +1712,10 @@ I'm always motivated by the opportunity to develop AI systems that gives a value
 
   /* ── Key Projects sticky timeline ── */
   (function() {
-    const steps      = document.querySelectorAll('.step-item');
-    const blocks     = document.querySelectorAll('.proj-block');
-    const lineFill   = document.getElementById('timelineFill');
-    const stepList   = document.getElementById('stepList');
+    const steps       = document.querySelectorAll('.step-item');
+    const blocks      = document.querySelectorAll('.proj-block');
+    const lineFill    = document.getElementById('timelineFill');
+    const stepList    = document.getElementById('stepList');
     const projSection = document.getElementById('projects');
     let current = 0;
 
@@ -1697,43 +1726,51 @@ I'm always motivated by the opportunity to develop AI systems that gives a value
       steps[current].classList.add('active');
     }
 
+    /* ── Line: smooth scroll-driven ── */
     function update() {
-      if (!projSection || !lineFill || !stepList) return;
-
-      const vh      = window.innerHeight;
-      const rect    = projSection.getBoundingClientRect();
-      const total   = rect.height - vh;
+      if (!projSection || !lineFill) return;
+      const vh       = window.innerHeight;
+      const rect     = projSection.getBoundingClientRect();
+      const total    = rect.height - vh;
       const scrolled = Math.max(0, -rect.top);
       const progress = total > 0 ? Math.min(1, scrolled / total) : 0;
-
-      /* ── Smooth line tied to scroll ── */
       lineFill.style.height = (progress * 100) + '%';
 
-      /* ── Sync dot activation + block reveal to line position ──
-         Each block occupies an equal slice of the total scroll range.
-         Reveal + activate when the line reaches that block's slice.     */
-      const sliceSize = 1 / blocks.length;
+      /* Activate dot closest to viewport center */
+      let closestIdx = 0, closestDist = Infinity;
       blocks.forEach((block, i) => {
-        /* line reaches this block when progress > its start threshold */
-        const threshold = i === 0 ? 0 : (i / blocks.length) - sliceSize * 0.15;
-        if (progress >= threshold) {
-          block.classList.add('reveal');
-          activate(i);
-        }
+        const r   = block.getBoundingClientRect();
+        const mid = r.top + r.height / 2;
+        const dist = Math.abs(mid - vh / 2);
+        if (dist < closestDist) { closestDist = dist; closestIdx = i; }
       });
+      activate(closestIdx);
     }
 
-    /* Step click nav */
+    /* ── Block reveal: fires when block is 25% into viewport
+       so the animation plays WHILE it's scrolling into view ── */
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('reveal');
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, {
+      threshold: 0,
+      rootMargin: '0px 0px -20% 0px'
+    });
+
+    blocks.forEach(b => revealObs.observe(b));
+
     steps.forEach((s, i) => {
       s.addEventListener('click', () => {
         blocks[i].scrollIntoView({ behavior: 'smooth', block: 'center' });
       });
     });
 
-    /* Init first block immediately */
     blocks[0].classList.add('reveal');
     activate(0);
-
     window.addEventListener('scroll', update, { passive: true });
     update();
   })();
